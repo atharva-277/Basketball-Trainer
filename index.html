@@ -11,7 +11,6 @@
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <script src="index.js"></script>
   </head>
   <body>
     <!-- ══════════════════════════════
@@ -147,8 +146,8 @@
           </div>
           <div class="form-row">
             <div class="form-field">
-              <label>Height</label>
-              <input type="text" placeholder="e.g. 6'2&quot;" />
+              <label>Height (in)</label>
+              <input type="number" placeholder='e.g. 74"' />
             </div>
             <div class="form-field">
               <label>Weight (lbs)</label>
@@ -184,10 +183,9 @@
       <div class="page-body">
         <div class="page-header">
           <div>
-            <p class="page-eyebrow">Week 1 · Day 3</p>
+            <p class="page-eyebrow">Week 1 · Day 1</p>
             <h2 class="page-title">Your Training Plan</h2>
           </div>
-          <div class="xp-badge">⚡ 340 XP</div>
         </div>
 
         <!-- Weekly goal strip -->
@@ -205,22 +203,21 @@
         <!-- Workout categories -->
         <div class="section-label">Today's Modules</div>
         <div class="module-grid">
-          <div class="module-card" onclick="goTo('screen-trainer')">
+          <div class="module-card active-card" onclick="goTo('screen-trainer')">
             <div class="module-icon shooting">🏀</div>
             <div class="module-info">
               <div class="module-name">Shooting</div>
               <div class="module-meta">Catch & Shoot · Mid-Range · Pull-Up</div>
             </div>
-            <div class="module-status done">✓</div>
+            <div class="module-status current">Now</div>
           </div>
 
-          <div class="module-card active-card" onclick="goTo('screen-trainer')">
+          <div class="module-card" onclick="goTo('screen-trainer')">
             <div class="module-icon handling">⚡</div>
             <div class="module-info">
               <div class="module-name">Ball Handling</div>
               <div class="module-meta">Crossover Series · Change of Pace</div>
             </div>
-            <div class="module-status current">Now</div>
           </div>
 
           <div class="module-card" onclick="goTo('screen-gameiq')">
@@ -692,6 +689,6 @@
       </div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
