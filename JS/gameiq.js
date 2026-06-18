@@ -35,3 +35,6 @@ function selectChoice(btn, isCorrect) {
     });
   }, 2500);
 }
+
+//qwerty
+
