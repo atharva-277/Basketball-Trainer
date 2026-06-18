@@ -10,3 +10,5 @@ document.querySelectorAll(".zone-slider").forEach((slider) => {
     if (pctEl) pctEl.textContent = this.value + "%";
   });
 });
+
+// teesting trainer file we are awesome
