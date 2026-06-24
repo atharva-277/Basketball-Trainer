@@ -918,6 +918,468 @@ button {
   color: var(--orange);
 }
 
+/* ─── ONBOARDING PROGRESS DOTS ───────────────────── */
+.onboard-progress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+.onboard-dot {
+  height: 4px;
+  flex: 1;
+  background: var(--surface-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.onboard-dot.done,
+.onboard-dot.active {
+  background: var(--orange);
+}
+.onboard-dot.active {
+  opacity: 0.5;
+}
+
+/* ─── BASELINE ASSESSMENT SCREEN ─────────────────── */
+#screen-baseline {
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: radial-gradient(ellipse at 30% 30%, #1a2240 0%, var(--bg) 60%);
+}
+.baseline-content {
+  max-width: 480px;
+  width: 100%;
+}
+.baseline-step-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+.baseline-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.baseline-instructions {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+/* Shot/test spot grid (used for shooting, mid-range, finishing) */
+.spot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.spot-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  text-align: center;
+}
+.spot-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.spot-stepper {
+  width: 100%;
+}
+.spot-of {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: -4px;
+}
+
+.spot-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--orange);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.spot-total-row span:last-child {
+  color: var(--orange);
+}
+
+/* Generic test card (kept for any future single-input tests) */
+.test-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.tally-row {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.tally-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tally-field label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.tally-stepper {
+  display: flex;
+  align-items: center;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.tally-stepper button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 18px;
+  font-weight: 700;
+  width: 36px;
+  height: 40px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+.tally-stepper button:hover {
+  color: var(--orange);
+  background: rgba(247, 107, 28, 0.08);
+}
+.tally-stepper input {
+  flex: 1;
+  text-align: center;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  outline: none;
+  width: 100%;
+  padding: 0;
+}
+
+/* Ball handling drill series */
+.drill-series {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.drill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: border-color 0.15s, opacity 0.15s;
+}
+.active-drill {
+  border-color: var(--orange);
+}
+.locked-drill {
+  opacity: 0.45;
+}
+.drill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.drill-index {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.drill-status {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 5px;
+}
+.drill-status.pending {
+  color: var(--text-dim);
+  background: var(--surface-2);
+}
+.drill-status.running {
+  color: var(--orange);
+  background: var(--orange-dim);
+}
+.drill-status.done {
+  color: var(--green);
+  background: rgba(34, 197, 94, 0.15);
+}
+.drill-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.drill-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.drill-timer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.drill-clock {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--orange);
+  min-width: 52px;
+}
+.btn-timer {
+  flex: 1;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, opacity 0.15s;
+}
+.btn-timer:hover:not(:disabled) {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+.btn-timer:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.btn-timer.running {
+  border-color: var(--orange);
+  background: var(--orange-dim);
+  color: var(--orange);
+}
+.drill-stop:not(:disabled) {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+.drill-stop:not(:disabled):hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.baseline-nav-row {
+  display: flex;
+  gap: 10px;
+}
+.btn-back {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px 22px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-back:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text);
+}
+.baseline-nav-row .btn-primary {
+  margin-top: 0;
+}
+
+/* ─── RESULTS SCREEN ─────────────────────────────── */
+#screen-results {
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: radial-gradient(ellipse at 70% 70%, #1a2240 0%, var(--bg) 60%);
+}
+.results-content {
+  max-width: 560px;
+  width: 100%;
+}
+.results-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--orange-dim);
+  color: var(--orange);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(247, 107, 28, 0.3);
+  margin-bottom: 18px;
+}
+.results-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+.results-sub {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  line-height: 1.55;
+}
+.results-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 22px 0 10px;
+}
+
+.snapshot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.snapshot-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+.snapshot-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.snapshot-value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--orange);
+  line-height: 1;
+}
+.snapshot-value span {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-left: 4px;
+}
+.snapshot-context {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.drill-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.drill-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 16px;
+}
+.drill-result-name {
+  font-size: 13px;
+  color: var(--text);
+}
+.drill-result-time {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--orange);
+}
+
+.overall-card {
+  background: linear-gradient(135deg, var(--orange-dim), var(--surface));
+  border: 1px solid rgba(247, 107, 28, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+.overall-ring {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 4px solid var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--orange);
+  flex-shrink: 0;
+}
+.overall-text-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+.overall-text-desc {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+#enter-trainer-btn {
+  margin-top: 24px;
+}
+
 /* ─── Scrollbar ──────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;
