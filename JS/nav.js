@@ -8,5 +8,3 @@ function goTo(screenId) {
     window.scrollTo(0, 0);
   }
 }
-
-// askdjflajdf
