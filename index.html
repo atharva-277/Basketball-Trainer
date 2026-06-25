@@ -1,923 +1,1237 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Baseline — Basketball Trainer</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-          href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap"
-          rel="stylesheet"
-  />
-</head>
-<body>
-<!-- ══════════════════════════════
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baseline — Basketball Trainer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ══════════════════════════════
      SCREEN 1 — START / ONBOARDING
 ══════════════════════════════ -->
-<div class="screen active" id="screen-start">
-  <div class="start-bg">
-    <svg
-            class="court-lines"
-            viewBox="0 0 800 600"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="xMidYMid slice"
-    >
-      <line x1="0" y1="300" x2="800" y2="300" stroke="rgba(255,255,255,0.07)" stroke-width="2" />
-      <circle cx="400" cy="300" r="90" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2" />
-      <path d="M 60 160 Q 260 300 60 440" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2" />
-      <path d="M 740 160 Q 540 300 740 440" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2" />
-      <rect x="60" y="210" width="140" height="180" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2" />
-      <rect x="600" y="210" width="140" height="180" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2" />
-      <circle cx="200" cy="300" r="60" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2" />
-      <circle cx="600" cy="300" r="60" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2" />
-      <circle cx="80" cy="300" r="12" fill="none" stroke="rgba(247,107,28,0.25)" stroke-width="2" />
-      <circle cx="720" cy="300" r="12" fill="none" stroke="rgba(247,107,28,0.25)" stroke-width="2" />
-    </svg>
-  </div>
-
-  <div class="start-content">
-    <div class="start-logo">
-      <span class="logo-icon">⬡</span>
-      <span class="logo-word">BASELINE</span>
-    </div>
-    <h1 class="start-headline">
-      Train Smarter.<br /><em>Run the Court.</em>
-    </h1>
-    <p class="start-sub">
-      Personalized workouts, game IQ drills, and real pickup runs — built
-      around your game.
-    </p>
-
-    <div class="start-form">
-      <div class="form-row">
-        <div class="form-field">
-          <label>Age</label>
-          <input type="number" placeholder="e.g. 19" min="10" max="60" />
-        </div>
-        <div class="form-field">
-          <label>Skill Level</label>
-          <select>
-            <option value="">Select…</option>
-            <option>Beginner</option>
-            <option>Intermediate</option>
-            <option>Advanced</option>
-            <option>Elite</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>Height (in)</label>
-          <input type="number" placeholder='e.g. 74"' />
-        </div>
-        <div class="form-field">
-          <label>Weight (lbs)</label>
-          <input type="number" placeholder="e.g. 185" />
-        </div>
-      </div>
-      <button class="btn-primary" onclick="goTo('screen-baseline')">
-        Start Your Assessment →
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════
-     SCREEN — BASELINE ASSESSMENT
-══════════════════════════════ -->
-<div class="screen" id="screen-baseline">
-  <div class="baseline-content">
-    <div class="onboard-progress">
-      <div class="onboard-dot active" data-step="1"></div>
-      <div class="onboard-dot" data-step="2"></div>
-      <div class="onboard-dot" data-step="3"></div>
-      <div class="onboard-dot" data-step="4"></div>
-    </div>
-
-    <!-- STEP 1: Catch & Shoot — 5 Spots -->
-    <div class="baseline-step" id="baseline-step-1">
-      <p class="baseline-step-label">Step 1 of 4</p>
-      <h2 class="baseline-title">Catch-and-Shoot Threes</h2>
-      <p class="baseline-instructions">
-        Take 10 catch-and-shoot threes from each spot below — 50 shots
-        total. Log your makes at each spot.
-      </p>
-
-      <div class="spot-grid">
-        <div class="spot-card" data-spot="left-corner">
-          <div class="spot-name">Left Corner</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="10" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 10</div>
-        </div>
-        <div class="spot-card" data-spot="left-wing">
-          <div class="spot-name">Left Wing</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="10" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 10</div>
-        </div>
-        <div class="spot-card" data-spot="top-key">
-          <div class="spot-name">Top of Key</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="10" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 10</div>
-        </div>
-        <div class="spot-card" data-spot="right-wing">
-          <div class="spot-name">Right Wing</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="10" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 10</div>
-        </div>
-        <div class="spot-card" data-spot="right-corner">
-          <div class="spot-name">Right Corner</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="10" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 10</div>
-        </div>
-      </div>
-
-      <div class="spot-total-row">
-        <span>Total</span>
-        <span id="spot-total-display">0 / 50</span>
-      </div>
-
-      <div class="baseline-nav-row">
-        <button class="btn-primary" type="button" data-next="2">Next Drill →</button>
-      </div>
-    </div>
-
-    <!-- STEP 2: Mid-Range Pull-Ups — 5 Spots -->
-    <div class="baseline-step" id="baseline-step-2" style="display: none">
-      <p class="baseline-step-label">Step 2 of 4</p>
-      <h2 class="baseline-title">Mid-Range Pull-Ups</h2>
-      <p class="baseline-instructions">
-        Off one or two dribbles, take 5 pull-up jumpers from each spot
-        below — 25 shots total. Log your makes at each spot.
-      </p>
-
-      <div class="spot-grid">
-        <div class="spot-card" data-spot="mid-left-baseline">
-          <div class="spot-name">Left Baseline</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="5" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 5</div>
-        </div>
-        <div class="spot-card" data-spot="mid-left-elbow">
-          <div class="spot-name">Left Elbow</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="5" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 5</div>
-        </div>
-        <div class="spot-card" data-spot="mid-top">
-          <div class="spot-name">Top of Key</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="5" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 5</div>
-        </div>
-        <div class="spot-card" data-spot="mid-right-elbow">
-          <div class="spot-name">Right Elbow</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="5" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 5</div>
-        </div>
-        <div class="spot-card" data-spot="mid-right-baseline">
-          <div class="spot-name">Right Baseline</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="5" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 5</div>
-        </div>
-      </div>
-
-      <div class="spot-total-row">
-        <span>Total</span>
-        <span id="midrange-total-display">0 / 25</span>
-      </div>
-
-      <div class="baseline-nav-row">
-        <button class="btn-back" type="button" data-back="1">← Back</button>
-        <button class="btn-primary" type="button" data-next="3">Next Drill →</button>
-      </div>
-    </div>
-
-    <!-- STEP 3: Finishing at the Rim — 4 Finish Types -->
-    <div class="baseline-step" id="baseline-step-3" style="display: none">
-      <p class="baseline-step-label">Step 3 of 4</p>
-      <h2 class="baseline-title">Finishing at the Rim</h2>
-      <p class="baseline-instructions">
-        Take 10 attempts of each finish below — 40 attempts total. Log
-        your makes for each type.
-      </p>
-
-      <div class="spot-grid">
-        <div class="spot-card" data-spot="layup-left">
-          <div class="spot-name">Left-Hand Layup</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="10" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 10</div>
-        </div>
-        <div class="spot-card" data-spot="layup-right">
-          <div class="spot-name">Right-Hand Layup</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="10" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 10</div>
-        </div>
-        <div class="spot-card" data-spot="floater">
-          <div class="spot-name">Floater / Runner</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="10" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 10</div>
-        </div>
-        <div class="spot-card" data-spot="reverse-layup">
-          <div class="spot-name">Reverse Layup</div>
-          <div class="tally-stepper spot-stepper">
-            <button type="button" data-action="dec">−</button>
-            <input type="number" value="0" min="0" max="10" readonly />
-            <button type="button" data-action="inc">+</button>
-          </div>
-          <div class="spot-of">/ 10</div>
-        </div>
-      </div>
-
-      <div class="spot-total-row">
-        <span>Total</span>
-        <span id="finishing-total-display">0 / 40</span>
-      </div>
-
-      <div class="baseline-nav-row">
-        <button class="btn-back" type="button" data-back="2">← Back</button>
-        <button class="btn-primary" type="button" data-next="4">Next Drill →</button>
-      </div>
-    </div>
-
-    <!-- STEP 4: Ball Handling — 6-Drill Series -->
-    <div class="baseline-step" id="baseline-step-4" style="display: none">
-      <p class="baseline-step-label">Step 4 of 4</p>
-      <h2 class="baseline-title">Ball Handling</h2>
-      <p class="baseline-instructions">
-        Run through each drill below. Start the stopwatch, go until you
-        lose control or the move breaks down, then tap "Lost It" to log
-        your time.
-      </p>
-
-      <div class="drill-series" id="drill-series">
-        <div class="drill-card active-drill" id="drill-1" data-drill="stationary-crossover">
-          <div class="drill-header">
-            <span class="drill-index">Drill 1 / 6</span>
-            <span class="drill-status pending">Not Started</span>
-          </div>
-          <div class="drill-name">Stationary Crossover</div>
-          <div class="drill-desc">Low, tight crossovers — stay in a stance, don't travel.</div>
-          <div class="drill-timer">
-            <span class="drill-clock" id="clock-1">0:00</span>
-            <button class="btn-timer" type="button" data-drill-action="start" data-drill-id="1">
-              Start
-            </button>
-            <button class="btn-timer drill-stop" type="button" data-drill-action="stop" data-drill-id="1" disabled>
-              Lost It
-            </button>
-          </div>
-        </div>
-
-        <div class="drill-card locked-drill" id="drill-2" data-drill="figure-eight">
-          <div class="drill-header">
-            <span class="drill-index">Drill 2 / 6</span>
-            <span class="drill-status pending">Not Started</span>
-          </div>
-          <div class="drill-name">Figure-8 Between the Legs</div>
-          <div class="drill-desc">Continuous figure-8, ball never leaves your control path.</div>
-          <div class="drill-timer">
-            <span class="drill-clock" id="clock-2">0:00</span>
-            <button class="btn-timer" type="button" data-drill-action="start" data-drill-id="2" disabled>
-              Start
-            </button>
-            <button class="btn-timer drill-stop" type="button" data-drill-action="stop" data-drill-id="2" disabled>
-              Lost It
-            </button>
-          </div>
-        </div>
-
-        <div class="drill-card locked-drill" id="drill-3" data-drill="two-ball">
-          <div class="drill-header">
-            <span class="drill-index">Drill 3 / 6</span>
-            <span class="drill-status pending">Not Started</span>
-          </div>
-          <div class="drill-name">Two-Ball Dribbling</div>
-          <div class="drill-desc">Simultaneous dribble, both hands — alternate same-time and alternating rhythm.</div>
-          <div class="drill-timer">
-            <span class="drill-clock" id="clock-3">0:00</span>
-            <button class="btn-timer" type="button" data-drill-action="start" data-drill-id="3" disabled>
-              Start
-            </button>
-            <button class="btn-timer drill-stop" type="button" data-drill-action="stop" data-drill-id="3" disabled>
-              Lost It
-            </button>
-          </div>
-        </div>
-
-        <div class="drill-card locked-drill" id="drill-4" data-drill="behind-back-combo">
-          <div class="drill-header">
-            <span class="drill-index">Drill 4 / 6</span>
-            <span class="drill-status pending">Not Started</span>
-          </div>
-          <div class="drill-name">Behind-the-Back Combo</div>
-          <div class="drill-desc">Chain crossover into behind-the-back into hesitation, on repeat.</div>
-          <div class="drill-timer">
-            <span class="drill-clock" id="clock-4">0:00</span>
-            <button class="btn-timer" type="button" data-drill-action="start" data-drill-id="4" disabled>
-              Start
-            </button>
-            <button class="btn-timer drill-stop" type="button" data-drill-action="stop" data-drill-id="4" disabled>
-              Lost It
-            </button>
-          </div>
-        </div>
-
-        <div class="drill-card locked-drill" id="drill-5" data-drill="spider-dribble">
-          <div class="drill-header">
-            <span class="drill-index">Drill 5 / 6</span>
-            <span class="drill-status pending">Not Started</span>
-          </div>
-          <div class="drill-name">Spider Dribble</div>
-          <div class="drill-desc">Rapid-fire alternating taps, both hands, low and wide.</div>
-          <div class="drill-timer">
-            <span class="drill-clock" id="clock-5">0:00</span>
-            <button class="btn-timer" type="button" data-drill-action="start" data-drill-id="5" disabled>
-              Start
-            </button>
-            <button class="btn-timer drill-stop" type="button" data-drill-action="stop" data-drill-id="5" disabled>
-              Lost It
-            </button>
-          </div>
-        </div>
-
-        <div class="drill-card locked-drill" id="drill-6" data-drill="full-speed-crossover">
-          <div class="drill-header">
-            <span class="drill-index">Drill 6 / 6</span>
-            <span class="drill-status pending">Not Started</span>
-          </div>
-          <div class="drill-name">Full-Speed Crossover Sprint</div>
-          <div class="drill-desc">Push the ball full speed, crossover at each cone/line, maintain control.</div>
-          <div class="drill-timer">
-            <span class="drill-clock" id="clock-6">0:00</span>
-            <button class="btn-timer" type="button" data-drill-action="start" data-drill-id="6" disabled>
-              Start
-            </button>
-            <button class="btn-timer drill-stop" type="button" data-drill-action="stop" data-drill-id="6" disabled>
-              Lost It
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="baseline-nav-row">
-        <button class="btn-back" type="button" data-back="3">← Back</button>
-        <button class="btn-primary" type="button" onclick="goTo('screen-results')">
-          See My Results →
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════
-     SCREEN — BASELINE RESULTS
-══════════════════════════════ -->
-<div class="screen" id="screen-results">
-  <div class="results-content">
-    <span class="results-badge">⬡ Assessment Complete</span>
-    <h2 class="results-title">Here's Your Baseline.</h2>
-    <p class="results-sub">
-      This is where you're starting. Your weekly plan and shot-zone
-      targets will build from these numbers — they'll move as you train.
-    </p>
-
-    <div class="overall-card">
-      <div class="overall-ring" id="overall-rating">62</div>
-      <div>
-        <div class="overall-text-label">Overall Rating</div>
-        <div class="overall-text-desc">
-          Solid foundation with room to grow at the rim and from deep.
-        </div>
-      </div>
-    </div>
-
-    <div class="results-section-label">Shooting</div>
-    <div class="snapshot-grid">
-      <div class="snapshot-card">
-        <div class="snapshot-label">Catch & Shoot 3PT</div>
-        <div class="snapshot-value" id="result-threes">40<span>%</span></div>
-        <div class="snapshot-context">20 / 50 makes</div>
-      </div>
-      <div class="snapshot-card">
-        <div class="snapshot-label">Mid-Range Pull-Up</div>
-        <div class="snapshot-value" id="result-midrange">48<span>%</span></div>
-        <div class="snapshot-context">12 / 25 makes</div>
-      </div>
-    </div>
-
-    <div class="results-section-label">Finishing</div>
-    <div class="snapshot-grid">
-      <div class="snapshot-card">
-        <div class="snapshot-label">Left-Hand Layup</div>
-        <div class="snapshot-value" id="result-layup-left">70<span>%</span></div>
-        <div class="snapshot-context">7 / 10 makes</div>
-      </div>
-      <div class="snapshot-card">
-        <div class="snapshot-label">Right-Hand Layup</div>
-        <div class="snapshot-value" id="result-layup-right">80<span>%</span></div>
-        <div class="snapshot-context">8 / 10 makes</div>
-      </div>
-      <div class="snapshot-card">
-        <div class="snapshot-label">Floater / Runner</div>
-        <div class="snapshot-value" id="result-floater">30<span>%</span></div>
-        <div class="snapshot-context">3 / 10 makes</div>
-      </div>
-      <div class="snapshot-card">
-        <div class="snapshot-label">Reverse Layup</div>
-        <div class="snapshot-value" id="result-reverse">20<span>%</span></div>
-        <div class="snapshot-context">2 / 10 makes</div>
-      </div>
-    </div>
-
-    <div class="results-section-label">Ball Handling</div>
-    <div class="drill-results-list" id="drill-results-list">
-      <div class="drill-result-row">
-        <span class="drill-result-name">Stationary Crossover</span>
-        <span class="drill-result-time">0:42</span>
-      </div>
-      <div class="drill-result-row">
-        <span class="drill-result-name">Figure-8 Between the Legs</span>
-        <span class="drill-result-time">0:35</span>
-      </div>
-      <div class="drill-result-row">
-        <span class="drill-result-name">Two-Ball Dribbling</span>
-        <span class="drill-result-time">0:28</span>
-      </div>
-      <div class="drill-result-row">
-        <span class="drill-result-name">Behind-the-Back Combo</span>
-        <span class="drill-result-time">0:19</span>
-      </div>
-      <div class="drill-result-row">
-        <span class="drill-result-name">Spider Dribble</span>
-        <span class="drill-result-time">0:51</span>
-      </div>
-      <div class="drill-result-row">
-        <span class="drill-result-name">Full-Speed Crossover Sprint</span>
-        <span class="drill-result-time">0:24</span>
-      </div>
-    </div>
-
-    <div class="results-section-label">Skill Level</div>
-    <div class="snapshot-grid">
-      <div class="snapshot-card" style="grid-column: span 2">
-        <div class="snapshot-label">Self-Reported</div>
-        <div class="snapshot-value" id="result-skill" style="font-size: 22px">
-          Intermediate
-        </div>
-      </div>
-    </div>
-
-    <button class="btn-primary" id="enter-trainer-btn" onclick="goTo('screen-trainer')">
-      Enter Trainer →
-    </button>
-  </div>
-</div>
-
-<!-- ══════════════════════════════
-     SCREEN 2 — TRAINER
-══════════════════════════════ -->
-<div class="screen" id="screen-trainer">
-  <nav class="app-nav">
-    <span class="nav-logo" onclick="goTo('screen-start')">⬡ BASELINE</span>
-    <div class="nav-links">
-      <button class="nav-btn active" onclick="goTo('screen-trainer')">
-        Trainer
-      </button>
-      <button class="nav-btn" onclick="goTo('screen-gameiq')">
-        Game IQ
-      </button>
-      <button class="nav-btn" onclick="goTo('screen-meetup')">
-        Meetup
-      </button>
-    </div>
-  </nav>
-
-  <div class="page-body">
-    <div class="page-header">
-      <div>
-        <p class="page-eyebrow">Week 1 · Day 1</p>
-        <h2 class="page-title">Your Training Plan</h2>
-      </div>
-    </div>
-
-    <div class="goal-strip">
-      <div class="goal-label">Weekly Goal</div>
-      <div class="goal-text">Hit 40% from three on catch-and-shoot</div>
-      <div class="goal-progress">
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 58%"></div>
-        </div>
-        <span>58%</span>
-      </div>
-    </div>
-
-    <div class="section-label">Today's Modules</div>
-    <div class="module-grid">
-      <div class="module-card active-card" onclick="goTo('screen-trainer')">
-        <div class="module-icon shooting">🏀</div>
-        <div class="module-info">
-          <div class="module-name">Shooting</div>
-          <div class="module-meta">Catch & Shoot · Mid-Range · Pull-Up</div>
-        </div>
-        <div class="module-status current">Now</div>
-      </div>
-
-      <div class="module-card" onclick="goTo('screen-trainer')">
-        <div class="module-icon handling">⚡</div>
-        <div class="module-info">
-          <div class="module-name">Ball Handling</div>
-          <div class="module-meta">Crossover Series · Change of Pace</div>
-        </div>
-      </div>
-
-      <div class="module-card" onclick="goTo('screen-gameiq')">
-        <div class="module-icon gameiq">🧠</div>
-        <div class="module-info">
-          <div class="module-name">Game IQ</div>
-          <div class="module-meta">Pick & Roll · Late Clock Decisions</div>
-        </div>
-        <div class="module-status locked">→</div>
-      </div>
-
-      <div class="module-card" onclick="goTo('screen-trainer')">
-        <div class="module-icon defense">🛡</div>
-        <div class="module-info">
-          <div class="module-name">Defense</div>
-          <div class="module-meta">On-Ball · Help Side · Close-Outs</div>
-        </div>
-        <div class="module-status locked">→</div>
-      </div>
-
-      <div class="module-card" onclick="goTo('screen-trainer')">
-        <div class="module-icon rebounding">↑</div>
-        <div class="module-info">
-          <div class="module-name">Rebounding</div>
-          <div class="module-meta">Box Out · Outlet Pass</div>
-        </div>
-        <div class="module-status locked">→</div>
-      </div>
-    </div>
-
-    <div class="section-label" style="margin-top: 28px">
-      Shot Distribution
-    </div>
-    <div class="shot-chart-container">
-      <div class="shot-chart-label">
-        Configure your shot profile to personalize workouts
-      </div>
-      <div class="shot-zones">
-        <div class="zone-item">
-          <div class="zone-name">Catch & Shoot 3</div>
-          <input type="range" min="0" max="100" value="35" class="zone-slider" />
-          <div class="zone-pct">35%</div>
-        </div>
-        <div class="zone-item">
-          <div class="zone-name">Pull-Up 3</div>
-          <input type="range" min="0" max="100" value="15" class="zone-slider" />
-          <div class="zone-pct">15%</div>
-        </div>
-        <div class="zone-item">
-          <div class="zone-name">Mid-Range</div>
-          <input type="range" min="0" max="100" value="20" class="zone-slider" />
-          <div class="zone-pct">20%</div>
-        </div>
-        <div class="zone-item">
-          <div class="zone-name">Layups / Paint</div>
-          <input type="range" min="0" max="100" value="30" class="zone-slider" />
-          <div class="zone-pct">30%</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════
-     SCREEN 3 — GAME IQ
-══════════════════════════════ -->
-<div class="screen" id="screen-gameiq">
-  <nav class="app-nav">
-    <span class="nav-logo" onclick="goTo('screen-start')">⬡ BASELINE</span>
-    <div class="nav-links">
-      <button class="nav-btn" onclick="goTo('screen-trainer')">
-        Trainer
-      </button>
-      <button class="nav-btn active" onclick="goTo('screen-gameiq')">
-        Game IQ
-      </button>
-      <button class="nav-btn" onclick="goTo('screen-meetup')">
-        Meetup
-      </button>
-    </div>
-  </nav>
-
-  <div class="page-body">
-    <div class="page-header">
-      <div>
-        <p class="page-eyebrow">Basketball Intelligence</p>
-        <h2 class="page-title">Game IQ</h2>
-      </div>
-      <div class="iq-score">IQ <span>72</span></div>
-    </div>
-
-    <div class="scenario-card">
-      <div class="scenario-badge">LIVE SCENARIO</div>
-      <div class="scenario-clock">
-        <span class="clock-time">0:08</span>
-        <span class="clock-label">4th QTR · Down 1</span>
-      </div>
-      <div class="scenario-court">
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect x="10" y="10" width="300" height="160" rx="4" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-          <path d="M 10 55 Q 130 90 10 125" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-          <rect x="10" y="60" width="80" height="60" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-          <circle cx="90" cy="90" r="35" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-          <circle cx="20" cy="90" r="7" fill="none" stroke="#F76B1C" stroke-width="2" />
-
-          <circle cx="140" cy="90" r="10" fill="#F76B1C" />
-          <text x="140" y="94" text-anchor="middle" fill="white" font-size="9" font-family="Barlow Condensed" font-weight="700">YOU</text>
-
-          <circle cx="105" cy="55" r="8" fill="#F76B1C" opacity="0.7" />
-          <text x="105" y="59" text-anchor="middle" fill="white" font-size="8" font-family="Barlow Condensed">1</text>
-
-          <circle cx="115" cy="130" r="8" fill="#F76B1C" opacity="0.7" />
-          <text x="115" y="134" text-anchor="middle" fill="white" font-size="8" font-family="Barlow Condensed">3</text>
-
-          <circle cx="145" cy="88" r="10" fill="none" stroke="#4A9EFF" stroke-width="2" />
-          <circle cx="100" cy="52" r="8" fill="none" stroke="#4A9EFF" stroke-width="2" />
-          <circle cx="108" cy="128" r="8" fill="none" stroke="#4A9EFF" stroke-width="2" />
-
-          <path d="M 140 80 L 85 58" stroke="#F76B1C" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" />
-          <defs>
-            <marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-              <path d="M0,0 L6,3 L0,6 Z" fill="#F76B1C" />
-            </marker>
-          </defs>
+    <div class="screen active" id="screen-start">
+      <div class="start-bg">
+        <svg
+          class="court-lines"
+          viewBox="0 0 800 600"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <line
+            x1="0"
+            y1="300"
+            x2="800"
+            y2="300"
+            stroke="rgba(255,255,255,0.07)"
+            stroke-width="2"
+          />
+          <circle
+            cx="400"
+            cy="300"
+            r="90"
+            fill="none"
+            stroke="rgba(255,255,255,0.07)"
+            stroke-width="2"
+          />
+          <path
+            d="M 60 160 Q 260 300 60 440"
+            fill="none"
+            stroke="rgba(255,255,255,0.07)"
+            stroke-width="2"
+          />
+          <path
+            d="M 740 160 Q 540 300 740 440"
+            fill="none"
+            stroke="rgba(255,255,255,0.07)"
+            stroke-width="2"
+          />
+          <rect
+            x="60"
+            y="210"
+            width="140"
+            height="180"
+            fill="none"
+            stroke="rgba(255,255,255,0.07)"
+            stroke-width="2"
+          />
+          <rect
+            x="600"
+            y="210"
+            width="140"
+            height="180"
+            fill="none"
+            stroke="rgba(255,255,255,0.07)"
+            stroke-width="2"
+          />
+          <circle
+            cx="200"
+            cy="300"
+            r="60"
+            fill="none"
+            stroke="rgba(255,255,255,0.07)"
+            stroke-width="2"
+          />
+          <circle
+            cx="600"
+            cy="300"
+            r="60"
+            fill="none"
+            stroke="rgba(255,255,255,0.07)"
+            stroke-width="2"
+          />
+          <circle
+            cx="80"
+            cy="300"
+            r="12"
+            fill="none"
+            stroke="rgba(247,107,28,0.25)"
+            stroke-width="2"
+          />
+          <circle
+            cx="720"
+            cy="300"
+            r="12"
+            fill="none"
+            stroke="rgba(247,107,28,0.25)"
+            stroke-width="2"
+          />
         </svg>
       </div>
-      <p class="scenario-prompt">
-        Your defender is overplaying. Teammate 1 just got open off a
-        back-cut. What's the play?
-      </p>
-      <div class="scenario-choices">
-        <button class="choice-btn" onclick="selectChoice(this, false)">
-          ISO — attack your defender
-        </button>
-        <button class="choice-btn" onclick="selectChoice(this, true)">
-          Hit 1 on the cut to the basket
-        </button>
-        <button class="choice-btn" onclick="selectChoice(this, false)">
-          Reset the play — call timeout
-        </button>
-        <button class="choice-btn" onclick="selectChoice(this, false)">
-          Drive and kick to the corner
+
+      <div class="start-content">
+        <div class="start-logo">
+          <span class="logo-icon">⬡</span>
+          <span class="logo-word">BASELINE</span>
+        </div>
+        <h1 class="start-headline">
+          Train Smarter.<br /><em>Run the Court.</em>
+        </h1>
+        <p class="start-sub">
+          Personalized workouts, game IQ drills, and real pickup runs — built
+          around your game.
+        </p>
+
+        <div class="start-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Age</label>
+              <input
+                type="number"
+                placeholder="e.g. 19"
+                min="10"
+                max="60"
+                id="input-age"
+              />
+            </div>
+            <div class="form-field">
+              <label>Skill Level</label>
+              <select id="input-skill">
+                <option value="">Select…</option>
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+                <option>Elite</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Height (in)</label>
+              <input type="number" placeholder='e.g. 74"' id="input-height" />
+            </div>
+            <div class="form-field">
+              <label>Weight (lbs)</label>
+              <input type="number" placeholder="e.g. 185" id="input-weight" />
+            </div>
+          </div>
+          <label id="bio-error"></label>
+          <button class="btn-primary" id="btn-submit-profile">
+            Start Your Assessment →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+     SCREEN — BASELINE ASSESSMENT
+══════════════════════════════ -->
+    <div class="screen" id="screen-baseline">
+      <div class="baseline-content">
+        <div class="onboard-progress">
+          <div class="onboard-dot active" data-step="1"></div>
+          <div class="onboard-dot" data-step="2"></div>
+          <div class="onboard-dot" data-step="3"></div>
+          <div class="onboard-dot" data-step="4"></div>
+        </div>
+
+        <!-- STEP 1: Catch & Shoot — 5 Spots -->
+        <div class="baseline-step" id="baseline-step-1">
+          <p class="baseline-step-label">Step 1 of 4</p>
+          <h2 class="baseline-title">Catch-and-Shoot Threes</h2>
+          <p class="baseline-instructions">
+            Take 10 catch-and-shoot threes from each spot below — 50 shots
+            total. Log your makes at each spot.
+          </p>
+
+          <div class="spot-grid">
+            <div class="spot-card" data-spot="left-corner">
+              <div class="spot-name">Left Corner</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="left-wing">
+              <div class="spot-name">Left Wing</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="top-key">
+              <div class="spot-name">Top of Key</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="right-wing">
+              <div class="spot-name">Right Wing</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="right-corner">
+              <div class="spot-name">Right Corner</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+          </div>
+
+          <div class="spot-total-row">
+            <span>Total</span>
+            <span id="spot-total-display">0 / 50</span>
+          </div>
+
+          <div class="baseline-nav-row">
+            <button class="btn-primary" type="button" data-next="2">
+              Next Drill →
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Mid-Range Pull-Ups — 5 Spots -->
+        <div class="baseline-step" id="baseline-step-2" style="display: none">
+          <p class="baseline-step-label">Step 2 of 4</p>
+          <h2 class="baseline-title">Mid-Range Pull-Ups</h2>
+          <p class="baseline-instructions">
+            Off one or two dribbles, take 5 pull-up jumpers from each spot below
+            — 25 shots total. Log your makes at each spot.
+          </p>
+
+          <div class="spot-grid">
+            <div class="spot-card" data-spot="mid-left-baseline">
+              <div class="spot-name">Left Baseline</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="5" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 5</div>
+            </div>
+            <div class="spot-card" data-spot="mid-left-elbow">
+              <div class="spot-name">Left Elbow</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="5" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 5</div>
+            </div>
+            <div class="spot-card" data-spot="mid-top">
+              <div class="spot-name">Top of Key</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="5" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 5</div>
+            </div>
+            <div class="spot-card" data-spot="mid-right-elbow">
+              <div class="spot-name">Right Elbow</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="5" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 5</div>
+            </div>
+            <div class="spot-card" data-spot="mid-right-baseline">
+              <div class="spot-name">Right Baseline</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="5" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 5</div>
+            </div>
+          </div>
+
+          <div class="spot-total-row">
+            <span>Total</span>
+            <span id="midrange-total-display">0 / 25</span>
+          </div>
+
+          <div class="baseline-nav-row">
+            <button class="btn-back" type="button" data-back="1">← Back</button>
+            <button class="btn-primary" type="button" data-next="3">
+              Next Drill →
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Finishing at the Rim — 4 Finish Types -->
+        <div class="baseline-step" id="baseline-step-3" style="display: none">
+          <p class="baseline-step-label">Step 3 of 4</p>
+          <h2 class="baseline-title">Finishing at the Rim</h2>
+          <p class="baseline-instructions">
+            Take 10 attempts of each finish below — 40 attempts total. Log your
+            makes for each type.
+          </p>
+
+          <div class="spot-grid">
+            <div class="spot-card" data-spot="layup-left">
+              <div class="spot-name">Left-Hand Layup</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="layup-right">
+              <div class="spot-name">Right-Hand Layup</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="floater">
+              <div class="spot-name">Floater / Runner</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="reverse-layup">
+              <div class="spot-name">Reverse Layup</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+          </div>
+
+          <div class="spot-total-row">
+            <span>Total</span>
+            <span id="finishing-total-display">0 / 40</span>
+          </div>
+
+          <div class="baseline-nav-row">
+            <button class="btn-back" type="button" data-back="2">← Back</button>
+            <button class="btn-primary" type="button" data-next="4">
+              Next Drill →
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Ball Handling — 6-Drill Series -->
+        <div class="baseline-step" id="baseline-step-4" style="display: none">
+          <p class="baseline-step-label">Step 4 of 4</p>
+          <h2 class="baseline-title">Ball Handling</h2>
+          <p class="baseline-instructions">
+            Run through each drill below. Start the stopwatch, go until you lose
+            control or the move breaks down, then tap "Lost It" to log your
+            time.
+          </p>
+
+          <div class="drill-series" id="drill-series">
+            <div
+              class="drill-card active-drill"
+              id="drill-1"
+              data-drill="stationary-crossover"
+            >
+              <div class="drill-header">
+                <span class="drill-index">Drill 1 / 6</span>
+                <span class="drill-status pending">Not Started</span>
+              </div>
+              <div class="drill-name">Stationary Crossover</div>
+              <div class="drill-desc">
+                Low, tight crossovers — stay in a stance, don't travel.
+              </div>
+              <div class="drill-timer">
+                <span class="drill-clock" id="clock-1">0:00</span>
+                <button
+                  class="btn-timer"
+                  type="button"
+                  data-drill-action="start"
+                  data-drill-id="1"
+                >
+                  Start
+                </button>
+                <button
+                  class="btn-timer drill-stop"
+                  type="button"
+                  data-drill-action="stop"
+                  data-drill-id="1"
+                  disabled
+                >
+                  Lost It
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="drill-card locked-drill"
+              id="drill-2"
+              data-drill="figure-eight"
+            >
+              <div class="drill-header">
+                <span class="drill-index">Drill 2 / 6</span>
+                <span class="drill-status pending">Not Started</span>
+              </div>
+              <div class="drill-name">Figure-8 Between the Legs</div>
+              <div class="drill-desc">
+                Continuous figure-8, ball never leaves your control path.
+              </div>
+              <div class="drill-timer">
+                <span class="drill-clock" id="clock-2">0:00</span>
+                <button
+                  class="btn-timer"
+                  type="button"
+                  data-drill-action="start"
+                  data-drill-id="2"
+                  disabled
+                >
+                  Start
+                </button>
+                <button
+                  class="btn-timer drill-stop"
+                  type="button"
+                  data-drill-action="stop"
+                  data-drill-id="2"
+                  disabled
+                >
+                  Lost It
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="drill-card locked-drill"
+              id="drill-3"
+              data-drill="two-ball"
+            >
+              <div class="drill-header">
+                <span class="drill-index">Drill 3 / 6</span>
+                <span class="drill-status pending">Not Started</span>
+              </div>
+              <div class="drill-name">Two-Ball Dribbling</div>
+              <div class="drill-desc">
+                Simultaneous dribble, both hands — alternate same-time and
+                alternating rhythm.
+              </div>
+              <div class="drill-timer">
+                <span class="drill-clock" id="clock-3">0:00</span>
+                <button
+                  class="btn-timer"
+                  type="button"
+                  data-drill-action="start"
+                  data-drill-id="3"
+                  disabled
+                >
+                  Start
+                </button>
+                <button
+                  class="btn-timer drill-stop"
+                  type="button"
+                  data-drill-action="stop"
+                  data-drill-id="3"
+                  disabled
+                >
+                  Lost It
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="drill-card locked-drill"
+              id="drill-4"
+              data-drill="behind-back-combo"
+            >
+              <div class="drill-header">
+                <span class="drill-index">Drill 4 / 6</span>
+                <span class="drill-status pending">Not Started</span>
+              </div>
+              <div class="drill-name">Behind-the-Back Combo</div>
+              <div class="drill-desc">
+                Chain crossover into behind-the-back into hesitation, on repeat.
+              </div>
+              <div class="drill-timer">
+                <span class="drill-clock" id="clock-4">0:00</span>
+                <button
+                  class="btn-timer"
+                  type="button"
+                  data-drill-action="start"
+                  data-drill-id="4"
+                  disabled
+                >
+                  Start
+                </button>
+                <button
+                  class="btn-timer drill-stop"
+                  type="button"
+                  data-drill-action="stop"
+                  data-drill-id="4"
+                  disabled
+                >
+                  Lost It
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="drill-card locked-drill"
+              id="drill-5"
+              data-drill="spider-dribble"
+            >
+              <div class="drill-header">
+                <span class="drill-index">Drill 5 / 6</span>
+                <span class="drill-status pending">Not Started</span>
+              </div>
+              <div class="drill-name">Spider Dribble</div>
+              <div class="drill-desc">
+                Rapid-fire alternating taps, both hands, low and wide.
+              </div>
+              <div class="drill-timer">
+                <span class="drill-clock" id="clock-5">0:00</span>
+                <button
+                  class="btn-timer"
+                  type="button"
+                  data-drill-action="start"
+                  data-drill-id="5"
+                  disabled
+                >
+                  Start
+                </button>
+                <button
+                  class="btn-timer drill-stop"
+                  type="button"
+                  data-drill-action="stop"
+                  data-drill-id="5"
+                  disabled
+                >
+                  Lost It
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="drill-card locked-drill"
+              id="drill-6"
+              data-drill="full-speed-crossover"
+            >
+              <div class="drill-header">
+                <span class="drill-index">Drill 6 / 6</span>
+                <span class="drill-status pending">Not Started</span>
+              </div>
+              <div class="drill-name">Full-Speed Crossover Sprint</div>
+              <div class="drill-desc">
+                Push the ball full speed, crossover at each cone/line, maintain
+                control.
+              </div>
+              <div class="drill-timer">
+                <span class="drill-clock" id="clock-6">0:00</span>
+                <button
+                  class="btn-timer"
+                  type="button"
+                  data-drill-action="start"
+                  data-drill-id="6"
+                  disabled
+                >
+                  Start
+                </button>
+                <button
+                  class="btn-timer drill-stop"
+                  type="button"
+                  data-drill-action="stop"
+                  data-drill-id="6"
+                  disabled
+                >
+                  Lost It
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="baseline-nav-row">
+            <button class="btn-back" type="button" data-back="3">← Back</button>
+            <button class="btn-primary" type="button" id="btn-see-results">
+              See My Results →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+     SCREEN — BASELINE RESULTS
+══════════════════════════════ -->
+    <div class="screen" id="screen-results">
+      <div class="results-content">
+        <span class="results-badge">⬡ Assessment Complete</span>
+        <h2 class="results-title">Here's Your Baseline.</h2>
+        <p class="results-sub">
+          This is where you're starting. Your weekly plan and shot-zone targets
+          will build from these numbers — they'll move as you train.
+        </p>
+
+        <div class="overall-card">
+          <div class="overall-ring" id="overall-rating">62</div>
+          <div>
+            <div class="overall-text-label">Overall Rating</div>
+            <div class="overall-text-desc">
+              Solid foundation with room to grow at the rim and from deep.
+            </div>
+          </div>
+        </div>
+
+        <div class="results-section-label">Shooting</div>
+        <div class="snapshot-grid">
+          <div class="snapshot-card">
+            <div class="snapshot-label">Catch & Shoot 3PT</div>
+            <div class="snapshot-value" id="result-threes"></div>
+          </div>
+          <div class="snapshot-card">
+            <div class="snapshot-label">Mid-Range Pull-Up</div>
+            <div class="snapshot-value" id="result-midrange"></div>
+          </div>
+        </div>
+
+        <div class="results-section-label">Finishing</div>
+        <div class="snapshot-grid">
+          <div class="snapshot-card">
+            <div class="snapshot-label">Left-Hand Layup</div>
+            <div class="snapshot-value" id="result-layup-left"></div>
+          </div>
+          <div class="snapshot-card">
+            <div class="snapshot-label">Right-Hand Layup</div>
+            <div class="snapshot-value" id="result-layup-right"></div>
+          </div>
+          <div class="snapshot-card">
+            <div class="snapshot-label">Floater / Runner</div>
+            <div class="snapshot-value" id="result-floater"></div>
+          </div>
+          <div class="snapshot-card">
+            <div class="snapshot-label">Reverse Layup</div>
+            <div class="snapshot-value" id="result-reverse"></div>
+          </div>
+        </div>
+
+        <div class="results-section-label">Ball Handling</div>
+        <div class="drill-results-list" id="drill-results-list">
+          <div class="drill-result-row">
+            <span class="drill-result-name">Stationary Crossover</span>
+            <span class="drill-result-time"></span>
+          </div>
+          <div class="drill-result-row">
+            <span class="drill-result-name">Figure-8 Between the Legs</span>
+            <span class="drill-result-time"></span>
+          </div>
+          <div class="drill-result-row">
+            <span class="drill-result-name">Two-Ball Dribbling</span>
+            <span class="drill-result-time"></span>
+          </div>
+          <div class="drill-result-row">
+            <span class="drill-result-name">Behind-the-Back Combo</span>
+            <span class="drill-result-time"></span>
+          </div>
+          <div class="drill-result-row">
+            <span class="drill-result-name">Spider Dribble</span>
+            <span class="drill-result-time"></span>
+          </div>
+          <div class="drill-result-row">
+            <span class="drill-result-name">Full-Speed Crossover Sprint</span>
+            <span class="drill-result-time"></span>
+          </div>
+        </div>
+
+        <div class="results-section-label">Skill Level</div>
+        <div class="snapshot-grid">
+          <div class="snapshot-card" style="grid-column: span 2">
+            <div class="snapshot-label">Self-Reported</div>
+            <div
+              class="snapshot-value"
+              id="result-skill"
+              style="font-size: 22px"
+            >
+              Intermediate
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="btn-primary"
+          id="enter-trainer-btn"
+          onclick="goTo('screen-trainer')"
+        >
+          Enter Trainer →
         </button>
       </div>
     </div>
 
-    <div class="section-label" style="margin-top: 28px">
-      Skill Breakdown
-    </div>
-    <div class="iq-skills">
-      <div class="iq-skill-row">
-        <span class="iq-skill-name">Passing & Vision</span>
-        <div class="iq-bar-track">
-          <div class="iq-bar-fill" style="width: 78%"></div>
+    <!-- ══════════════════════════════
+     SCREEN 2 — TRAINER
+══════════════════════════════ -->
+    <div class="screen" id="screen-trainer">
+      <nav class="app-nav">
+        <span class="nav-logo" onclick="goTo('screen-start')">⬡ BASELINE</span>
+        <div class="nav-links">
+          <button class="nav-btn active" onclick="goTo('screen-trainer')">
+            Trainer
+          </button>
+          <button class="nav-btn" onclick="goTo('screen-gameiq')">
+            Game IQ
+          </button>
+          <button class="nav-btn" onclick="goTo('screen-meetup')">
+            Meetup
+          </button>
         </div>
-        <span class="iq-skill-val">78</span>
-      </div>
-      <div class="iq-skill-row">
-        <span class="iq-skill-name">Foul Prevention</span>
-        <div class="iq-bar-track">
-          <div class="iq-bar-fill" style="width: 65%"></div>
+      </nav>
+
+      <div class="page-body">
+        <div class="page-header">
+          <div>
+            <p class="page-eyebrow">Week 1 · Day 1</p>
+            <h2 class="page-title">Your Training Plan</h2>
+          </div>
         </div>
-        <span class="iq-skill-val">65</span>
-      </div>
-      <div class="iq-skill-row">
-        <span class="iq-skill-name">Late Clock Decisions</span>
-        <div class="iq-bar-track">
-          <div class="iq-bar-fill" style="width: 55%"></div>
+
+        <div class="goal-strip">
+          <div class="goal-label">Weekly Goal</div>
+          <div class="goal-text">Hit 40% from three on catch-and-shoot</div>
+          <div class="goal-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 58%"></div>
+            </div>
+            <span>58%</span>
+          </div>
         </div>
-        <span class="iq-skill-val">55</span>
-      </div>
-      <div class="iq-skill-row">
-        <span class="iq-skill-name">Pick & Roll Coverage</span>
-        <div class="iq-bar-track">
-          <div class="iq-bar-fill" style="width: 70%"></div>
+
+        <div class="section-label">Today's Modules</div>
+        <div class="module-grid">
+          <div class="module-card active-card" onclick="goTo('screen-trainer')">
+            <div class="module-icon shooting">🏀</div>
+            <div class="module-info">
+              <div class="module-name">Shooting</div>
+              <div class="module-meta">Catch & Shoot · Mid-Range · Pull-Up</div>
+            </div>
+            <div class="module-status current">Now</div>
+          </div>
+
+          <div class="module-card" onclick="goTo('screen-trainer')">
+            <div class="module-icon handling">⚡</div>
+            <div class="module-info">
+              <div class="module-name">Ball Handling</div>
+              <div class="module-meta">Crossover Series · Change of Pace</div>
+            </div>
+          </div>
+
+          <div class="module-card" onclick="goTo('screen-gameiq')">
+            <div class="module-icon gameiq">🧠</div>
+            <div class="module-info">
+              <div class="module-name">Game IQ</div>
+              <div class="module-meta">Pick & Roll · Late Clock Decisions</div>
+            </div>
+            <div class="module-status locked">→</div>
+          </div>
+
+          <div class="module-card" onclick="goTo('screen-trainer')">
+            <div class="module-icon defense">🛡</div>
+            <div class="module-info">
+              <div class="module-name">Defense</div>
+              <div class="module-meta">On-Ball · Help Side · Close-Outs</div>
+            </div>
+            <div class="module-status locked">→</div>
+          </div>
+
+          <div class="module-card" onclick="goTo('screen-trainer')">
+            <div class="module-icon rebounding">↑</div>
+            <div class="module-info">
+              <div class="module-name">Rebounding</div>
+              <div class="module-meta">Box Out · Outlet Pass</div>
+            </div>
+            <div class="module-status locked">→</div>
+          </div>
         </div>
-        <span class="iq-skill-val">70</span>
+
+        <div class="section-label" style="margin-top: 28px">
+          Shot Distribution
+        </div>
+        <div class="shot-chart-container">
+          <div class="shot-chart-label">
+            Configure your shot profile to personalize workouts
+          </div>
+          <div class="shot-zones">
+            <div class="zone-item">
+              <div class="zone-name">Catch & Shoot 3</div>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="35"
+                class="zone-slider"
+              />
+              <div class="zone-pct">35%</div>
+            </div>
+            <div class="zone-item">
+              <div class="zone-name">Pull-Up 3</div>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="15"
+                class="zone-slider"
+              />
+              <div class="zone-pct">15%</div>
+            </div>
+            <div class="zone-item">
+              <div class="zone-name">Mid-Range</div>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="20"
+                class="zone-slider"
+              />
+              <div class="zone-pct">20%</div>
+            </div>
+            <div class="zone-item">
+              <div class="zone-name">Layups / Paint</div>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="30"
+                class="zone-slider"
+              />
+              <div class="zone-pct">30%</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="section-label" style="margin-top: 28px">Plays Library</div>
-    <div class="plays-list">
-      <div class="play-item">
-        <div class="play-icon">▶</div>
-        <div class="play-info">
-          <div class="play-name">Horns Pick & Roll</div>
-          <div class="play-meta">Offense · Intermediate</div>
+    <!-- ══════════════════════════════
+     SCREEN 3 — GAME IQ
+══════════════════════════════ -->
+    <div class="screen" id="screen-gameiq">
+      <nav class="app-nav">
+        <span class="nav-logo" onclick="goTo('screen-start')">⬡ BASELINE</span>
+        <div class="nav-links">
+          <button class="nav-btn" onclick="goTo('screen-trainer')">
+            Trainer
+          </button>
+          <button class="nav-btn active" onclick="goTo('screen-gameiq')">
+            Game IQ
+          </button>
+          <button class="nav-btn" onclick="goTo('screen-meetup')">
+            Meetup
+          </button>
         </div>
-        <div class="play-chip">Study</div>
-      </div>
-      <div class="play-item">
-        <div class="play-icon">▶</div>
-        <div class="play-info">
-          <div class="play-name">Baseline Back-Cut Series</div>
-          <div class="play-meta">Offense · Beginner</div>
+      </nav>
+
+      <div class="page-body">
+        <div class="page-header">
+          <div>
+            <p class="page-eyebrow">Basketball Intelligence</p>
+            <h2 class="page-title">Game IQ</h2>
+          </div>
+          <div class="iq-score">IQ <span>72</span></div>
         </div>
-        <div class="play-chip">Study</div>
-      </div>
-      <div class="play-item">
-        <div class="play-icon">▶</div>
-        <div class="play-info">
-          <div class="play-name">Zone Defense Break</div>
-          <div class="play-meta">Offense · Advanced</div>
+
+        <div class="scenario-card">
+          <div class="scenario-badge">LIVE SCENARIO</div>
+          <div class="scenario-clock">
+            <span class="clock-time">0:08</span>
+            <span class="clock-label">4th QTR · Down 1</span>
+          </div>
+          <div class="scenario-court">
+            <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="10"
+                y="10"
+                width="300"
+                height="160"
+                rx="4"
+                fill="none"
+                stroke="rgba(255,255,255,0.15)"
+                stroke-width="1.5"
+              />
+              <path
+                d="M 10 55 Q 130 90 10 125"
+                fill="none"
+                stroke="rgba(255,255,255,0.2)"
+                stroke-width="1.5"
+              />
+              <rect
+                x="10"
+                y="60"
+                width="80"
+                height="60"
+                fill="none"
+                stroke="rgba(255,255,255,0.15)"
+                stroke-width="1.5"
+              />
+              <circle
+                cx="90"
+                cy="90"
+                r="35"
+                fill="none"
+                stroke="rgba(255,255,255,0.15)"
+                stroke-width="1.5"
+              />
+              <circle
+                cx="20"
+                cy="90"
+                r="7"
+                fill="none"
+                stroke="#F76B1C"
+                stroke-width="2"
+              />
+
+              <circle cx="140" cy="90" r="10" fill="#F76B1C" />
+              <text
+                x="140"
+                y="94"
+                text-anchor="middle"
+                fill="white"
+                font-size="9"
+                font-family="Barlow Condensed"
+                font-weight="700"
+              >
+                YOU
+              </text>
+
+              <circle cx="105" cy="55" r="8" fill="#F76B1C" opacity="0.7" />
+              <text
+                x="105"
+                y="59"
+                text-anchor="middle"
+                fill="white"
+                font-size="8"
+                font-family="Barlow Condensed"
+              >
+                1
+              </text>
+
+              <circle cx="115" cy="130" r="8" fill="#F76B1C" opacity="0.7" />
+              <text
+                x="115"
+                y="134"
+                text-anchor="middle"
+                fill="white"
+                font-size="8"
+                font-family="Barlow Condensed"
+              >
+                3
+              </text>
+
+              <circle
+                cx="145"
+                cy="88"
+                r="10"
+                fill="none"
+                stroke="#4A9EFF"
+                stroke-width="2"
+              />
+              <circle
+                cx="100"
+                cy="52"
+                r="8"
+                fill="none"
+                stroke="#4A9EFF"
+                stroke-width="2"
+              />
+              <circle
+                cx="108"
+                cy="128"
+                r="8"
+                fill="none"
+                stroke="#4A9EFF"
+                stroke-width="2"
+              />
+
+              <path
+                d="M 140 80 L 85 58"
+                stroke="#F76B1C"
+                stroke-width="1.5"
+                stroke-dasharray="4,3"
+                marker-end="url(#arrow)"
+              />
+              <defs>
+                <marker
+                  id="arrow"
+                  markerWidth="6"
+                  markerHeight="6"
+                  refX="3"
+                  refY="3"
+                  orient="auto"
+                >
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#F76B1C" />
+                </marker>
+              </defs>
+            </svg>
+          </div>
+          <p class="scenario-prompt">
+            Your defender is overplaying. Teammate 1 just got open off a
+            back-cut. What's the play?
+          </p>
+          <div class="scenario-choices">
+            <button class="choice-btn" onclick="selectChoice(this, false)">
+              ISO — attack your defender
+            </button>
+            <button class="choice-btn" onclick="selectChoice(this, true)">
+              Hit 1 on the cut to the basket
+            </button>
+            <button class="choice-btn" onclick="selectChoice(this, false)">
+              Reset the play — call timeout
+            </button>
+            <button class="choice-btn" onclick="selectChoice(this, false)">
+              Drive and kick to the corner
+            </button>
+          </div>
         </div>
-        <div class="play-chip locked-chip">Locked</div>
+
+        <div class="section-label" style="margin-top: 28px">
+          Skill Breakdown
+        </div>
+        <div class="iq-skills">
+          <div class="iq-skill-row">
+            <span class="iq-skill-name">Passing & Vision</span>
+            <div class="iq-bar-track">
+              <div class="iq-bar-fill" style="width: 78%"></div>
+            </div>
+            <span class="iq-skill-val">78</span>
+          </div>
+          <div class="iq-skill-row">
+            <span class="iq-skill-name">Foul Prevention</span>
+            <div class="iq-bar-track">
+              <div class="iq-bar-fill" style="width: 65%"></div>
+            </div>
+            <span class="iq-skill-val">65</span>
+          </div>
+          <div class="iq-skill-row">
+            <span class="iq-skill-name">Late Clock Decisions</span>
+            <div class="iq-bar-track">
+              <div class="iq-bar-fill" style="width: 55%"></div>
+            </div>
+            <span class="iq-skill-val">55</span>
+          </div>
+          <div class="iq-skill-row">
+            <span class="iq-skill-name">Pick & Roll Coverage</span>
+            <div class="iq-bar-track">
+              <div class="iq-bar-fill" style="width: 70%"></div>
+            </div>
+            <span class="iq-skill-val">70</span>
+          </div>
+        </div>
+
+        <div class="section-label" style="margin-top: 28px">Plays Library</div>
+        <div class="plays-list">
+          <div class="play-item">
+            <div class="play-icon">▶</div>
+            <div class="play-info">
+              <div class="play-name">Horns Pick & Roll</div>
+              <div class="play-meta">Offense · Intermediate</div>
+            </div>
+            <div class="play-chip">Study</div>
+          </div>
+          <div class="play-item">
+            <div class="play-icon">▶</div>
+            <div class="play-info">
+              <div class="play-name">Baseline Back-Cut Series</div>
+              <div class="play-meta">Offense · Beginner</div>
+            </div>
+            <div class="play-chip">Study</div>
+          </div>
+          <div class="play-item">
+            <div class="play-icon">▶</div>
+            <div class="play-info">
+              <div class="play-name">Zone Defense Break</div>
+              <div class="play-meta">Offense · Advanced</div>
+            </div>
+            <div class="play-chip locked-chip">Locked</div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ══════════════════════════════
+    <!-- ══════════════════════════════
      SCREEN 4 — MEETUP
 ══════════════════════════════ -->
-<div class="screen" id="screen-meetup">
-  <nav class="app-nav">
-    <span class="nav-logo" onclick="goTo('screen-start')">⬡ BASELINE</span>
-    <div class="nav-links">
-      <button class="nav-btn" onclick="goTo('screen-trainer')">
-        Trainer
-      </button>
-      <button class="nav-btn" onclick="goTo('screen-gameiq')">
-        Game IQ
-      </button>
-      <button class="nav-btn active" onclick="goTo('screen-meetup')">
-        Meetup
-      </button>
+    <div class="screen" id="screen-meetup">
+      <nav class="app-nav">
+        <span class="nav-logo" onclick="goTo('screen-start')">⬡ BASELINE</span>
+        <div class="nav-links">
+          <button class="nav-btn" onclick="goTo('screen-trainer')">
+            Trainer
+          </button>
+          <button class="nav-btn" onclick="goTo('screen-gameiq')">
+            Game IQ
+          </button>
+          <button class="nav-btn active" onclick="goTo('screen-meetup')">
+            Meetup
+          </button>
+        </div>
+      </nav>
+
+      <div class="page-body">
+        <div class="page-header">
+          <div>
+            <p class="page-eyebrow">Skill-Based Matchmaking</p>
+            <h2 class="page-title">Find a Run</h2>
+          </div>
+          <button class="btn-sm-outline">+ Host</button>
+        </div>
+
+        <div class="filter-bar">
+          <button class="filter-chip active-chip">Nearby</button>
+          <button class="filter-chip">This Week</button>
+          <button class="filter-chip">My Level</button>
+          <button class="filter-chip">5v5</button>
+          <button class="filter-chip">3v3</button>
+        </div>
+
+        <div class="runs-list">
+          <div class="run-card featured-run">
+            <div class="run-header">
+              <div class="run-level intermediate">INTERMEDIATE</div>
+              <div class="run-distance">0.8 mi</div>
+            </div>
+            <div class="run-title">Tuesday Evening Runs</div>
+            <div class="run-location">📍 Hawk Center Courts — Court 2</div>
+            <div class="run-meta-row">
+              <span>🕕 6:00 PM · Tue</span>
+              <span>👥 8 / 10 spots</span>
+              <span>5v5 Full Court</span>
+            </div>
+            <div class="run-players">
+              <div class="player-dot" style="background: #f76b1c">J</div>
+              <div class="player-dot" style="background: #4a9eff">M</div>
+              <div class="player-dot" style="background: #a855f7">T</div>
+              <div class="player-dot" style="background: #22c55e">R</div>
+              <div class="player-dot empty">+4</div>
+            </div>
+            <button class="btn-join">Join Run</button>
+          </div>
+
+          <div class="run-card">
+            <div class="run-header">
+              <div class="run-level beginner">BEGINNER</div>
+              <div class="run-distance">1.4 mi</div>
+            </div>
+            <div class="run-title">Morning 3v3 Drills</div>
+            <div class="run-location">📍 Riverside Rec — Outdoor Courts</div>
+            <div class="run-meta-row">
+              <span>🕗 7:30 AM · Sat</span>
+              <span>👥 4 / 6 spots</span>
+              <span>3v3 Half Court</span>
+            </div>
+            <button class="btn-join outline-join">Request Spot</button>
+          </div>
+
+          <div class="run-card">
+            <div class="run-header">
+              <div class="run-level advanced">ADVANCED</div>
+              <div class="run-distance">2.1 mi</div>
+            </div>
+            <div class="run-title">Competitive Friday League</div>
+            <div class="run-location">📍 Downtown YMCA — Gym A</div>
+            <div class="run-meta-row">
+              <span>🕕 5:00 PM · Fri</span>
+              <span>👥 12 / 12 spots</span>
+              <span>5v5 Full Court</span>
+            </div>
+            <button class="btn-join outline-join disabled-join" disabled>
+              Full
+            </button>
+          </div>
+        </div>
+
+        <div class="section-label" style="margin-top: 28px">
+          Players Near You
+        </div>
+        <div class="players-row">
+          <div class="nearby-player">
+            <div class="nearby-avatar" style="background: #f76b1c">JW</div>
+            <div class="nearby-name">Jordan W.</div>
+            <div class="nearby-skill">Intermediate</div>
+            <button class="btn-connect">Connect</button>
+          </div>
+          <div class="nearby-player">
+            <div class="nearby-avatar" style="background: #4a9eff">TM</div>
+            <div class="nearby-name">Tyler M.</div>
+            <div class="nearby-skill">Advanced</div>
+            <button class="btn-connect">Connect</button>
+          </div>
+          <div class="nearby-player">
+            <div class="nearby-avatar" style="background: #22c55e">AR</div>
+            <div class="nearby-name">Alex R.</div>
+            <div class="nearby-skill">Beginner</div>
+            <button class="btn-connect">Connect</button>
+          </div>
+          <div class="nearby-player">
+            <div class="nearby-avatar" style="background: #a855f7">KL</div>
+            <div class="nearby-name">Kai L.</div>
+            <div class="nearby-skill">Intermediate</div>
+            <button class="btn-connect">Connect</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </nav>
 
-  <div class="page-body">
-    <div class="page-header">
-      <div>
-        <p class="page-eyebrow">Skill-Based Matchmaking</p>
-        <h2 class="page-title">Find a Run</h2>
-      </div>
-      <button class="btn-sm-outline">+ Host</button>
-    </div>
-
-    <div class="filter-bar">
-      <button class="filter-chip active-chip">Nearby</button>
-      <button class="filter-chip">This Week</button>
-      <button class="filter-chip">My Level</button>
-      <button class="filter-chip">5v5</button>
-      <button class="filter-chip">3v3</button>
-    </div>
-
-    <div class="runs-list">
-      <div class="run-card featured-run">
-        <div class="run-header">
-          <div class="run-level intermediate">INTERMEDIATE</div>
-          <div class="run-distance">0.8 mi</div>
-        </div>
-        <div class="run-title">Tuesday Evening Runs</div>
-        <div class="run-location">📍 Hawk Center Courts — Court 2</div>
-        <div class="run-meta-row">
-          <span>🕕 6:00 PM · Tue</span>
-          <span>👥 8 / 10 spots</span>
-          <span>5v5 Full Court</span>
-        </div>
-        <div class="run-players">
-          <div class="player-dot" style="background: #f76b1c">J</div>
-          <div class="player-dot" style="background: #4a9eff">M</div>
-          <div class="player-dot" style="background: #a855f7">T</div>
-          <div class="player-dot" style="background: #22c55e">R</div>
-          <div class="player-dot empty">+4</div>
-        </div>
-        <button class="btn-join">Join Run</button>
-      </div>
-
-      <div class="run-card">
-        <div class="run-header">
-          <div class="run-level beginner">BEGINNER</div>
-          <div class="run-distance">1.4 mi</div>
-        </div>
-        <div class="run-title">Morning 3v3 Drills</div>
-        <div class="run-location">📍 Riverside Rec — Outdoor Courts</div>
-        <div class="run-meta-row">
-          <span>🕗 7:30 AM · Sat</span>
-          <span>👥 4 / 6 spots</span>
-          <span>3v3 Half Court</span>
-        </div>
-        <button class="btn-join outline-join">Request Spot</button>
-      </div>
-
-      <div class="run-card">
-        <div class="run-header">
-          <div class="run-level advanced">ADVANCED</div>
-          <div class="run-distance">2.1 mi</div>
-        </div>
-        <div class="run-title">Competitive Friday League</div>
-        <div class="run-location">📍 Downtown YMCA — Gym A</div>
-        <div class="run-meta-row">
-          <span>🕕 5:00 PM · Fri</span>
-          <span>👥 12 / 12 spots</span>
-          <span>5v5 Full Court</span>
-        </div>
-        <button class="btn-join outline-join disabled-join" disabled>
-          Full
-        </button>
-      </div>
-    </div>
-
-    <div class="section-label" style="margin-top: 28px">
-      Players Near You
-    </div>
-    <div class="players-row">
-      <div class="nearby-player">
-        <div class="nearby-avatar" style="background: #f76b1c">JW</div>
-        <div class="nearby-name">Jordan W.</div>
-        <div class="nearby-skill">Intermediate</div>
-        <button class="btn-connect">Connect</button>
-      </div>
-      <div class="nearby-player">
-        <div class="nearby-avatar" style="background: #4a9eff">TM</div>
-        <div class="nearby-name">Tyler M.</div>
-        <div class="nearby-skill">Advanced</div>
-        <button class="btn-connect">Connect</button>
-      </div>
-      <div class="nearby-player">
-        <div class="nearby-avatar" style="background: #22c55e">AR</div>
-        <div class="nearby-name">Alex R.</div>
-        <div class="nearby-skill">Beginner</div>
-        <button class="btn-connect">Connect</button>
-      </div>
-      <div class="nearby-player">
-        <div class="nearby-avatar" style="background: #a855f7">KL</div>
-        <div class="nearby-name">Kai L.</div>
-        <div class="nearby-skill">Intermediate</div>
-        <button class="btn-connect">Connect</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="js/storage.js"></script>
-<script src="js/baseline.js"></script>
-<script src="js/nav.js"></script>
-<script src="js/trainer.js"></script>
-<script src="js/gameiq.js"></script>
-<script src="js/meetup.js"></script>
-</body>
+    <script src="js/storage.js"></script>
+    <script src="js/baseline.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/trainer.js"></script>
+    <script src="js/gameiq.js"></script>
+    <script src="js/meetup.js"></script>
+  </body>
 </html>
