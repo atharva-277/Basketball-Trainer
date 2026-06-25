@@ -16,11 +16,13 @@ skillLevel: "Intermediate" // "Beginner" | "Intermediate" | "Advanced" | "Elite"
 Saved to localStorage under the key "baseline"
 
 {
-threesMade: 7,
-threesAttempted: 20,
-threePct: 35,
-layupsMade: 9,
-layupsAttempted: 10,
-layupPct: 90,
-dribblesPerMinute: 142
+threesMade, threesAttempted, threePct,
+midMade, midAttempted, midPct,
+layupLeftMade, layupLeftPct,
+layupRightMade, layupRightPct,
+floaterMade, floaterPct,
+reverseLayupMade, reverseLayupPct,
+totalFinishingMade, finishingPct,
+overallPct, overallRating, weakestArea,
+drillTimes: { 1: seconds, 2: seconds, ... 6: seconds }
 }
