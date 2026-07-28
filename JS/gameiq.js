@@ -1,8 +1,3 @@
-// ── Game IQ Screen ──────────────────────────────────
-// Owns: .scenario-choices buttons on the Game IQ screen.
-// No dependencies on other JS files (yet — will eventually
-// read/write IQ score via storage.js once that exists).
-
 function selectChoice(btn, isCorrect) {
   const allBtns = btn
     .closest(".scenario-choices")

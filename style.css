@@ -1,4 +1,3 @@
-/* ─── Design Tokens ─────────────────────────────── */
 :root {
   --bg: #0e1117;
   --surface: #161c27;
@@ -18,7 +17,6 @@
   --radius-lg: 16px;
 }
 
-/* ─── Reset ────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -39,7 +37,6 @@ button {
   font-family: inherit;
 }
 
-/* ─── Screen Management ─────────────────────────── */
 .screen {
   display: none;
   min-height: 100vh;
@@ -49,7 +46,6 @@ button {
   display: flex;
 }
 
-/* ─── START SCREEN ──────────────────────────────── */
 #screen-start {
   position: relative;
   overflow: hidden;
@@ -385,12 +381,6 @@ button {
 }
 .module-icon.gameiq {
   background: rgba(168, 85, 247, 0.15);
-}
-.module-icon.defense {
-  background: rgba(34, 197, 94, 0.15);
-}
-.module-icon.rebounding {
-  background: rgba(255, 200, 0, 0.12);
 }
 
 .module-info {
@@ -1067,7 +1057,9 @@ button {
   width: 36px;
   height: 40px;
   cursor: pointer;
-  transition: color 0.15s, background 0.15s;
+  transition:
+    color 0.15s,
+    background 0.15s;
   flex-shrink: 0;
 }
 .tally-stepper button:hover {
@@ -1100,7 +1092,9 @@ button {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 16px;
-  transition: border-color 0.15s, opacity 0.15s;
+  transition:
+    border-color 0.15s,
+    opacity 0.15s;
 }
 .active-drill {
   border-color: var(--orange);
@@ -1178,7 +1172,10 @@ button {
   text-transform: uppercase;
   padding: 10px;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, opacity 0.15s;
+  transition:
+    border-color 0.15s,
+    color 0.15s,
+    opacity 0.15s;
 }
 .btn-timer:hover:not(:disabled) {
   border-color: var(--orange);
@@ -1217,7 +1214,9 @@ button {
   text-transform: uppercase;
   padding: 14px 22px;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
 }
 .btn-back:hover {
   border-color: rgba(255, 255, 255, 0.2);
@@ -1227,7 +1226,6 @@ button {
   margin-top: 0;
 }
 
-/* ─── RESULTS SCREEN ─────────────────────────────── */
 #screen-results {
   align-items: center;
   justify-content: center;
@@ -1380,7 +1378,214 @@ button {
   margin-top: 24px;
 }
 
-/* ─── Scrollbar ──────────────────────────────────── */
+.nav-settings {
+  font-size: 16px;
+  padding: 6px 10px;
+  color: var(--text-muted);
+}
+.nav-settings:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+.nav-settings.active {
+  color: var(--orange);
+}
+
+.trainer-intro {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.diet-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.diet-row {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.diet-info {
+  flex: 1;
+}
+
+.diet-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+}
+
+.diet-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.diet-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.diet-input-wrap input {
+  width: 64px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  padding: 8px 6px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.diet-input-wrap input::-webkit-outer-spin-button,
+.diet-input-wrap input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.diet-input-wrap input:focus {
+  border-color: var(--orange);
+}
+
+.diet-pct-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+.diet-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--orange);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+  margin-top: 4px;
+}
+
+#diet-error,
+#settings-profile-error,
+#settings-diet-error,
+#bio-error {
+  font-size: 13px;
+  color: #ef4444;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius);
+  margin-top: 4px;
+}
+
+#diet-error:not(:empty),
+#settings-profile-error:not(:empty),
+#settings-diet-error:not(:empty),
+#bio-error:not(:empty) {
+  padding: 10px 14px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.settings-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.settings-row:last-of-type {
+  border-bottom: none;
+}
+
+.settings-row-info {
+  flex: 1;
+}
+
+.settings-row-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.settings-row-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.settings-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.settings-input-wrap input,
+.settings-input-wrap select {
+  width: 90px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color 0.15s;
+  appearance: none;
+  -moz-appearance: textfield;
+}
+.settings-input-wrap input::-webkit-outer-spin-button,
+.settings-input-wrap input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.settings-input-wrap input:focus,
+.settings-input-wrap select:focus {
+  border-color: var(--orange);
+}
+
+.settings-input-wrap select {
+  width: 130px;
+  text-align: left;
+  padding-left: 12px;
+}
+
+.settings-card .btn-primary {
+  margin: 16px 18px 18px;
+  width: calc(100% - 36px);
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

@@ -13,9 +13,6 @@
     />
   </head>
   <body>
-    <!-- ══════════════════════════════
-     SCREEN 1 — START / ONBOARDING
-══════════════════════════════ -->
     <div class="screen active" id="screen-start">
       <div class="start-bg">
         <svg
@@ -126,7 +123,7 @@
                 type="number"
                 placeholder="e.g. 19"
                 min="10"
-                max="60"
+                max="80"
                 id="input-age"
               />
             </div>
@@ -159,9 +156,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════
-     SCREEN — BASELINE ASSESSMENT
-══════════════════════════════ -->
     <div class="screen" id="screen-baseline">
       <div class="baseline-content">
         <div class="onboard-progress">
@@ -171,7 +165,6 @@
           <div class="onboard-dot" data-step="4"></div>
         </div>
 
-        <!-- STEP 1: Catch & Shoot — 5 Spots -->
         <div class="baseline-step" id="baseline-step-1">
           <p class="baseline-step-label">Step 1 of 4</p>
           <h2 class="baseline-title">Catch-and-Shoot Threes</h2>
@@ -240,7 +233,6 @@
           </div>
         </div>
 
-        <!-- STEP 2: Mid-Range Pull-Ups — 5 Spots -->
         <div class="baseline-step" id="baseline-step-2" style="display: none">
           <p class="baseline-step-label">Step 2 of 4</p>
           <h2 class="baseline-title">Mid-Range Pull-Ups</h2>
@@ -310,7 +302,6 @@
           </div>
         </div>
 
-        <!-- STEP 3: Finishing at the Rim — 4 Finish Types -->
         <div class="baseline-step" id="baseline-step-3" style="display: none">
           <p class="baseline-step-label">Step 3 of 4</p>
           <h2 class="baseline-title">Finishing at the Rim</h2>
@@ -371,7 +362,6 @@
           </div>
         </div>
 
-        <!-- STEP 4: Ball Handling — 6-Drill Series -->
         <div class="baseline-step" id="baseline-step-4" style="display: none">
           <p class="baseline-step-label">Step 4 of 4</p>
           <h2 class="baseline-title">Ball Handling</h2>
@@ -610,9 +600,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════
-     SCREEN — BASELINE RESULTS
-══════════════════════════════ -->
     <div class="screen" id="screen-results">
       <div class="results-content">
         <span class="results-badge">⬡ Assessment Complete</span>
@@ -627,7 +614,8 @@
           <div>
             <div class="overall-text-label">Overall Rating</div>
             <div class="overall-text-desc">
-              Solid foundation with room to grow at the rim and from deep.
+              You're rating is developed from your shooting, finishing, and
+              ball-handling scores. This is your starting point.
             </div>
           </div>
         </div>
@@ -716,9 +704,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════
-     SCREEN 2 — TRAINER
-══════════════════════════════ -->
     <div class="screen" id="screen-trainer">
       <nav class="app-nav">
         <span class="nav-logo" onclick="goTo('screen-start')">⬡ BASELINE</span>
@@ -729,138 +714,171 @@
           <button class="nav-btn" onclick="goTo('screen-gameiq')">
             Game IQ
           </button>
-          <button class="nav-btn" onclick="goTo('screen-meetup')">
-            Meetup
+          <button
+            class="nav-btn nav-settings"
+            onclick="goTo('screen-settings')"
+          >
+            ⚙
           </button>
         </div>
       </nav>
 
       <div class="page-body">
-        <div class="page-header">
-          <div>
-            <p class="page-eyebrow">Week 1 · Day 1</p>
-            <h2 class="page-title">Your Training Plan</h2>
+        <!-- ── Shot Diet Setup (shown until diet is saved) ── -->
+        <div id="shot-diet-setup">
+          <div class="page-header">
+            <div>
+              <p class="page-eyebrow">Before You Train</p>
+              <h2 class="page-title">Your Shot Diet</h2>
+            </div>
+          </div>
+          <p class="trainer-intro">
+            Tell us how your game is distributed. This determines how your
+            training plan is weighted. Must add up to 100%.
+          </p>
+
+          <div class="diet-form">
+            <div class="diet-row">
+              <div class="diet-info">
+                <div class="diet-name">Threes</div>
+                <div class="diet-desc">Catch & shoot, pull-up threes</div>
+              </div>
+              <div class="diet-input-wrap">
+                <input
+                  type="number"
+                  id="diet-threes"
+                  min="0"
+                  max="100"
+                  value="25"
+                />
+                <span class="diet-pct-label">%</span>
+              </div>
+            </div>
+
+            <div class="diet-row">
+              <div class="diet-info">
+                <div class="diet-name">Mid-Range</div>
+                <div class="diet-desc">Pull-up jumpers, floaters from mid</div>
+              </div>
+              <div class="diet-input-wrap">
+                <input
+                  type="number"
+                  id="diet-midrange"
+                  min="0"
+                  max="100"
+                  value="25"
+                />
+                <span class="diet-pct-label">%</span>
+              </div>
+            </div>
+
+            <div class="diet-row">
+              <div class="diet-info">
+                <div class="diet-name">Layups & Finishing</div>
+                <div class="diet-desc">At the rim, both hands, floaters</div>
+              </div>
+              <div class="diet-input-wrap">
+                <input
+                  type="number"
+                  id="diet-layups"
+                  min="0"
+                  max="100"
+                  value="25"
+                />
+                <span class="diet-pct-label">%</span>
+              </div>
+            </div>
+
+            <div class="diet-row">
+              <div class="diet-info">
+                <div class="diet-name">Ball Handling</div>
+                <div class="diet-desc">Dribble work, combos, footwork</div>
+              </div>
+              <div class="diet-input-wrap">
+                <input
+                  type="number"
+                  id="diet-ballhandling"
+                  min="0"
+                  max="100"
+                  value="25"
+                />
+                <span class="diet-pct-label">%</span>
+              </div>
+            </div>
+
+            <div class="diet-total-row">
+              <span>Total</span>
+              <span id="diet-total-display">100 / 100</span>
+            </div>
+
+            <p id="diet-error" style="display: none"></p>
+            <button class="btn-primary" id="btn-save-diet">
+              Save & Start Training →
+            </button>
           </div>
         </div>
 
-        <div class="goal-strip">
-          <div class="goal-label">Weekly Goal</div>
-          <div class="goal-text">Hit 40% from three on catch-and-shoot</div>
-          <div class="goal-progress">
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 58%"></div>
-            </div>
-            <span>58%</span>
-          </div>
-        </div>
-
-        <div class="section-label">Today's Modules</div>
-        <div class="module-grid">
-          <div class="module-card active-card" onclick="goTo('screen-trainer')">
-            <div class="module-icon shooting">🏀</div>
-            <div class="module-info">
-              <div class="module-name">Shooting</div>
-              <div class="module-meta">Catch & Shoot · Mid-Range · Pull-Up</div>
-            </div>
-            <div class="module-status current">Now</div>
-          </div>
-
-          <div class="module-card" onclick="goTo('screen-trainer')">
-            <div class="module-icon handling">⚡</div>
-            <div class="module-info">
-              <div class="module-name">Ball Handling</div>
-              <div class="module-meta">Crossover Series · Change of Pace</div>
+        <!-- ── Training Plan (hidden until diet is saved) ── -->
+        <div id="training-plan" style="display: none">
+          <div class="page-header">
+            <div>
+              <p class="page-eyebrow" id="trainer-week-label">Week 1 · Day 1</p>
+              <h2 class="page-title">Your Training Plan</h2>
             </div>
           </div>
 
-          <div class="module-card" onclick="goTo('screen-gameiq')">
-            <div class="module-icon gameiq">🧠</div>
-            <div class="module-info">
-              <div class="module-name">Game IQ</div>
-              <div class="module-meta">Pick & Roll · Late Clock Decisions</div>
+          <div class="goal-strip">
+            <div class="goal-label">Weekly Goal</div>
+            <div class="goal-text" id="trainer-goal-text">—</div>
+            <div class="goal-progress">
+              <div class="progress-bar">
+                <div
+                  class="progress-fill"
+                  id="trainer-goal-fill"
+                  style="width: 0%"
+                ></div>
+              </div>
+              <span id="trainer-goal-pct">0%</span>
             </div>
-            <div class="module-status locked">→</div>
           </div>
 
-          <div class="module-card" onclick="goTo('screen-trainer')">
-            <div class="module-icon defense">🛡</div>
-            <div class="module-info">
-              <div class="module-name">Defense</div>
-              <div class="module-meta">On-Ball · Help Side · Close-Outs</div>
+          <div class="section-label">Today's Modules</div>
+          <div class="module-grid">
+            <div class="module-card" id="module-shooting">
+              <div class="module-icon shooting">🏀</div>
+              <div class="module-info">
+                <div class="module-name">Shooting</div>
+                <div class="module-meta">Threes · Mid-Range · Layups</div>
+              </div>
+              <div class="module-status" id="module-shooting-status"></div>
             </div>
-            <div class="module-status locked">→</div>
-          </div>
 
-          <div class="module-card" onclick="goTo('screen-trainer')">
-            <div class="module-icon rebounding">↑</div>
-            <div class="module-info">
-              <div class="module-name">Rebounding</div>
-              <div class="module-meta">Box Out · Outlet Pass</div>
+            <div class="module-card" id="module-handling">
+              <div class="module-icon handling">⚡</div>
+              <div class="module-info">
+                <div class="module-name">Ball Handling</div>
+                <div class="module-meta">
+                  Crossover · Figure-8 · Sprint Series
+                </div>
+              </div>
+              <div class="module-status" id="module-handling-status"></div>
             </div>
-            <div class="module-status locked">→</div>
-          </div>
-        </div>
 
-        <div class="section-label" style="margin-top: 28px">
-          Shot Distribution
-        </div>
-        <div class="shot-chart-container">
-          <div class="shot-chart-label">
-            Configure your shot profile to personalize workouts
-          </div>
-          <div class="shot-zones">
-            <div class="zone-item">
-              <div class="zone-name">Catch & Shoot 3</div>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value="35"
-                class="zone-slider"
-              />
-              <div class="zone-pct">35%</div>
-            </div>
-            <div class="zone-item">
-              <div class="zone-name">Pull-Up 3</div>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value="15"
-                class="zone-slider"
-              />
-              <div class="zone-pct">15%</div>
-            </div>
-            <div class="zone-item">
-              <div class="zone-name">Mid-Range</div>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value="20"
-                class="zone-slider"
-              />
-              <div class="zone-pct">20%</div>
-            </div>
-            <div class="zone-item">
-              <div class="zone-name">Layups / Paint</div>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value="30"
-                class="zone-slider"
-              />
-              <div class="zone-pct">30%</div>
+            <div class="module-card" id="module-gameiq">
+              <div class="module-icon gameiq">🧠</div>
+              <div class="module-info">
+                <div class="module-name">Game IQ</div>
+                <div class="module-meta">
+                  Scenarios · Plays · Decision Making
+                </div>
+              </div>
+              <div class="module-status" id="module-gameiq-status"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ══════════════════════════════
-     SCREEN 3 — GAME IQ
-══════════════════════════════ -->
     <div class="screen" id="screen-gameiq">
       <nav class="app-nav">
         <span class="nav-logo" onclick="goTo('screen-start')">⬡ BASELINE</span>
@@ -871,8 +889,11 @@
           <button class="nav-btn active" onclick="goTo('screen-gameiq')">
             Game IQ
           </button>
-          <button class="nav-btn" onclick="goTo('screen-meetup')">
-            Meetup
+          <button
+            class="nav-btn nav-settings"
+            onclick="goTo('screen-settings')"
+          >
+            ⚙
           </button>
         </div>
       </nav>
@@ -1103,10 +1124,7 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════
-     SCREEN 4 — MEETUP
-══════════════════════════════ -->
-    <div class="screen" id="screen-meetup">
+    <div class="screen" id="screen-settings">
       <nav class="app-nav">
         <span class="nav-logo" onclick="goTo('screen-start')">⬡ BASELINE</span>
         <div class="nav-links">
@@ -1116,113 +1134,144 @@
           <button class="nav-btn" onclick="goTo('screen-gameiq')">
             Game IQ
           </button>
-          <button class="nav-btn active" onclick="goTo('screen-meetup')">
-            Meetup
-          </button>
         </div>
+        <button
+          class="nav-btn nav-settings active"
+          onclick="goTo('screen-settings')"
+        >
+          ⚙
+        </button>
       </nav>
 
       <div class="page-body">
         <div class="page-header">
           <div>
-            <p class="page-eyebrow">Skill-Based Matchmaking</p>
-            <h2 class="page-title">Find a Run</h2>
-          </div>
-          <button class="btn-sm-outline">+ Host</button>
-        </div>
-
-        <div class="filter-bar">
-          <button class="filter-chip active-chip">Nearby</button>
-          <button class="filter-chip">This Week</button>
-          <button class="filter-chip">My Level</button>
-          <button class="filter-chip">5v5</button>
-          <button class="filter-chip">3v3</button>
-        </div>
-
-        <div class="runs-list">
-          <div class="run-card featured-run">
-            <div class="run-header">
-              <div class="run-level intermediate">INTERMEDIATE</div>
-              <div class="run-distance">0.8 mi</div>
-            </div>
-            <div class="run-title">Tuesday Evening Runs</div>
-            <div class="run-location">📍 Hawk Center Courts — Court 2</div>
-            <div class="run-meta-row">
-              <span>🕕 6:00 PM · Tue</span>
-              <span>👥 8 / 10 spots</span>
-              <span>5v5 Full Court</span>
-            </div>
-            <div class="run-players">
-              <div class="player-dot" style="background: #f76b1c">J</div>
-              <div class="player-dot" style="background: #4a9eff">M</div>
-              <div class="player-dot" style="background: #a855f7">T</div>
-              <div class="player-dot" style="background: #22c55e">R</div>
-              <div class="player-dot empty">+4</div>
-            </div>
-            <button class="btn-join">Join Run</button>
-          </div>
-
-          <div class="run-card">
-            <div class="run-header">
-              <div class="run-level beginner">BEGINNER</div>
-              <div class="run-distance">1.4 mi</div>
-            </div>
-            <div class="run-title">Morning 3v3 Drills</div>
-            <div class="run-location">📍 Riverside Rec — Outdoor Courts</div>
-            <div class="run-meta-row">
-              <span>🕗 7:30 AM · Sat</span>
-              <span>👥 4 / 6 spots</span>
-              <span>3v3 Half Court</span>
-            </div>
-            <button class="btn-join outline-join">Request Spot</button>
-          </div>
-
-          <div class="run-card">
-            <div class="run-header">
-              <div class="run-level advanced">ADVANCED</div>
-              <div class="run-distance">2.1 mi</div>
-            </div>
-            <div class="run-title">Competitive Friday League</div>
-            <div class="run-location">📍 Downtown YMCA — Gym A</div>
-            <div class="run-meta-row">
-              <span>🕕 5:00 PM · Fri</span>
-              <span>👥 12 / 12 spots</span>
-              <span>5v5 Full Court</span>
-            </div>
-            <button class="btn-join outline-join disabled-join" disabled>
-              Full
-            </button>
+            <p class="page-eyebrow">Personalization</p>
+            <h2 class="page-title">Settings</h2>
           </div>
         </div>
 
-        <div class="section-label" style="margin-top: 28px">
-          Players Near You
+        <!-- ── Profile Section ── -->
+        <div class="section-label">Your Profile</div>
+        <div class="settings-card">
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Age</div>
+            </div>
+            <div class="settings-input-wrap">
+              <input type="number" id="settings-age" min="10" max="60" />
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Height (in)</div>
+            </div>
+            <div class="settings-input-wrap">
+              <input type="number" id="settings-height" />
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Weight (lbs)</div>
+            </div>
+            <div class="settings-input-wrap">
+              <input type="number" id="settings-weight" />
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Skill Level</div>
+            </div>
+            <div class="settings-input-wrap">
+              <select id="settings-skill">
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+                <option>Elite</option>
+              </select>
+            </div>
+          </div>
+          <p id="settings-profile-error" style="display: none"></p>
+          <button class="btn-primary" id="btn-save-profile-settings">
+            Save Profile
+          </button>
         </div>
-        <div class="players-row">
-          <div class="nearby-player">
-            <div class="nearby-avatar" style="background: #f76b1c">JW</div>
-            <div class="nearby-name">Jordan W.</div>
-            <div class="nearby-skill">Intermediate</div>
-            <button class="btn-connect">Connect</button>
+
+        <!-- ── Shot Diet Section ── -->
+        <div class="section-label" style="margin-top: 28px">Shot Diet</div>
+        <div class="settings-card">
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Threes</div>
+              <div class="settings-row-desc">Catch & shoot, pull-up threes</div>
+            </div>
+            <div class="settings-input-wrap">
+              <input
+                type="number"
+                id="settings-diet-threes"
+                min="0"
+                max="100"
+              />
+              <span class="diet-pct-label">%</span>
+            </div>
           </div>
-          <div class="nearby-player">
-            <div class="nearby-avatar" style="background: #4a9eff">TM</div>
-            <div class="nearby-name">Tyler M.</div>
-            <div class="nearby-skill">Advanced</div>
-            <button class="btn-connect">Connect</button>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Mid-Range</div>
+              <div class="settings-row-desc">Pull-up jumpers from mid</div>
+            </div>
+            <div class="settings-input-wrap">
+              <input
+                type="number"
+                id="settings-diet-midrange"
+                min="0"
+                max="100"
+              />
+              <span class="diet-pct-label">%</span>
+            </div>
           </div>
-          <div class="nearby-player">
-            <div class="nearby-avatar" style="background: #22c55e">AR</div>
-            <div class="nearby-name">Alex R.</div>
-            <div class="nearby-skill">Beginner</div>
-            <button class="btn-connect">Connect</button>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Layups & Finishing</div>
+              <div class="settings-row-desc">
+                At the rim, both hands, floaters
+              </div>
+            </div>
+            <div class="settings-input-wrap">
+              <input
+                type="number"
+                id="settings-diet-layups"
+                min="0"
+                max="100"
+              />
+              <span class="diet-pct-label">%</span>
+            </div>
           </div>
-          <div class="nearby-player">
-            <div class="nearby-avatar" style="background: #a855f7">KL</div>
-            <div class="nearby-name">Kai L.</div>
-            <div class="nearby-skill">Intermediate</div>
-            <button class="btn-connect">Connect</button>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Ball Handling</div>
+              <div class="settings-row-desc">
+                Dribble work, combos, footwork
+              </div>
+            </div>
+            <div class="settings-input-wrap">
+              <input
+                type="number"
+                id="settings-diet-ballhandling"
+                min="0"
+                max="100"
+              />
+              <span class="diet-pct-label">%</span>
+            </div>
           </div>
+          <div class="diet-total-row">
+            <span>Total</span>
+            <span id="settings-diet-total">—</span>
+          </div>
+          <p id="settings-diet-error" style="display: none"></p>
+          <button class="btn-primary" id="btn-save-diet-settings">
+            Save Shot Diet
+          </button>
         </div>
       </div>
     </div>
@@ -1231,7 +1280,7 @@
     <script src="js/baseline.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/trainer.js"></script>
+    <script src="js/settings.js"></script>
     <script src="js/gameiq.js"></script>
-    <script src="js/meetup.js"></script>
   </body>
 </html>

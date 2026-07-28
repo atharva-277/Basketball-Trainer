@@ -1,13 +1,9 @@
-// ── storage.js ──────────────────────────────────────
-// The ONLY file in the project that touches localStorage.
-// Every other file calls these functions — never localStorage directly.
-//
 // Profile object shape:
 // {
-//   age:          19,
+//   age: 19,
 //   heightInches: 74,
-//   weightLbs:    185,
-//   skillLevel:   "Intermediate"  // "Beginner"|"Intermediate"|"Advanced"|"Elite"
+//   weightLbs: 185,
+//   skillLevel: "Intermediate"  // "Beginner"|"Intermediate"|"Advanced"|"Elite"
 // }
 //
 // Baseline object shape:
@@ -22,8 +18,22 @@
 //   overallPct, overallRating, weakestArea,
 //   drillTimes: { 1: seconds, 2: seconds, ... 6: seconds }
 // }
+//
+//Shot diet object shape:
+// {
+//   threes: 25,
+//   midRange: 25,
+//   layups: 25,
+//   ballHandling: 25
+// }
+//
+// Workout plan object shape:
+// {
+//   weeklyGoal: { area: "Catch & Shoot Threes", currentPct: 30, targetPct: 38, label: "Hit 38% from three" },
+//   modules: [ { name, category, priority, drills: [...] } ],
+//   generatedAt: timestamp
+// }
 
-// ── Profile ──────────────────────────────────────────
 function saveProfile(profileObj) {
   localStorage.setItem("profile", JSON.stringify(profileObj));
 }
@@ -33,7 +43,6 @@ function getProfile() {
   return data ? JSON.parse(data) : null;
 }
 
-// ── Baseline ─────────────────────────────────────────
 function saveBaseline(baselineObj) {
   localStorage.setItem("baseline", JSON.stringify(baselineObj));
 }
@@ -43,13 +52,28 @@ function getBaseline() {
   return data ? JSON.parse(data) : null;
 }
 
-// ── Helpers ──────────────────────────────────────────
+function saveShotDiet(dietObj) {
+  localStorage.setItem("shotDiet", JSON.stringify(dietObj));
+}
+
+function getShotDiet() {
+  const data = localStorage.getItem("shotDiet");
+  return data ? JSON.parse(data) : null;
+}
+
+function saveWorkoutPlan(planObj) {
+  localStorage.setItem("workoutPlan", JSON.stringify(planObj));
+}
+
+function getWorkoutPlan() {
+  const data = localStorage.getItem("workoutPlan");
+  return data ? JSON.parse(data) : null;
+}
+
 function hasCompletedOnboarding() {
   return getProfile() !== null && getBaseline() !== null;
 }
 
-// Call this in the browser console during dev to reset the app to a fresh state:
-// clearAllData()
 function clearAllData() {
   localStorage.clear();
 }
