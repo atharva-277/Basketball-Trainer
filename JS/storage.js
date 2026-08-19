@@ -33,6 +33,35 @@
 //   modules: [ { name, category, priority, drills: [...] } ],
 //   generatedAt: timestamp
 // }
+//
+// Session object shape:
+// {
+//   date: "2026-08-04T...",
+//   type: "shooting" | "handling",
+//   subsections: {
+//     // shooting example:
+//     threes: { attempts, made, pct },
+//     midrange: { attempts, made, pct },
+//     finishing: { attempts, made, pct }
+//     // handling example:
+//     // drillId: { seconds }
+//   }
+// }
+//
+// iqSkills object shape:
+// {
+//   passingVision:      { score: 62, attempts: 14 },
+//   foulPrevention:      { score: 71, attempts: 9 },
+//   lateClockDecisions:  { score: 55, attempts: 20 },
+//   pickRollCoverage:    { score: 68, attempts: 11 }
+// }
+//
+// currentPerformance object shape:
+// {
+//   threePct, midPct, finishingPct,
+//   layupLeftPct, layupRightPct, floaterPct, reverseLayupPct,
+//   drillTimes: { 1: seconds, ..., 6: seconds }
+// }
 
 function saveProfile(profileObj) {
   localStorage.setItem("profile", JSON.stringify(profileObj));
@@ -52,6 +81,26 @@ function getBaseline() {
   return data ? JSON.parse(data) : null;
 }
 
+function saveTrainingSession(sessionObj) {
+  const sessions = getTrainingSessions();
+  sessions.push(sessionObj);
+  localStorage.setItem("trainingSessions", JSON.stringify(sessions));
+}
+
+function getTrainingSessions() {
+  const data = localStorage.getItem("trainingSessions");
+  return data ? JSON.parse(data) : [];
+}
+
+function saveIqSkills(iqSkillsObj) {
+  localStorage.setItem("iqSkills", JSON.stringify(iqSkillsObj));
+}
+
+function getIqSkills() {
+  const data = localStorage.getItem("iqSkills");
+  return data ? JSON.parse(data) : null;
+}
+
 function saveShotDiet(dietObj) {
   localStorage.setItem("shotDiet", JSON.stringify(dietObj));
 }
@@ -67,6 +116,15 @@ function saveWorkoutPlan(planObj) {
 
 function getWorkoutPlan() {
   const data = localStorage.getItem("workoutPlan");
+  return data ? JSON.parse(data) : null;
+}
+
+function saveCurrentPerformance(perfObj) {
+  localStorage.setItem("currentPerformance", JSON.stringify(perfObj));
+}
+
+function getCurrentPerformance() {
+  const data = localStorage.getItem("currentPerformance");
   return data ? JSON.parse(data) : null;
 }
 

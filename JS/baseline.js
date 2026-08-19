@@ -1,34 +1,47 @@
 document.addEventListener("DOMContentLoaded", function () {
   const submitProfileBtn = document.getElementById("btn-submit-profile");
+  const profile = getProfile();
+  const baseline = getBaseline();
 
   if (submitProfileBtn) {
     submitProfileBtn.addEventListener("click", function () {
-      const age = parseInt(document.getElementById("input-age").value);
-      const height = parseInt(document.getElementById("input-height").value);
-      const weight = parseInt(document.getElementById("input-weight").value);
-      const skillLevel = document.getElementById("input-skill").value;
+      if (!profile) {
+        const age = parseInt(document.getElementById("input-age").value);
+        const height = parseInt(document.getElementById("input-height").value);
+        const weight = parseInt(document.getElementById("input-weight").value);
+        const skillLevel = document.getElementById("input-skill").value;
 
-      if (!age || !height || !weight || !skillLevel) {
-        showBioError("Please fill out all fields before continuing.");
-        return;
-      }
-      if (age < 10 || age > 80) {
-        showBioError("Please enter an age between 10 and 80.");
-        return;
-      }
-      if (height < 48 || height > 108) {
-        showBioError(
-          "Please enter a valid height in inches (e.g. 74 for 6'2\").",
-        );
-        return;
-      }
-      if (weight < 80 || weight > 400) {
-        showBioError("Please enter a valid weight in lbs.");
-        return;
-      }
+        if (!age || !height || !weight || !skillLevel) {
+          showBioError("Please fill out all fields before continuing.");
+          return;
+        }
+        if (age < 10 || age > 80) {
+          showBioError("Please enter an age between 10 and 80.");
+          return;
+        }
+        if (height < 48 || height > 108) {
+          showBioError(
+            "Please enter a valid height in inches (e.g. 74 for 6'2\").",
+          );
+          return;
+        }
+        if (weight < 80 || weight > 400) {
+          showBioError("Please enter a valid weight in lbs.");
+          return;
+        }
 
-      saveProfile({ age, heightInches: height, weightLbs: weight, skillLevel });
-      goTo("screen-baseline");
+        saveProfile({
+          age,
+          heightInches: height,
+          weightLbs: weight,
+          skillLevel,
+        });
+      }
+      if (baseline) {
+        goTo("screen-trainer");
+      } else {
+        goTo("screen-baseline");
+      }
     });
   }
 
@@ -273,13 +286,14 @@ document.addEventListener("DOMContentLoaded", function () {
         handlingScore * 0.3,
     );
 
-    const shootingAreas = {
+    const allAreas = {
       "Catch & Shoot Threes": threePct,
       "Mid-Range": midPct,
       "Finishing at the Rim": finishingPct,
+      "Ball Handling": handlingScore,
     };
-    const weakestArea = Object.keys(shootingAreas).reduce((a, b) =>
-      shootingAreas[a] < shootingAreas[b] ? a : b,
+    const weakestArea = Object.keys(allAreas).reduce((a, b) =>
+      allAreas[a] < allAreas[b] ? a : b,
     );
 
     return {

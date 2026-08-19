@@ -848,27 +848,39 @@
               <div class="module-icon shooting">🏀</div>
               <div class="module-info">
                 <div class="module-name">Shooting</div>
-                <div class="module-meta">Threes · Mid-Range · Layups</div>
+                <div class="module-meta" id="module-shooting-meta">
+                  Threes · Mid-Range · Layups
+                </div>
               </div>
               <div class="module-status" id="module-shooting-status"></div>
             </div>
+            <div
+              class="module-details"
+              id="module-shooting-details"
+              style="display: none"
+            ></div>
 
             <div class="module-card" id="module-handling">
               <div class="module-icon handling">⚡</div>
               <div class="module-info">
                 <div class="module-name">Ball Handling</div>
-                <div class="module-meta">
+                <div class="module-meta" id="module-handling-meta">
                   Crossover · Figure-8 · Sprint Series
                 </div>
               </div>
               <div class="module-status" id="module-handling-status"></div>
             </div>
+            <div
+              class="module-details"
+              id="module-handling-details"
+              style="display: none"
+            ></div>
 
             <div class="module-card" id="module-gameiq">
               <div class="module-icon gameiq">🧠</div>
               <div class="module-info">
                 <div class="module-name">Game IQ</div>
-                <div class="module-meta">
+                <div class="module-meta" id="module-gameiq-meta">
                   Scenarios · Plays · Decision Making
                 </div>
               </div>
@@ -1276,7 +1288,43 @@
       </div>
     </div>
 
+    <div class="screen" id="screen-log-session">
+      <nav class="app-nav">
+        <span class="nav-logo" onclick="goTo('screen-trainer')"
+          >⬡ BASELINE</span
+        >
+      </nav>
+      <div class="page-body">
+        <div class="page-header">
+          <div>
+            <p class="page-eyebrow" id="log-session-eyebrow">Log Results</p>
+            <h2 class="page-title" id="log-session-title">Session</h2>
+          </div>
+        </div>
+
+        <div id="log-session-items"></div>
+
+        <div id="log-session-cues" style="display: none"></div>
+
+        <div class="baseline-nav-row" style="margin-top: 20px">
+          <button
+            class="btn-back"
+            type="button"
+            onclick="goTo('screen-trainer')"
+          >
+            ← Cancel
+          </button>
+          <button class="btn-primary" type="button" id="btn-submit-log">
+            Save Results →
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script src="js/storage.js"></script>
+    <script src="js/algorithm.js"></script>
+    <script src="js/coaching.js"></script>
+    <script src="js/session.js"></script>
     <script src="js/baseline.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/trainer.js"></script>
