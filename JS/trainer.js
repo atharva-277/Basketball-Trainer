@@ -120,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const details = document.getElementById(detailsId);
     if (!card || !details) return;
 
-    // Avoid stacking duplicate listeners every time populateTrainingPlan reruns
     if (card.dataset.toggleBound) return;
     card.dataset.toggleBound = "true";
 

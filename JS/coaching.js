@@ -1,10 +1,4 @@
-const JUMPSHOT_MISS_REASONS = [
-  "short",
-  "long",
-  "offTargetLeft",
-  "offTargetRight",
-  "rushed",
-];
+const JUMPSHOT_MISS_REASONS = ["short", "long", "offTarget", "rushed"];
 
 const FINISHING_MISS_REASONS = [
   "offBalance",
@@ -24,45 +18,41 @@ const SUBSECTION = {
 
 const JUMPSHOT_CUES = {
   short: [
-    "Load your legs before the catch — let the power come from your base, not your arm.",
-    "Catch on the hop, don't collect and reset. A dead stop kills your leg drive.",
-    "Push up through the floor as you shoot — if you're flat-footed, you're leaving the shot short.",
+    "Power your base to be prepared for the shot.",
+    "Keep your movement fluid so you're not losing momentum",
+    "Follow through with your limbs to generate enough power.",
   ],
   long: [
-    "Ease off trying to muscle it — a set base gives you enough power on its own.",
-    "Check if you're lunging into the shot. A controlled base beats a rushed one.",
-    "Let your legs do less work if you're a set-shot, comfortable distance — power should feel repeatable, not maxed out.",
+    "Don't muscle into it, a good base has enough power",
+    "Don't rush the shot, be calm and smooth with your movement.",
+    "Your power should be a repeatable action, not a slam dunk every time.",
   ],
-  offTargetLeft: [
-    "Square your lead foot to the rim before you catch — a turned foot pulls the whole shot with it.",
-    "Check your base width. Too narrow and your balance drifts sideways mid-shot.",
-  ],
-  offTargetRight: [
-    "Same fix, opposite side — point your feet at the rim, not at the passer or your gather direction.",
-    "Widen your stance slightly if you're finding yourself drifting on the release.",
+  offTarget: [
+    "Make sure your feet are pointed correctly, otherwise your inaccurate.",
+    "Keep your feet a comfortable amount apart to avoid drifting.",
   ],
   rushed: [
-    "Find your gather step. Catching mid-stride without a set point is why the shot feels rushed.",
-    "Reset your feet on every single rep — no exceptions, even in a drill. That habit is what shows up in games.",
+    "Plan out your steps before you start moving.",
+    "Reset your feet and visualize your steps every time.",
   ],
 };
 
 const FINISHING_CUES = {
   offBalance: [
-    "Slow the last two steps down before you attack the rim — most balance issues start before you even leave the ground.",
-    "Get your body under control before the gather. Speed is good, but not if you're falling into the finish.",
+    "Slow down to gain balance before powering into it.",
+    "Stay composed, a faulty slipup can mess up every other shot as well.",
   ],
   rushed: [
-    "Let the defense dictate your speed, not the other way around — attacking under control still beats attacking recklessly.",
-    "Take one more beat to gather before you go up. A rushed finish is usually an unset gather.",
+    "Lull the defense into their own rhythm before finishing.",
+    "Set yourself up to make sure you know where you go before you're there.",
   ],
   wrongFootwork: [
-    "Check your gather step — same foot pattern every time builds consistency at the rim.",
-    "Land your gather on the correct foot for this finish before you leave your feet, not after.",
+    "Practice your exact footwork before taking shots, it'll come naturally when you actually shoot then.",
+    "Know your landing foot after every time, no matter where you're coming from.",
   ],
   touch: [
-    "Think about touch, not force — a finish at the rim needs less power than it feels like in traffic.",
-    "Work on releasing off your fingertips with a soft touch rather than pushing the ball at the rim.",
+    "Remember that you're alone at the rim, be particular in placement.",
+    "Place the ball in the rim, don't let the ball have the option to rim out.",
   ],
 };
 
@@ -117,54 +107,54 @@ const NEUTRAL_MISS_REASONS = ["offHandLag", "rhythmBreak", "eyesDown"];
 
 const CONTROL_CUES = {
   ballTooHigh: [
-    "Keep the ball below your waist — a high dribble is the first thing that gets you out of control.",
-    "Shorten your dribble height. You should be pushing the ball down, not bouncing it.",
+    "Keep the ball below your waist since dribbling high limits your control.",
+    "Shorten your dribble height. Don't try to bounce the ball as high.",
   ],
   wideHands: [
-    "Keep your hand on top of the ball, not off to the side — that's what gives you control on contact.",
-    "Tighten up where your hand meets the ball. Too wide and you lose it on every change of direction.",
+    "Keep your hand on top of the ball to maintain control every contact.",
+    "Tighten up where your hand meets the ball. Ensure that your hand is in control, not your fingers.",
   ],
   eyesDown: [
-    "Get your eyes up. Looking at the ball is why you lose the feel for where your hand actually is.",
-    "Practice this drill while looking at a fixed point across the room — force the habit.",
+    "Keep your eyes up and get a feel for where the ball is in space.",
+    "Focus on a point in the distance and feel for where the ball is.",
   ],
   looseHandle: [
-    "Tighten the move up — smaller, quicker taps beat big, loose ones for staying in control.",
-    "Slow the drill down a notch and focus on control before trying to speed it back up.",
+    "Tighten up and keep small movements, no need to generate big dribbles.",
+    "Slow down and get the drill down before focusing on speed.",
   ],
 };
 
 const LIVE_CUES = {
   paceControl: [
-    "You don't have to go full speed to be effective — control your pace, then push it once it's clean.",
-    "Slow down 10%, get the move clean, then build speed back up. Control first, speed second.",
+    "Control your pace one dribble at a time",
+    "Slow down and focus on the specific movement.",
   ],
   predictable: [
-    "Mix up your rhythm — a hesitation or change of pace inside the move keeps you unpredictable.",
-    "Don't let the move become a metronome. Vary the timing, not just the speed.",
+    "Mixup your movement and don't hesitate to change direction.",
+    "Don't be rigid, vary up tempo and direction while maintaining speed",
   ],
   eyesDown: [
-    "Eyes up, even at full speed — that's the difference between a drill and a game-usable move.",
-    "If your eyes are down, slow the drill back down until you can keep them up.",
+    "Eyes up, always focus on movements and not the ball",
+    "Slow down and focus up before speeding up, don't let the ball control your eyes",
   ],
   footworkBreakdown: [
-    "Check your feet — most live-speed breakdowns start with footwork, not hands.",
-    "Stay balanced on your base as you move. If your feet get sloppy, the handle follows.",
+    "Make sure your feet are set and are ready to move.",
+    "Stay balanced, don't shift around and mess up the handle.",
   ],
 };
 
 const NEUTRAL_CUES = {
   offHandLag: [
-    "Your off-hand is doing less work than your strong hand — slow down and force it to match.",
-    "Isolate your weak hand for a few reps by itself before going back to both together.",
+    "Force both hands to split the work, one hand can't dictate the rhythm.",
+    "Try the drill with just your weak hand to get a better feel.",
   ],
   rhythmBreak: [
-    "Both hands need to stay on the same clock — if one drifts, the whole rhythm falls apart.",
-    "Count the dribble out loud or in your head to keep both hands locked to the same tempo.",
+    "Keep the same tempo, don't let your hands desync",
+    "Count out loud to keep a consistent tempo.",
   ],
   eyesDown: [
-    "Eyes up here too — this drill is as much about vision as it is about your hands.",
-    "Get comfortable enough that you're not watching either ball to keep control.",
+    "Keep you eyes up, and ensure you're aware of your surroundings.",
+    "Don't let the ball take control of your eyes.",
   ],
 };
 

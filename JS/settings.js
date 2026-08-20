@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "settings-diet-ballhandling",
   ];
 
-  // Live total as user types
   dietIds.forEach((id) => {
     const el = document.getElementById(id);
     if (el) el.addEventListener("input", updateDietTotal);

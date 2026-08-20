@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const profile = getProfile();
   const baseline = getBaseline();
 
+  if (baseline) {
+    goTo("screen-trainer");
+  }
+
   if (submitProfileBtn) {
     submitProfileBtn.addEventListener("click", function () {
       if (!profile) {
@@ -37,11 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
           skillLevel,
         });
       }
-      if (baseline) {
-        goTo("screen-trainer");
-      } else {
-        goTo("screen-baseline");
-      }
+      goTo("screen-baseline");
     });
   }
 
@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const finishingPct = Math.round((totalFinishingMade / 40) * 100);
 
     const totalMade = threesMade + midMade + totalFinishingMade;
-    const totalAttempted = 50 + 25 + 40; // 115 total shots
+    const totalAttempted = 50 + 25 + 40;
     const overallPct = Math.round((totalMade / totalAttempted) * 100);
 
     const avgDrillTime = calcAvgDrillTime();
@@ -395,6 +395,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (el) el.textContent = text;
   }
 
-  const savedBaseline = getBaseline(); // storage.js
+  const savedBaseline = getBaseline();
   if (savedBaseline) populateResults(savedBaseline);
 });
