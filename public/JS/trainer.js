@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     if (goalText)
-      goalText.textContent = "Improve your " + status.weakestArea.toLowerCase();
+      goalText.textContent = "Improve " + status.weakestArea.toLowerCase();
     if (goalFill) goalFill.style.width = status.overallPct + "%";
     if (goalPct) goalPct.textContent = status.overallPct + "%";
 

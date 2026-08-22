@@ -63,7 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.querySelectorAll(".onboard-dot").forEach((dot) => {
       const dotStep = parseInt(dot.getAttribute("data-step"));
-      dot.classList.toggle("active", dotStep <= stepNumber);
+      dot.classList.toggle("done", dotStep < stepNumber);
+      dot.classList.toggle("active", dotStep == stepNumber);
     });
   }
 

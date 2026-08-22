@@ -8,9 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/png" href="./icon.png" />
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/12.18.0/firebase-app-compat.js"></script>
@@ -57,105 +58,15 @@
   <body>
     <div class="screen active" id="screen-start">
       <div class="start-bg">
-        <svg
-          class="court-lines"
-          viewBox="0 0 800 600"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          <line
-            x1="0"
-            y1="300"
-            x2="800"
-            y2="300"
-            stroke="rgba(255,255,255,0.07)"
-            stroke-width="2"
-          />
-          <circle
-            cx="400"
-            cy="300"
-            r="90"
-            fill="none"
-            stroke="rgba(255,255,255,0.07)"
-            stroke-width="2"
-          />
-          <path
-            d="M 60 160 Q 260 300 60 440"
-            fill="none"
-            stroke="rgba(255,255,255,0.07)"
-            stroke-width="2"
-          />
-          <path
-            d="M 740 160 Q 540 300 740 440"
-            fill="none"
-            stroke="rgba(255,255,255,0.07)"
-            stroke-width="2"
-          />
-          <rect
-            x="60"
-            y="210"
-            width="140"
-            height="180"
-            fill="none"
-            stroke="rgba(255,255,255,0.07)"
-            stroke-width="2"
-          />
-          <rect
-            x="600"
-            y="210"
-            width="140"
-            height="180"
-            fill="none"
-            stroke="rgba(255,255,255,0.07)"
-            stroke-width="2"
-          />
-          <circle
-            cx="200"
-            cy="300"
-            r="60"
-            fill="none"
-            stroke="rgba(255,255,255,0.07)"
-            stroke-width="2"
-          />
-          <circle
-            cx="600"
-            cy="300"
-            r="60"
-            fill="none"
-            stroke="rgba(255,255,255,0.07)"
-            stroke-width="2"
-          />
-          <circle
-            cx="80"
-            cy="300"
-            r="12"
-            fill="none"
-            stroke="rgba(247,107,28,0.25)"
-            stroke-width="2"
-          />
-          <circle
-            cx="720"
-            cy="300"
-            r="12"
-            fill="none"
-            stroke="rgba(247,107,28,0.25)"
-            stroke-width="2"
-          />
-        </svg>
+        <img src="bg.png" alt="Hoop IQ" width="100%" />
       </div>
 
       <div class="start-content">
         <div class="start-logo">
-          <span class="logo-icon">⬡</span>
-          <span class="logo-word">BASELINE</span>
+          <span class="logo-word">HoopIQ</span>
         </div>
-        <h1 class="start-headline">
-          Train Smarter.<br /><em>Run the Court.</em>
-        </h1>
-        <p class="start-sub">
-          Personalized workouts, game IQ drills, and real pickup runs — built
-          around your game.
-        </p>
+        <h1 class="start-headline">Train Smart<br /><em>Dominate Hard</em></h1>
+        <p class="start-sub">Personalized workouts built around your game.</p>
 
         <div class="start-form">
           <div class="form-row">
@@ -192,7 +103,7 @@
           </div>
           <label id="bio-error"></label>
           <button class="btn-primary" id="btn-submit-profile">
-            Start Your Assessment →
+            Start Baseline →
           </button>
         </div>
       </div>
@@ -208,11 +119,9 @@
         </div>
 
         <div class="baseline-step" id="baseline-step-1">
-          <p class="baseline-step-label">Step 1 of 4</p>
           <h2 class="baseline-title">Catch-and-Shoot Threes</h2>
           <p class="baseline-instructions">
-            Take 10 catch-and-shoot threes from each spot below — 50 shots
-            total. Log your makes at each spot.
+            Take 10 catch-and-shoot threes from each spot
           </p>
 
           <div class="spot-grid">
@@ -276,11 +185,9 @@
         </div>
 
         <div class="baseline-step" id="baseline-step-2" style="display: none">
-          <p class="baseline-step-label">Step 2 of 4</p>
           <h2 class="baseline-title">Mid-Range Pull-Ups</h2>
           <p class="baseline-instructions">
-            Off one or two dribbles, take 5 pull-up jumpers from each spot below
-            — 25 shots total. Log your makes at each spot.
+            Take 5 pull-up jumpers off dribbles from each spot
           </p>
 
           <div class="spot-grid">
@@ -345,12 +252,8 @@
         </div>
 
         <div class="baseline-step" id="baseline-step-3" style="display: none">
-          <p class="baseline-step-label">Step 3 of 4</p>
           <h2 class="baseline-title">Finishing at the Rim</h2>
-          <p class="baseline-instructions">
-            Take 10 attempts of each finish below — 40 attempts total. Log your
-            makes for each type.
-          </p>
+          <p class="baseline-instructions">Take 10 attempts of each finish</p>
 
           <div class="spot-grid">
             <div class="spot-card" data-spot="layup-left">
@@ -405,13 +308,8 @@
         </div>
 
         <div class="baseline-step" id="baseline-step-4" style="display: none">
-          <p class="baseline-step-label">Step 4 of 4</p>
           <h2 class="baseline-title">Ball Handling</h2>
-          <p class="baseline-instructions">
-            Run through each drill below. Start the stopwatch, go until you lose
-            control or the move breaks down, then tap "Lost It" to log your
-            time.
-          </p>
+          <p class="baseline-instructions">Run through each drill</p>
 
           <div class="drill-series" id="drill-series">
             <div
@@ -425,7 +323,7 @@
               </div>
               <div class="drill-name">Stationary Crossover</div>
               <div class="drill-desc">
-                Low, tight crossovers — stay in a stance, don't travel.
+                Low, tight crossovers without traveling.
               </div>
               <div class="drill-timer">
                 <span class="drill-clock" id="clock-1">0:00</span>
@@ -460,7 +358,7 @@
               </div>
               <div class="drill-name">Figure-8 Between the Legs</div>
               <div class="drill-desc">
-                Continuous figure-8, ball never leaves your control path.
+                Continuous figure-8, ball never leaves its path.
               </div>
               <div class="drill-timer">
                 <span class="drill-clock" id="clock-2">0:00</span>
@@ -496,8 +394,8 @@
               </div>
               <div class="drill-name">Two-Ball Dribbling</div>
               <div class="drill-desc">
-                Simultaneous dribble, both hands — alternate same-time and
-                alternating rhythm.
+                Simultaneous dribble with both hands, maintaining alternate
+                dribbles and rhythms.
               </div>
               <div class="drill-timer">
                 <span class="drill-clock" id="clock-3">0:00</span>
@@ -532,9 +430,7 @@
                 <span class="drill-status pending">Not Started</span>
               </div>
               <div class="drill-name">Behind-the-Back Combo</div>
-              <div class="drill-desc">
-                Chain crossover into behind-the-back into hesitation, on repeat.
-              </div>
+              <div class="drill-desc">Crossover into behind-the-back.</div>
               <div class="drill-timer">
                 <span class="drill-clock" id="clock-4">0:00</span>
                 <button
@@ -569,7 +465,7 @@
               </div>
               <div class="drill-name">Spider Dribble</div>
               <div class="drill-desc">
-                Rapid-fire alternating taps, both hands, low and wide.
+                Quick alternating taps with both hands.
               </div>
               <div class="drill-timer">
                 <span class="drill-clock" id="clock-5">0:00</span>
@@ -605,8 +501,7 @@
               </div>
               <div class="drill-name">Full-Speed Crossover Sprint</div>
               <div class="drill-desc">
-                Push the ball full speed, crossover at each cone/line, maintain
-                control.
+                Sprinting down which dribbling and crossing over.
               </div>
               <div class="drill-timer">
                 <span class="drill-clock" id="clock-6">0:00</span>
@@ -644,23 +539,10 @@
 
     <div class="screen" id="screen-results">
       <div class="results-content">
-        <span class="results-badge">⬡ Assessment Complete</span>
         <h2 class="results-title">Here's Your Baseline.</h2>
         <p class="results-sub">
-          This is where you're starting. Your weekly plan and shot-zone targets
-          will build from these numbers — they'll move as you train.
+          This is a starting point. As you train, these numbers will improve.
         </p>
-
-        <div class="overall-card">
-          <div class="overall-ring" id="overall-rating">62</div>
-          <div>
-            <div class="overall-text-label">Overall Rating</div>
-            <div class="overall-text-desc">
-              You're rating is developed from your shooting, finishing, and
-              ball-handling scores. This is your starting point.
-            </div>
-          </div>
-        </div>
 
         <div class="results-section-label">Shooting</div>
         <div class="snapshot-grid">
@@ -721,21 +603,6 @@
             <span class="drill-result-time"></span>
           </div>
         </div>
-
-        <div class="results-section-label">Skill Level</div>
-        <div class="snapshot-grid">
-          <div class="snapshot-card" style="grid-column: span 2">
-            <div class="snapshot-label">Self-Reported</div>
-            <div
-              class="snapshot-value"
-              id="result-skill"
-              style="font-size: 22px"
-            >
-              Intermediate
-            </div>
-          </div>
-        </div>
-
         <button
           class="btn-primary"
           id="enter-trainer-btn"
@@ -748,7 +615,7 @@
 
     <div class="screen" id="screen-trainer">
       <nav class="app-nav">
-        <span class="nav-logo" onclick="goTo('screen-start')">⬡ BASELINE</span>
+        <span class="nav-logo" onclick="goTo('screen-start')">HoopIQ</span>
         <div class="nav-links">
           <button class="nav-btn active" onclick="goTo('screen-trainer')">
             Trainer
@@ -760,30 +627,27 @@
             class="nav-btn nav-settings"
             onclick="goTo('screen-settings')"
           >
-            ⚙
+            Settings
           </button>
         </div>
       </nav>
 
       <div class="page-body">
-        <!-- ── Shot Diet Setup (shown until diet is saved) ── -->
         <div id="shot-diet-setup">
           <div class="page-header">
             <div>
-              <p class="page-eyebrow">Before You Train</p>
               <h2 class="page-title">Your Shot Diet</h2>
             </div>
           </div>
           <p class="trainer-intro">
-            Tell us how your game is distributed. This determines how your
-            training plan is weighted. Must add up to 100%.
+            Tell us how you play. This will help build a customized training
+            plan.
           </p>
 
           <div class="diet-form">
             <div class="diet-row">
               <div class="diet-info">
                 <div class="diet-name">Threes</div>
-                <div class="diet-desc">Catch & shoot, pull-up threes</div>
               </div>
               <div class="diet-input-wrap">
                 <input
@@ -800,7 +664,6 @@
             <div class="diet-row">
               <div class="diet-info">
                 <div class="diet-name">Mid-Range</div>
-                <div class="diet-desc">Pull-up jumpers, floaters from mid</div>
               </div>
               <div class="diet-input-wrap">
                 <input
@@ -817,7 +680,6 @@
             <div class="diet-row">
               <div class="diet-info">
                 <div class="diet-name">Layups & Finishing</div>
-                <div class="diet-desc">At the rim, both hands, floaters</div>
               </div>
               <div class="diet-input-wrap">
                 <input
@@ -834,7 +696,6 @@
             <div class="diet-row">
               <div class="diet-info">
                 <div class="diet-name">Ball Handling</div>
-                <div class="diet-desc">Dribble work, combos, footwork</div>
               </div>
               <div class="diet-input-wrap">
                 <input
@@ -863,8 +724,7 @@
         <div id="training-plan" style="display: none">
           <div class="page-header">
             <div>
-              <p class="page-eyebrow" id="trainer-week-label">Week 1 · Day 1</p>
-              <h2 class="page-title">Your Training Plan</h2>
+              <h2 class="page-title">Training Plan</h2>
             </div>
           </div>
 
@@ -883,7 +743,7 @@
             </div>
           </div>
 
-          <div class="section-label">Today's Modules</div>
+          <div class="section-label">Modules</div>
           <div class="module-grid">
             <div class="module-card" id="module-shooting">
               <div class="module-icon shooting">🏀</div>
@@ -934,19 +794,19 @@
 
     <div class="screen" id="screen-gameiq">
       <nav class="app-nav">
-        <span class="nav-logo" onclick="goTo('screen-start')">⬡ BASELINE</span>
+        <span class="nav-logo" onclick="goTo('screen-start')">HoopIQ</span>
         <div class="nav-links">
           <button class="nav-btn" onclick="goTo('screen-trainer')">
             Trainer
           </button>
-          <button class="nav-btn active" onclick="goTo('screen-gameiq')">
+          <button class="nav-btn" onclick="goTo('screen-gameiq')">
             Game IQ
           </button>
           <button
             class="nav-btn nav-settings"
             onclick="goTo('screen-settings')"
           >
-            ⚙
+            Settings
           </button>
         </div>
       </nav>
@@ -955,7 +815,7 @@
 
     <div class="screen" id="screen-settings">
       <nav class="app-nav">
-        <span class="nav-logo" onclick="goTo('screen-start')">⬡ BASELINE</span>
+        <span class="nav-logo" onclick="goTo('screen-start')">HoopIQ</span>
         <div class="nav-links">
           <button class="nav-btn" onclick="goTo('screen-trainer')">
             Trainer
@@ -963,24 +823,22 @@
           <button class="nav-btn" onclick="goTo('screen-gameiq')">
             Game IQ
           </button>
+          <button
+            class="nav-btn nav-settings active"
+            onclick="goTo('screen-settings')"
+          >
+            Settings
+          </button>
         </div>
-        <button
-          class="nav-btn nav-settings active"
-          onclick="goTo('screen-settings')"
-        >
-          ⚙
-        </button>
       </nav>
 
       <div class="page-body">
         <div class="page-header">
           <div>
-            <p class="page-eyebrow">Personalization</p>
             <h2 class="page-title">Settings</h2>
           </div>
         </div>
 
-        <!-- ── Profile Section ── -->
         <div class="section-label">Your Profile</div>
         <div class="settings-card">
           <div class="settings-row">
@@ -1020,19 +878,19 @@
               </select>
             </div>
           </div>
-          <p id="settings-profile-error" style="display: none"></p>
-          <button class="btn-primary" id="btn-save-profile-settings">
-            Save Profile
-          </button>
+          <div class="settings-row">
+            <p id="settings-profile-error" style="display: none"></p>
+            <button class="btn-primary" id="btn-save-profile-settings">
+              Save Profile
+            </button>
+          </div>
         </div>
 
-        <!-- ── Shot Diet Section ── -->
         <div class="section-label" style="margin-top: 28px">Shot Diet</div>
         <div class="settings-card">
           <div class="settings-row">
             <div class="settings-row-info">
               <div class="settings-row-label">Threes</div>
-              <div class="settings-row-desc">Catch & shoot, pull-up threes</div>
             </div>
             <div class="settings-input-wrap">
               <input
@@ -1047,7 +905,6 @@
           <div class="settings-row">
             <div class="settings-row-info">
               <div class="settings-row-label">Mid-Range</div>
-              <div class="settings-row-desc">Pull-up jumpers from mid</div>
             </div>
             <div class="settings-input-wrap">
               <input
@@ -1062,9 +919,6 @@
           <div class="settings-row">
             <div class="settings-row-info">
               <div class="settings-row-label">Layups & Finishing</div>
-              <div class="settings-row-desc">
-                At the rim, both hands, floaters
-              </div>
             </div>
             <div class="settings-input-wrap">
               <input
@@ -1079,9 +933,6 @@
           <div class="settings-row">
             <div class="settings-row-info">
               <div class="settings-row-label">Ball Handling</div>
-              <div class="settings-row-desc">
-                Dribble work, combos, footwork
-              </div>
             </div>
             <div class="settings-input-wrap">
               <input
@@ -1093,31 +944,32 @@
               <span class="diet-pct-label">%</span>
             </div>
           </div>
-          <div class="diet-total-row">
+          <div class="settings-row diet-settings-total-row">
             <span>Total</span>
             <span id="settings-diet-total">—</span>
           </div>
-          <p id="settings-diet-error" style="display: none"></p>
-          <button class="btn-primary" id="btn-save-diet-settings">
-            Save Shot Diet
-          </button>
+          <div class="settings-row">
+            <p id="settings-diet-error" style="display: none"></p>
+            <button class="btn-primary" id="btn-save-diet-settings">
+              Save Shot Diet
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="screen" id="screen-log-session">
       <nav class="app-nav">
-        <span class="nav-logo" onclick="goTo('screen-trainer')"
-          >⬡ BASELINE</span
-        >
+        <span class="nav-logo" onclick="goTo('screen-trainer')">HoopIQ</span>
       </nav>
       <div class="page-body">
         <div class="page-header">
           <div>
-            <p class="page-eyebrow" id="log-session-eyebrow">Log Results</p>
             <h2 class="page-title" id="log-session-title">Session</h2>
           </div>
         </div>
+
+        <p id="log-session-error" style="display: none"></p>
 
         <div id="log-session-items"></div>
 
@@ -1129,7 +981,7 @@
             type="button"
             onclick="goTo('screen-trainer')"
           >
-            ← Cancel
+            ← Save Results
           </button>
           <button class="btn-primary" type="button" id="btn-submit-log">
             Save Results →

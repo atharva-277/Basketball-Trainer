@@ -218,6 +218,37 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function submitLogSession() {
+  const errorEl = document.getElementById("log-session-error");
+  const missingItems = [];
+
+  if (activeLogType === "shooting") {
+    activeLogItems.forEach((item) => {
+      const makes = logMakes[item.key] || 0;
+      if (makes < item.target) {
+        const breakdown = logMissTags[item.key];
+        const taggedCount = breakdown
+          ? Object.values(breakdown).reduce((sum, c) => sum + c, 0)
+          : 0;
+        if (taggedCount === 0) missingItems.push(item.label);
+      }
+    });
+  } else {
+    activeLogItems.forEach((item) => {
+      const actual = logActual[item.key] || 0;
+      if (actual < item.target && !logSelectedTag[item.key]) {
+        missingItems.push(item.label);
+      }
+    });
+  }
+
+  if (missingItems.length > 0) {
+    errorEl.textContent = "Tag a miss reason for: " + missingItems.join(", ");
+    errorEl.style.display = "block";
+    return;
+  }
+
+  errorEl.style.display = "none";
+
   const sessionResults = {};
   const cues = [];
 
@@ -280,6 +311,7 @@ function renderCues(cues) {
 
   itemsEl.style.display = "none";
   submitBtn.style.display = "none";
+  document.getElementById("log-session-error").style.display = "none";
 
   if (cues.length === 0) {
     cuesEl.innerHTML = `<div class="cue-card"><strong>Nice work</strong>Clean session — no misses tagged.</div>`;
