@@ -1,0 +1,1042 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HoopIQ</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="./icon.png" />
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/12.18.0/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/12.18.0/firebase-auth-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/12.18.0/firebase-database-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/12.18.0/firebase-firestore-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/12.18.0/firebase-functions-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/12.18.0/firebase-messaging-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/12.18.0/firebase-storage-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/12.18.0/firebase-analytics-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/12.18.0/firebase-remote-config-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/12.18.0/firebase-performance-compat.js"
+    ></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  </head>
+  <body>
+    <div class="screen active" id="screen-start">
+      <div class="start-bg">
+        <img src="bg.png" alt="Hoop IQ" width="100%" />
+      </div>
+
+      <div class="start-content">
+        <div class="start-logo">
+          <span class="logo-word">HoopIQ</span>
+        </div>
+        <h1 class="start-headline">Train Smart<br /><em>Dominate Hard</em></h1>
+        <p class="start-sub">Personalized workouts built around your game.</p>
+
+        <div class="start-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Age</label>
+              <input
+                type="number"
+                placeholder="e.g. 19"
+                min="10"
+                max="80"
+                id="input-age"
+              />
+            </div>
+            <div class="form-field">
+              <label>Skill Level</label>
+              <select id="input-skill">
+                <option value="">Select…</option>
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+                <option>Elite</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Height (in)</label>
+              <input type="number" placeholder='e.g. 74"' id="input-height" />
+            </div>
+            <div class="form-field">
+              <label>Weight (lbs)</label>
+              <input type="number" placeholder="e.g. 185" id="input-weight" />
+            </div>
+          </div>
+          <label id="bio-error"></label>
+          <button class="btn-primary" id="btn-submit-profile">
+            Start Baseline →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-baseline">
+      <div class="baseline-content">
+        <div class="onboard-progress">
+          <div class="onboard-dot active" data-step="1"></div>
+          <div class="onboard-dot" data-step="2"></div>
+          <div class="onboard-dot" data-step="3"></div>
+          <div class="onboard-dot" data-step="4"></div>
+        </div>
+
+        <div class="baseline-step" id="baseline-step-1">
+          <h2 class="baseline-title">Catch-and-Shoot Threes</h2>
+          <p class="baseline-instructions">
+            Take 10 catch-and-shoot threes from each spot
+          </p>
+
+          <div class="spot-grid">
+            <div class="spot-card" data-spot="left-corner">
+              <div class="spot-name">Left Corner</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="left-wing">
+              <div class="spot-name">Left Wing</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="top-key">
+              <div class="spot-name">Top of Key</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="right-wing">
+              <div class="spot-name">Right Wing</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="right-corner">
+              <div class="spot-name">Right Corner</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+          </div>
+
+          <div class="spot-total-row">
+            <span>Total</span>
+            <span id="spot-total-display">0 / 50</span>
+          </div>
+
+          <div class="baseline-nav-row">
+            <button class="btn-primary" type="button" data-next="2">
+              Next Drill →
+            </button>
+          </div>
+        </div>
+
+        <div class="baseline-step" id="baseline-step-2" style="display: none">
+          <h2 class="baseline-title">Mid-Range Pull-Ups</h2>
+          <p class="baseline-instructions">
+            Take 5 pull-up jumpers off dribbles from each spot
+          </p>
+
+          <div class="spot-grid">
+            <div class="spot-card" data-spot="mid-left-baseline">
+              <div class="spot-name">Left Baseline</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="5" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 5</div>
+            </div>
+            <div class="spot-card" data-spot="mid-left-elbow">
+              <div class="spot-name">Left Elbow</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="5" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 5</div>
+            </div>
+            <div class="spot-card" data-spot="mid-top">
+              <div class="spot-name">Top of Key</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="5" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 5</div>
+            </div>
+            <div class="spot-card" data-spot="mid-right-elbow">
+              <div class="spot-name">Right Elbow</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="5" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 5</div>
+            </div>
+            <div class="spot-card" data-spot="mid-right-baseline">
+              <div class="spot-name">Right Baseline</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="5" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 5</div>
+            </div>
+          </div>
+
+          <div class="spot-total-row">
+            <span>Total</span>
+            <span id="midrange-total-display">0 / 25</span>
+          </div>
+
+          <div class="baseline-nav-row">
+            <button class="btn-back" type="button" data-back="1">← Back</button>
+            <button class="btn-primary" type="button" data-next="3">
+              Next Drill →
+            </button>
+          </div>
+        </div>
+
+        <div class="baseline-step" id="baseline-step-3" style="display: none">
+          <h2 class="baseline-title">Finishing at the Rim</h2>
+          <p class="baseline-instructions">Take 10 attempts of each finish</p>
+
+          <div class="spot-grid">
+            <div class="spot-card" data-spot="layup-left">
+              <div class="spot-name">Left-Hand Layup</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="layup-right">
+              <div class="spot-name">Right-Hand Layup</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="floater">
+              <div class="spot-name">Floater / Runner</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+            <div class="spot-card" data-spot="reverse-layup">
+              <div class="spot-name">Reverse Layup</div>
+              <div class="tally-stepper spot-stepper">
+                <button type="button" data-action="dec">−</button>
+                <input type="number" value="0" min="0" max="10" readonly />
+                <button type="button" data-action="inc">+</button>
+              </div>
+              <div class="spot-of">/ 10</div>
+            </div>
+          </div>
+
+          <div class="spot-total-row">
+            <span>Total</span>
+            <span id="finishing-total-display">0 / 40</span>
+          </div>
+
+          <div class="baseline-nav-row">
+            <button class="btn-back" type="button" data-back="2">← Back</button>
+            <button class="btn-primary" type="button" data-next="4">
+              Next Drill →
+            </button>
+          </div>
+        </div>
+
+        <div class="baseline-step" id="baseline-step-4" style="display: none">
+          <h2 class="baseline-title">Ball Handling</h2>
+          <p class="baseline-instructions">Run through each drill</p>
+
+          <div class="drill-series" id="drill-series">
+            <div
+              class="drill-card active-drill"
+              id="drill-1"
+              data-drill="stationary-crossover"
+            >
+              <div class="drill-header">
+                <span class="drill-index">Drill 1 / 6</span>
+                <span class="drill-status pending">Not Started</span>
+              </div>
+              <div class="drill-name">Stationary Crossover</div>
+              <div class="drill-desc">
+                Low, tight crossovers without traveling.
+              </div>
+              <div class="drill-timer">
+                <span class="drill-clock" id="clock-1">0:00</span>
+                <button
+                  class="btn-timer"
+                  type="button"
+                  data-drill-action="start"
+                  data-drill-id="1"
+                >
+                  Start
+                </button>
+                <button
+                  class="btn-timer drill-stop"
+                  type="button"
+                  data-drill-action="stop"
+                  data-drill-id="1"
+                  disabled
+                >
+                  Lost It
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="drill-card locked-drill"
+              id="drill-2"
+              data-drill="figure-eight"
+            >
+              <div class="drill-header">
+                <span class="drill-index">Drill 2 / 6</span>
+                <span class="drill-status pending">Not Started</span>
+              </div>
+              <div class="drill-name">Figure-8 Between the Legs</div>
+              <div class="drill-desc">
+                Continuous figure-8, ball never leaves its path.
+              </div>
+              <div class="drill-timer">
+                <span class="drill-clock" id="clock-2">0:00</span>
+                <button
+                  class="btn-timer"
+                  type="button"
+                  data-drill-action="start"
+                  data-drill-id="2"
+                  disabled
+                >
+                  Start
+                </button>
+                <button
+                  class="btn-timer drill-stop"
+                  type="button"
+                  data-drill-action="stop"
+                  data-drill-id="2"
+                  disabled
+                >
+                  Lost It
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="drill-card locked-drill"
+              id="drill-3"
+              data-drill="two-ball"
+            >
+              <div class="drill-header">
+                <span class="drill-index">Drill 3 / 6</span>
+                <span class="drill-status pending">Not Started</span>
+              </div>
+              <div class="drill-name">Two-Ball Dribbling</div>
+              <div class="drill-desc">
+                Simultaneous dribble with both hands, maintaining alternate
+                dribbles and rhythms.
+              </div>
+              <div class="drill-timer">
+                <span class="drill-clock" id="clock-3">0:00</span>
+                <button
+                  class="btn-timer"
+                  type="button"
+                  data-drill-action="start"
+                  data-drill-id="3"
+                  disabled
+                >
+                  Start
+                </button>
+                <button
+                  class="btn-timer drill-stop"
+                  type="button"
+                  data-drill-action="stop"
+                  data-drill-id="3"
+                  disabled
+                >
+                  Lost It
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="drill-card locked-drill"
+              id="drill-4"
+              data-drill="behind-back-combo"
+            >
+              <div class="drill-header">
+                <span class="drill-index">Drill 4 / 6</span>
+                <span class="drill-status pending">Not Started</span>
+              </div>
+              <div class="drill-name">Behind-the-Back Combo</div>
+              <div class="drill-desc">Crossover into behind-the-back.</div>
+              <div class="drill-timer">
+                <span class="drill-clock" id="clock-4">0:00</span>
+                <button
+                  class="btn-timer"
+                  type="button"
+                  data-drill-action="start"
+                  data-drill-id="4"
+                  disabled
+                >
+                  Start
+                </button>
+                <button
+                  class="btn-timer drill-stop"
+                  type="button"
+                  data-drill-action="stop"
+                  data-drill-id="4"
+                  disabled
+                >
+                  Lost It
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="drill-card locked-drill"
+              id="drill-5"
+              data-drill="spider-dribble"
+            >
+              <div class="drill-header">
+                <span class="drill-index">Drill 5 / 6</span>
+                <span class="drill-status pending">Not Started</span>
+              </div>
+              <div class="drill-name">Spider Dribble</div>
+              <div class="drill-desc">
+                Quick alternating taps with both hands.
+              </div>
+              <div class="drill-timer">
+                <span class="drill-clock" id="clock-5">0:00</span>
+                <button
+                  class="btn-timer"
+                  type="button"
+                  data-drill-action="start"
+                  data-drill-id="5"
+                  disabled
+                >
+                  Start
+                </button>
+                <button
+                  class="btn-timer drill-stop"
+                  type="button"
+                  data-drill-action="stop"
+                  data-drill-id="5"
+                  disabled
+                >
+                  Lost It
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="drill-card locked-drill"
+              id="drill-6"
+              data-drill="full-speed-crossover"
+            >
+              <div class="drill-header">
+                <span class="drill-index">Drill 6 / 6</span>
+                <span class="drill-status pending">Not Started</span>
+              </div>
+              <div class="drill-name">Full-Speed Crossover Sprint</div>
+              <div class="drill-desc">
+                Sprinting down which dribbling and crossing over.
+              </div>
+              <div class="drill-timer">
+                <span class="drill-clock" id="clock-6">0:00</span>
+                <button
+                  class="btn-timer"
+                  type="button"
+                  data-drill-action="start"
+                  data-drill-id="6"
+                  disabled
+                >
+                  Start
+                </button>
+                <button
+                  class="btn-timer drill-stop"
+                  type="button"
+                  data-drill-action="stop"
+                  data-drill-id="6"
+                  disabled
+                >
+                  Lost It
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="baseline-nav-row">
+            <button class="btn-back" type="button" data-back="3">← Back</button>
+            <button class="btn-primary" type="button" id="btn-see-results">
+              See My Results →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-results">
+      <div class="results-content">
+        <h2 class="results-title">Here's Your Baseline.</h2>
+        <p class="results-sub">
+          This is a starting point. As you train, these numbers will improve.
+        </p>
+
+        <div class="results-section-label">Shooting</div>
+        <div class="snapshot-grid">
+          <div class="snapshot-card">
+            <div class="snapshot-label">Catch & Shoot 3PT</div>
+            <div class="snapshot-value" id="result-threes"></div>
+          </div>
+          <div class="snapshot-card">
+            <div class="snapshot-label">Mid-Range Pull-Up</div>
+            <div class="snapshot-value" id="result-midrange"></div>
+          </div>
+        </div>
+
+        <div class="results-section-label">Finishing</div>
+        <div class="snapshot-grid">
+          <div class="snapshot-card">
+            <div class="snapshot-label">Left-Hand Layup</div>
+            <div class="snapshot-value" id="result-layup-left"></div>
+          </div>
+          <div class="snapshot-card">
+            <div class="snapshot-label">Right-Hand Layup</div>
+            <div class="snapshot-value" id="result-layup-right"></div>
+          </div>
+          <div class="snapshot-card">
+            <div class="snapshot-label">Floater / Runner</div>
+            <div class="snapshot-value" id="result-floater"></div>
+          </div>
+          <div class="snapshot-card">
+            <div class="snapshot-label">Reverse Layup</div>
+            <div class="snapshot-value" id="result-reverse"></div>
+          </div>
+        </div>
+
+        <div class="results-section-label">Ball Handling</div>
+        <div class="drill-results-list" id="drill-results-list">
+          <div class="drill-result-row">
+            <span class="drill-result-name">Stationary Crossover</span>
+            <span class="drill-result-time"></span>
+          </div>
+          <div class="drill-result-row">
+            <span class="drill-result-name">Figure-8 Between the Legs</span>
+            <span class="drill-result-time"></span>
+          </div>
+          <div class="drill-result-row">
+            <span class="drill-result-name">Two-Ball Dribbling</span>
+            <span class="drill-result-time"></span>
+          </div>
+          <div class="drill-result-row">
+            <span class="drill-result-name">Behind-the-Back Combo</span>
+            <span class="drill-result-time"></span>
+          </div>
+          <div class="drill-result-row">
+            <span class="drill-result-name">Spider Dribble</span>
+            <span class="drill-result-time"></span>
+          </div>
+          <div class="drill-result-row">
+            <span class="drill-result-name">Full-Speed Crossover Sprint</span>
+            <span class="drill-result-time"></span>
+          </div>
+        </div>
+        <button
+          class="btn-primary"
+          id="enter-trainer-btn"
+          onclick="goTo('screen-trainer')"
+        >
+          Enter Trainer →
+        </button>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-trainer">
+      <nav class="app-nav">
+        <span class="nav-logo" onclick="goTo('screen-start')">HoopIQ</span>
+        <div class="nav-links">
+          <button class="nav-btn active" onclick="goTo('screen-trainer')">
+            Trainer
+          </button>
+          <button class="nav-btn" onclick="goTo('screen-gameiq')">
+            Game IQ
+          </button>
+          <button
+            class="nav-btn nav-settings"
+            onclick="goTo('screen-settings')"
+          >
+            Settings
+          </button>
+        </div>
+      </nav>
+
+      <div class="page-body">
+        <div id="shot-diet-setup">
+          <div class="page-header">
+            <div>
+              <h2 class="page-title">Your Shot Diet</h2>
+            </div>
+          </div>
+          <p class="trainer-intro">
+            Tell us how you play. This will help build a customized training
+            plan.
+          </p>
+
+          <div class="diet-form">
+            <div class="diet-row">
+              <div class="diet-info">
+                <div class="diet-name">Threes</div>
+              </div>
+              <div class="diet-input-wrap">
+                <input
+                  type="number"
+                  id="diet-threes"
+                  min="0"
+                  max="100"
+                  value="25"
+                />
+                <span class="diet-pct-label">%</span>
+              </div>
+            </div>
+
+            <div class="diet-row">
+              <div class="diet-info">
+                <div class="diet-name">Mid-Range</div>
+              </div>
+              <div class="diet-input-wrap">
+                <input
+                  type="number"
+                  id="diet-midrange"
+                  min="0"
+                  max="100"
+                  value="25"
+                />
+                <span class="diet-pct-label">%</span>
+              </div>
+            </div>
+
+            <div class="diet-row">
+              <div class="diet-info">
+                <div class="diet-name">Layups & Finishing</div>
+              </div>
+              <div class="diet-input-wrap">
+                <input
+                  type="number"
+                  id="diet-layups"
+                  min="0"
+                  max="100"
+                  value="25"
+                />
+                <span class="diet-pct-label">%</span>
+              </div>
+            </div>
+
+            <div class="diet-row">
+              <div class="diet-info">
+                <div class="diet-name">Ball Handling</div>
+              </div>
+              <div class="diet-input-wrap">
+                <input
+                  type="number"
+                  id="diet-ballhandling"
+                  min="0"
+                  max="100"
+                  value="25"
+                />
+                <span class="diet-pct-label">%</span>
+              </div>
+            </div>
+
+            <div class="diet-total-row">
+              <span>Total</span>
+              <span id="diet-total-display">100 / 100</span>
+            </div>
+
+            <p id="diet-error" style="display: none"></p>
+            <button class="btn-primary" id="btn-save-diet">
+              Save & Start Training →
+            </button>
+          </div>
+        </div>
+
+        <div id="training-plan" style="display: none">
+          <div class="page-header">
+            <div>
+              <h2 class="page-title">Training Plan</h2>
+            </div>
+          </div>
+
+          <div class="goal-strip">
+            <div class="goal-label">Weekly Goal</div>
+            <div class="goal-text" id="trainer-goal-text">—</div>
+            <div class="goal-progress">
+              <div class="progress-bar">
+                <div
+                  class="progress-fill"
+                  id="trainer-goal-fill"
+                  style="width: 0%"
+                ></div>
+              </div>
+              <span id="trainer-goal-pct">0%</span>
+            </div>
+          </div>
+
+          <div class="section-label">Modules</div>
+          <div class="module-grid">
+            <div class="module-card" id="module-shooting">
+              <div class="module-icon shooting">🏀</div>
+              <div class="module-info">
+                <div class="module-name">Shooting</div>
+                <div class="module-meta" id="module-shooting-meta">
+                  Threes · Mid-Range · Layups
+                </div>
+              </div>
+              <div class="module-status" id="module-shooting-status"></div>
+            </div>
+            <div
+              class="module-details"
+              id="module-shooting-details"
+              style="display: none"
+            ></div>
+
+            <div class="module-card" id="module-handling">
+              <div class="module-icon handling">⚡</div>
+              <div class="module-info">
+                <div class="module-name">Ball Handling</div>
+                <div class="module-meta" id="module-handling-meta">
+                  Crossover · Figure-8 · Sprint Series
+                </div>
+              </div>
+              <div class="module-status" id="module-handling-status"></div>
+            </div>
+            <div
+              class="module-details"
+              id="module-handling-details"
+              style="display: none"
+            ></div>
+
+            <!-- <div class="module-card" id="module-gameiq">
+              <div class="module-icon gameiq">🧠</div>
+              <div class="module-info">
+                <div class="module-name">Game IQ</div>
+                <div class="module-meta" id="module-gameiq-meta">
+                  Scenarios · Plays · Decision Making
+                </div>
+              </div>
+              <div class="module-status" id="module-gameiq-status"></div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-gameiq">
+      <nav class="app-nav">
+        <span class="nav-logo" onclick="goTo('screen-start')">HoopIQ</span>
+        <div class="nav-links">
+          <button class="nav-btn" onclick="goTo('screen-trainer')">
+            Trainer
+          </button>
+          <button class="nav-btn" onclick="goTo('screen-gameiq')">
+            Game IQ
+          </button>
+          <button
+            class="nav-btn nav-settings"
+            onclick="goTo('screen-settings')"
+          >
+            Settings
+          </button>
+        </div>
+      </nav>
+      <div class="page-body">COMING SOON</div>
+    </div>
+
+    <div class="screen" id="screen-settings">
+      <nav class="app-nav">
+        <span class="nav-logo" onclick="goTo('screen-start')">HoopIQ</span>
+        <div class="nav-links">
+          <button class="nav-btn" onclick="goTo('screen-trainer')">
+            Trainer
+          </button>
+          <button class="nav-btn" onclick="goTo('screen-gameiq')">
+            Game IQ
+          </button>
+          <button
+            class="nav-btn nav-settings active"
+            onclick="goTo('screen-settings')"
+          >
+            Settings
+          </button>
+        </div>
+      </nav>
+
+      <div class="page-body">
+        <div class="page-header">
+          <div>
+            <h2 class="page-title">Settings</h2>
+          </div>
+        </div>
+
+        <div class="section-label">Your Profile</div>
+        <div class="settings-card">
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Age</div>
+            </div>
+            <div class="settings-input-wrap">
+              <input type="number" id="settings-age" min="10" max="60" />
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Height (in)</div>
+            </div>
+            <div class="settings-input-wrap">
+              <input type="number" id="settings-height" />
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Weight (lbs)</div>
+            </div>
+            <div class="settings-input-wrap">
+              <input type="number" id="settings-weight" />
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Skill Level</div>
+            </div>
+            <div class="settings-input-wrap">
+              <select id="settings-skill">
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+                <option>Elite</option>
+              </select>
+            </div>
+          </div>
+          <div class="settings-row">
+            <p id="settings-profile-error" style="display: none"></p>
+            <button class="btn-primary" id="btn-save-profile-settings">
+              Save Profile
+            </button>
+          </div>
+        </div>
+
+        <div class="section-label" style="margin-top: 28px">Shot Diet</div>
+        <div class="settings-card">
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Threes</div>
+            </div>
+            <div class="settings-input-wrap">
+              <input
+                type="number"
+                id="settings-diet-threes"
+                min="0"
+                max="100"
+              />
+              <span class="diet-pct-label">%</span>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Mid-Range</div>
+            </div>
+            <div class="settings-input-wrap">
+              <input
+                type="number"
+                id="settings-diet-midrange"
+                min="0"
+                max="100"
+              />
+              <span class="diet-pct-label">%</span>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Layups & Finishing</div>
+            </div>
+            <div class="settings-input-wrap">
+              <input
+                type="number"
+                id="settings-diet-layups"
+                min="0"
+                max="100"
+              />
+              <span class="diet-pct-label">%</span>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Ball Handling</div>
+            </div>
+            <div class="settings-input-wrap">
+              <input
+                type="number"
+                id="settings-diet-ballhandling"
+                min="0"
+                max="100"
+              />
+              <span class="diet-pct-label">%</span>
+            </div>
+          </div>
+          <div class="settings-row diet-settings-total-row">
+            <span>Total</span>
+            <span id="settings-diet-total">—</span>
+          </div>
+          <div class="settings-row">
+            <p id="settings-diet-error" style="display: none"></p>
+            <button class="btn-primary" id="btn-save-diet-settings">
+              Save Shot Diet
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-log-session">
+      <nav class="app-nav">
+        <span class="nav-logo" onclick="goTo('screen-trainer')">HoopIQ</span>
+      </nav>
+      <div class="page-body">
+        <div class="page-header">
+          <div>
+            <h2 class="page-title" id="log-session-title">Session</h2>
+          </div>
+        </div>
+
+        <p id="log-session-error" style="display: none"></p>
+
+        <div id="log-session-items"></div>
+
+        <div id="log-session-cues" style="display: none"></div>
+
+        <div class="baseline-nav-row" style="margin-top: 20px">
+          <button
+            class="btn-back"
+            type="button"
+            onclick="goTo('screen-trainer')"
+          >
+            ← Save Results
+          </button>
+          <button class="btn-primary" type="button" id="btn-submit-log">
+            Save Results →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./JS/storage.js"></script>
+    <script src="./JS/algorithm.js"></script>
+    <script src="./JS/coaching.js"></script>
+    <script src="./JS/session.js"></script>
+    <script src="./JS/baseline.js"></script>
+    <script src="./JS/nav.js"></script>
+    <script src="./JS/trainer.js"></script>
+    <script src="./JS/settings.js"></script>
+    <script src="./JS/gameiq.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loadEl = document.querySelector("#load");
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = [
+            "auth",
+            "database",
+            "firestore",
+            "functions",
+            "messaging",
+            "storage",
+            "analytics",
+            "remoteConfig",
+            "performance",
+          ].filter((feature) => typeof app[feature] === "function");
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(", ")}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent =
+            "Error loading the Firebase SDK, check the console.";
+        }
+      });
+    </script>
+  </body>
+</html>
