@@ -4,13 +4,12 @@
   --surface-2: black;
   --border: rgb(65, 62, 62);
   --orange: #f76b1e;
-  --orange-dim: opaque #f76b1e33;
+  --orange-dim: rgba(247, 107, 30, 0.12);
   --green: #22c55e;
   --text: white;
   --font-display: "Barlow Condensed", sans-serif;
   --font-body: "Rubik", sans-serif;
   --radius: 10px;
-  --radius-lg: 16px;
 }
 
 *,
@@ -97,7 +96,7 @@ button {
 .start-form {
   background: var(--surface);
   border: 3px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   padding: 24px;
 }
 
@@ -128,7 +127,6 @@ button {
   padding: 10px 14px;
   font-size: 15px;
   outline: none;
-  transition: border-color 0.15s;
   appearance: none;
   width: 100%;
 }
@@ -152,7 +150,7 @@ button {
   background: #e55e0f;
   color: white;
   border: none;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   padding: 14px;
   font-family: var(--font-display);
   font-weight: 700;
@@ -493,14 +491,6 @@ button {
 .spot-total-row span:last-child {
   color: var(--orange);
 }
-
-.test-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  margin-bottom: 16px;
-}
 .tally-row {
   display: flex;
   gap: 14px;
@@ -575,9 +565,6 @@ button {
   border: 3px solid var(--border);
   border-radius: var(--radius);
   padding: 16px;
-  transition:
-    border-color 0.15s,
-    opacity 0.15s;
 }
 .active-drill {
   border-color: var(--orange);
@@ -652,10 +639,6 @@ button {
   text-transform: uppercase;
   padding: 10px;
   cursor: pointer;
-  transition:
-    border-color 0.15s,
-    color 0.15s,
-    opacity 0.15s;
 }
 .btn-timer:hover:not(:disabled) {
   border-color: var(--orange);
@@ -693,9 +676,6 @@ button {
   text-transform: uppercase;
   padding: 14px 22px;
   cursor: pointer;
-  transition:
-    border-color 0.15s,
-    color 0.15s;
 }
 .btn-back:hover {
   background: var(--surface-2);
@@ -799,7 +779,7 @@ button {
 }
 
 .drill-result-name {
-  font-size: 20;
+  font-size: 20px;
   font-weight: 600;
   color: var(--text);
 }
@@ -872,7 +852,6 @@ button {
   text-align: center;
   padding: 8px 6px;
   outline: none;
-  transition: border-color 0.15s;
 }
 .diet-input-wrap input::-webkit-outer-spin-button,
 .diet-input-wrap input::-webkit-inner-spin-button {
@@ -947,14 +926,14 @@ button {
   border: 3px solid var(--border);
 }
 
+.settings-row:hover {
+  border: 5px solid var(--orange);
+}
+
 .diet-settings-total-row {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 30px;
-}
-
-.settings-row:last-of-type {
-  border-bottom: 3px solid var(--border);
 }
 
 .settings-row-info {
@@ -982,7 +961,7 @@ button {
 
 .settings-input-wrap input,
 .settings-input-wrap select {
-  width: 150px;
+  width: 145px;
   background: var(--surface-2);
   border: 3px solid var(--border);
   border-radius: var(--radius);
@@ -993,34 +972,24 @@ button {
   text-align: center;
   padding: 8px 10px;
   outline: none;
-  transition: border-color 0.15s;
   appearance: none;
   -moz-appearance: textfield;
 }
-.settings-input-wrap input::-webkit-outer-spin-button,
-.settings-input-wrap input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
 .settings-input-wrap input:focus,
-.settings-input-wrap select:focus {
+.settings-input-wrap select:focus,
+.settings-input-wrap input:hover,
+.settings-input-wrap select:hover {
   border-color: var(--orange);
 }
 
 .settings-card .btn-primary {
   margin: 16px 18px 18px;
-  width: calc(100% - 36px);
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--surface-2);
-  border-radius: 3px;
+  width: 0px;
+  height: 0px;
 }
 
 .log-item-card {
@@ -1058,12 +1027,16 @@ button {
 }
 .miss-tag-btn {
   background: black;
-  border: 1px solid var(--border);
+  border: 3px solid var(--border);
   border-radius: 20px;
   color: var(--text);
   font-size: 18px;
   padding: 6px 12px;
   cursor: pointer;
+}
+
+.miss-tag-btn:hover {
+  border-color: var(--orange);
 }
 .miss-tag-btn.tagged {
   border-color: var(--orange);
@@ -1072,12 +1045,11 @@ button {
 }
 .cue-card {
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--orange);
+  border: 3px solid var(--border);
   border-radius: var(--radius);
   padding: 14px 16px;
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 24px;
   line-height: 1.5;
 }
 .cue-card strong {
@@ -1085,8 +1057,12 @@ button {
   display: block;
   margin-bottom: 4px;
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 20px;
   text-transform: uppercase;
+}
+
+.cue-card:hover {
+  border-color: var(--orange);
 }
 
 .log-input-row {
@@ -1105,14 +1081,20 @@ button {
 .log-input-row input[type="number"] {
   width: 80px;
   background: var(--surface-2);
-  border: 1px solid var(--border);
+  border: 3px solid var(--border);
   border-radius: var(--radius);
   color: var(--text);
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 20px;
   text-align: center;
+  outline: none;
   padding: 8px;
+}
+
+.log-input-row input:hover,
+.log-input-row input:focus {
+  border-color: var(--orange);
 }
 .miss-tags-prompt {
   font-size: 15px;
@@ -1129,17 +1111,22 @@ button {
   padding: 6px 10px;
   margin-top: 6px;
 }
+
+.miss-tag-counter:hover,
+.miss-tag-counter button:hover {
+  border-color: var(--orange);
+}
 .miss-tag-counter.tagged {
   border-color: var(--orange);
 }
 .miss-tag-label {
   flex: 1;
-  font-size: 12px;
+  font-size: 20px;
   color: var(--text);
 }
 .miss-tag-counter button {
   background: none;
-  border: 1px solid var(--border);
+  border: 3px solid var(--border);
   border-radius: 4px;
   width: 22px;
   height: 22px;
@@ -1147,8 +1134,8 @@ button {
   cursor: pointer;
 }
 .miss-tag-count {
+  font-size: 20px;
   font-family: var(--font-display);
   font-weight: 700;
-  min-width: 14px;
   text-align: center;
 }
