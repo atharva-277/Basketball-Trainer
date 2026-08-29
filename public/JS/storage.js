@@ -4,6 +4,7 @@
 //   heightInches: 74,
 //   weightLbs: 185,
 //   skillLevel: "Intermediate"  // "Beginner"|"Intermediate"|"Advanced"|"Elite"
+//   units: "imperial"
 // }
 //
 // Baseline object shape:
@@ -130,6 +131,19 @@ function getCurrentPerformance() {
 
 function hasCompletedOnboarding() {
   return getProfile() !== null && getBaseline() !== null;
+}
+
+function inchesToCm(inches) {
+  return Math.round(inches * 2.54);
+}
+function cmToInches(cm) {
+  return Math.round(cm / 2.54);
+}
+function lbsToKg(lbs) {
+  return Math.round(lbs * 0.453592);
+}
+function kgToLbs(kg) {
+  return Math.round(kg / 0.453592);
 }
 
 function clearAllData() {

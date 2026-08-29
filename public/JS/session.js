@@ -55,6 +55,16 @@ function startLogSession(type) {
         taxonomy: "finishing",
       })),
     ];
+  } else if (type === "drill") {
+    const drills = getRecommendedDrills();
+    titleEl.textContent = "Log Drill Work";
+
+    activeLogItems = drills.map((d, index) => ({
+      key: "drill-" + index,
+      label: `${d.categoryLabels.join(" / ")}: ${d.name}`,
+      desc: d.description,
+      suggested: d.reps,
+    }));
   } else {
     const session = generateHandlingSession();
     if (!session) return;
@@ -108,6 +118,20 @@ function renderLogItems() {
           <input type="number" min="0" max="${item.target}" value="0" id="log-makes-${item.key}" />
         </div>
         <div class="miss-tags" id="miss-tags-${item.key}"></div>
+      `;
+    } else if (activeLogType === "drill") {
+      card.innerHTML = `
+        <div class="log-item-header">
+          <span class="log-item-name">${item.label}</span>
+          <span class="log-item-target">${item.suggested}</span>
+        </div>
+        <div class="log-input-row">
+          <label>Reps/Seconds Completed</label>
+          <input type="number" min="0" value="0" id="log-actual-${item.key}" />
+        </div>
+        <div class="log-input-row">
+          <span class="log-item-target">${item.desc}</span>
+        </div>
       `;
     } else {
       card.innerHTML = `
@@ -221,6 +245,20 @@ function submitLogSession() {
   const errorEl = document.getElementById("log-session-error");
   const missingItems = [];
 
+  if (activeLogType === "drill") {
+    const subsections = {};
+    activeLogItems.forEach((item) => {
+      subsections[item.key] = logActual[item.key] || 0;
+    });
+    saveTrainingSession({
+      date: new Date().toISOString(),
+      type: "drill",
+      subsections,
+    });
+    renderCues([]);
+    return;
+  }
+
   if (activeLogType === "shooting") {
     activeLogItems.forEach((item) => {
       const makes = logMakes[item.key] || 0;
@@ -244,6 +282,7 @@ function submitLogSession() {
   if (missingItems.length > 0) {
     errorEl.textContent = "Tag a miss reason for: " + missingItems.join(", ");
     errorEl.style.display = "block";
+    window.scrollTo(0, 0);
     return;
   }
 
@@ -251,6 +290,7 @@ function submitLogSession() {
 
   const sessionResults = {};
   const cues = [];
+  const missTags = {};
 
   if (activeLogType === "shooting") {
     let finishMade = 0,
@@ -270,6 +310,7 @@ function submitLogSession() {
 
       const breakdown = logMissTags[item.key];
       if (breakdown && Object.values(breakdown).some((c) => c > 0)) {
+        missTags[item.key] = breakdown;
         const cue = getCueForSubsection(item.key, breakdown);
         if (cue) cues.push({ label: item.label, cue });
       }
@@ -288,6 +329,7 @@ function submitLogSession() {
 
       const tag = logSelectedTag[item.key];
       if (tag) {
+        missTags[item.key] = tag;
         const cue = getCueForDrill(item.key, { [tag]: 1 });
         if (cue) cues.push({ label: item.label, cue });
       }
@@ -299,6 +341,7 @@ function submitLogSession() {
     date: new Date().toISOString(),
     type: activeLogType,
     subsections: sessionResults,
+    missTags,
   });
 
   renderCues(cues);
@@ -316,12 +359,15 @@ function renderCues(cues) {
   if (cues.length === 0) {
     cuesEl.innerHTML = `<div class="cue-card"><strong>Nice work</strong>Clean session — no misses tagged.</div>`;
   } else {
-    cuesEl.innerHTML = cues
+    const cueDisplayRows = cues
       .map(
         (c) =>
           `<div class="cue-card"><strong>${c.label}</strong>${c.cue}</div>`,
       )
       .join("");
+    cuesEl.innerHTML =
+      cueDisplayRows +
+      `<div class="cue-card">Practice drills to improve as well</div>`;
   }
   cuesEl.style.display = "block";
 }

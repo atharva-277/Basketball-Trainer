@@ -171,6 +171,28 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
   }
 
+  function renderDrillingDetails(container) {
+    const drills = getRecommendedDrills();
+
+    if (drills.length === 0) {
+      container.innerHTML = `
+      <div class="module-detail-row"><span>No sessions logged. Suggested drills will appear as you complete sessions</span></div>
+    `;
+      return;
+    }
+
+    const rows = drills
+      .map(
+        (d) =>
+          `<div class="module-detail-row"><span>${d.categoryLabels.join(" / ")}: ${d.name}</span><span>${d.reps}</span></div>`,
+      )
+      .join("");
+
+    container.innerHTML =
+      rows +
+      `<button class="btn-primary" style="margin-top: 10px" onclick="startLogSession('drill')">Start →</button>`;
+  }
+
   function renderHandlingDetails(container) {
     const session = generateHandlingSession();
     if (!session) return;
@@ -223,5 +245,10 @@ document.addEventListener("DOMContentLoaded", function () {
     "module-handling",
     "module-handling-details",
     renderHandlingDetails,
+  );
+  setupModuleToggle(
+    "module-drilling",
+    "module-drilling-details",
+    renderDrillingDetails,
   );
 });

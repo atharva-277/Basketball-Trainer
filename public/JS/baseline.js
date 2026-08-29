@@ -8,12 +8,46 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (submitProfileBtn) {
+    let selectedUnits = "imperial";
+
+    document.querySelectorAll(".unit-btn").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        document
+          .querySelectorAll(".unit-btn")
+          .forEach((b) => b.classList.remove("active"));
+        this.classList.add("active");
+        selectedUnits = this.getAttribute("data-unit");
+
+        const heightLabel = document.getElementById("height-label");
+        const weightLabel = document.getElementById("weight-label");
+        const heightInput = document.getElementById("input-height");
+        const weightInput = document.getElementById("input-weight");
+        if (selectedUnits === "metric") {
+          heightLabel.textContent = "Height (cm)";
+          weightLabel.textContent = "Weight (kg)";
+          heightInput.placeholder = "e.g. 188";
+          weightInput.placeholder = "e.g. 84";
+        } else {
+          heightLabel.textContent = "Height (in)";
+          weightLabel.textContent = "Weight (lbs)";
+          heightInput.placeholder = "e.g. 74";
+          weightInput.placeholder = "e.g. 185";
+        }
+      });
+    });
+
     submitProfileBtn.addEventListener("click", function () {
       if (!profile) {
         const age = parseInt(document.getElementById("input-age").value);
-        const height = parseInt(document.getElementById("input-height").value);
-        const weight = parseInt(document.getElementById("input-weight").value);
         const skillLevel = document.getElementById("input-skill").value;
+
+        let height = parseInt(document.getElementById("input-height").value);
+        let weight = parseInt(document.getElementById("input-weight").value);
+
+        if (selectedUnits === "metric") {
+          height = cmToInches(height);
+          weight = kgToLbs(weight);
+        }
 
         if (!age || !height || !weight || !skillLevel) {
           showBioError("Please fill out all fields before continuing.");
@@ -24,13 +58,11 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
         if (height < 48 || height > 108) {
-          showBioError(
-            "Please enter a valid height in inches (e.g. 74 for 6'2\").",
-          );
+          showBioError("Please enter a valid height.");
           return;
         }
         if (weight < 80 || weight > 400) {
-          showBioError("Please enter a valid weight in lbs.");
+          showBioError("Please enter a valid weight.");
           return;
         }
 
@@ -39,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
           heightInches: height,
           weightLbs: weight,
           skillLevel,
+          units: selectedUnits,
         });
       }
       goTo("screen-baseline");
@@ -60,6 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const target = document.getElementById("baseline-step-" + stepNumber);
     if (target) target.style.display = "block";
+
+    window.scrollTo(0, 0);
 
     document.querySelectorAll(".onboard-dot").forEach((dot) => {
       const dotStep = parseInt(dot.getAttribute("data-step"));

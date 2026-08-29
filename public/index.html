@@ -72,6 +72,14 @@
         <p class="start-sub">Personalized workouts built around your game.</p>
 
         <div class="start-form">
+          <div class="unit-toggle">
+            <button type="button" class="unit-btn active" data-unit="imperial">
+              in / lbs
+            </button>
+            <button type="button" class="unit-btn" data-unit="metric">
+              cm / kg
+            </button>
+          </div>
           <div class="form-row">
             <div class="form-field">
               <label>Age</label>
@@ -96,11 +104,11 @@
           </div>
           <div class="form-row">
             <div class="form-field">
-              <label>Height (in)</label>
+              <label id="height-label">Height</label>
               <input type="number" placeholder="e.g. 74" id="input-height" />
             </div>
             <div class="form-field">
-              <label>Weight (lbs)</label>
+              <label id="weight-label">Weight</label>
               <input type="number" placeholder="e.g. 185" id="input-weight" />
             </div>
           </div>
@@ -769,7 +777,7 @@
               <div class="module-info">
                 <div class="module-name">Ball Handling</div>
                 <div class="module-meta" id="module-handling-meta">
-                  Crossover · Figure-8 · Sprint Series
+                  Neutral · Live · Control
                 </div>
               </div>
               <div class="module-status" id="module-handling-status"></div>
@@ -777,6 +785,21 @@
             <div
               class="module-details"
               id="module-handling-details"
+              style="display: none"
+            ></div>
+            <div class="module-card" id="module-drilling">
+              <div class="module-icon drilling">🛠️</div>
+              <div class="module-info">
+                <div class="module-name">Drills</div>
+                <div class="module-meta" id="module-drilling-meta">
+                  Speed · Footwork · Precision
+                </div>
+              </div>
+              <div class="module-status" id="module-drilling-status"></div>
+            </div>
+            <div
+              class="module-details"
+              id="module-drilling-details"
               style="display: none"
             ></div>
 
@@ -854,7 +877,7 @@
           </div>
           <div class="settings-row">
             <div class="settings-row-info">
-              <div class="settings-row-label">Height (in)</div>
+              <div class="settings-row-label">Height</div>
             </div>
             <div class="settings-input-wrap">
               <input type="number" id="settings-height" />
@@ -862,7 +885,7 @@
           </div>
           <div class="settings-row">
             <div class="settings-row-info">
-              <div class="settings-row-label">Weight (lbs)</div>
+              <div class="settings-row-label">Weight</div>
             </div>
             <div class="settings-input-wrap">
               <input type="number" id="settings-weight" />
@@ -878,6 +901,17 @@
                 <option>Intermediate</option>
                 <option>Advanced</option>
                 <option>Elite</option>
+              </select>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <div class="settings-row-label">Units</div>
+            </div>
+            <div class="settings-input-wrap">
+              <select id="settings-units">
+                <option value="imperial">in / lbs</option>
+                <option value="metric">cm / kg</option>
               </select>
             </div>
           </div>

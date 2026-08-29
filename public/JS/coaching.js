@@ -177,3 +177,202 @@ function getCueForDrill(drillId, missBreakdown) {
 
   return cues[Math.floor(Math.random() * cues.length)];
 }
+
+const DRILL_BANK = {
+  jumpshot: {
+    short: {
+      name: "Rocker Drill",
+      description:
+        "Rock from your heels to your toes without moving hips early",
+      reps: "15 Reps Suggested",
+    },
+    long: {
+      name: "No Seesaw",
+      description:
+        "Place the ball near your chest and shoot it straight up to a reasonable height",
+      reps: "15 Reps Suggested",
+    },
+    offTarget: {
+      name: "One Hand Shooting",
+      description:
+        "Stand close to the rim and swish 5 shots only shooting with one arm, step back as needed.",
+      reps: "10 Reps Suggested",
+    },
+    rushed: {
+      name: "Pause Shooting",
+      description:
+        "Pull up to different spots and pause for 2-3 seconds to adjust without looking then score",
+      reps: "12 Reps Suggested",
+    },
+  },
+  finishing: {
+    offBalance: {
+      name: "Broad Jumps",
+      description:
+        "Spread your feet a little more than shoulder width and jump forward while maintaining balance.",
+      reps: "10 Reps Suggested",
+    },
+    rushed: {
+      name: "Agile Stop",
+      description:
+        "Run as fast as possible from half court to the baseline, stopping right before without losing balance",
+      reps: "12 Reps Suggested",
+    },
+    wrongFootwork: {
+      name: "Hopscotch",
+      description: "Practice your footwork with hops to get in rhythm",
+      reps: "10 Reps suggested",
+    },
+    touch: {
+      name: "One Hand Shooting",
+      description:
+        "Stand close to the rim and swish 5 shots only shooting with one arm, step back as needed.",
+      reps: "10 Reps Suggested",
+    },
+  },
+  control: {
+    ballTooHigh: {
+      name: "Floor-Touch Dribble",
+      description:
+        "Stand in broad stance and dribble with one hand while the other keeps contact with the floor",
+      reps: "60 Seconds Suggested",
+    },
+    wideHands: {
+      name: "Pound Dribble",
+      description:
+        "Bounce the ball high and control its motion by catching with fingertips",
+      reps: "30 Seconds Suggested",
+    },
+    eyesDown: {
+      name: "Tennis Ball Toss",
+      description:
+        "Dribble with one hand while throwing and catching a tennis ball with the other",
+      reps: "30 Seconds Suggested",
+    },
+    looseHandle: {
+      name: "Small dribble",
+      description:
+        "Force yourself to only dribble within elbow's length to not lose control",
+      reps: "30 Seconds Suggested",
+    },
+  },
+  live: {
+    paceControl: {
+      name: "Small dribble",
+      description:
+        "Force yourself to only dribble within elbow's length to not lose control",
+      reps: "30 Seconds Suggested",
+    },
+    predictable: {
+      name: "Shifty",
+      description:
+        "Ask a friend to yell a direction and move to the opposite side",
+      reps: "30 Seconds Suggested",
+    },
+    eyesDown: {
+      name: "Tennis Ball Toss",
+      description:
+        "Dribble with one hand while throwing and catching a tennis ball with the other",
+      reps: "30 Seconds Suggested",
+    },
+    footworkBreakdown: {
+      name: "Sprint Stop",
+      description: "Sprint and stop without wobbling or slowing down",
+      reps: "30 Seconds Suggested",
+    },
+  },
+  neutral: {
+    offHandLag: {
+      name: "Opposite Dribble",
+      description: "Attempt any drill with your other hand",
+      reps: "Other Drill's",
+    },
+    rhythmBreak: {
+      name: "Tempo Step",
+      description: "Play a song and dribble to the beat with both hands",
+      reps: "Song Length",
+    },
+    eyesDown: {
+      name: "Tennis Ball Toss",
+      description:
+        "Dribble with one hand while throwing and catching a tennis ball with the other",
+      reps: "30 Seconds Suggested",
+    },
+  },
+};
+
+const CATEGORY_LABELS = {
+  jumpshot: "Jump Shot",
+  finishing: "Finishing",
+  control: "Ball Control",
+  live: "Live Speed",
+  neutral: "Two-Ball",
+};
+
+function aggregateMissCounts() {
+  const sessions = getTrainingSessions();
+  const categoryCounts = {
+    jumpshot: {},
+    finishing: {},
+    control: {},
+    live: {},
+    neutral: {},
+  };
+
+  sessions.forEach((session) => {
+    if (!session.missTags) return;
+
+    Object.keys(session.missTags).forEach((key) => {
+      const category =
+        session.type === "shooting" ? SUBSECTION[key] : DRILL_CATEGORY[key];
+      if (!category) return;
+
+      const tagData = session.missTags[key];
+      if (typeof tagData === "string") {
+        categoryCounts[category][tagData] =
+          (categoryCounts[category][tagData] || 0) + 1;
+      } else {
+        Object.keys(tagData).forEach((tag) => {
+          categoryCounts[category][tag] =
+            (categoryCounts[category][tag] || 0) + tagData[tag];
+        });
+      }
+    });
+  });
+
+  return categoryCounts;
+}
+
+function getDominantMissCategories() {
+  const counts = aggregateMissCounts();
+  const dominant = {};
+  Object.keys(counts).forEach((category) => {
+    dominant[category] = getDominantMissReason(counts[category]);
+  });
+  return dominant;
+}
+
+function getRecommendedDrills() {
+  const dominant = getDominantMissCategories();
+  const drills = [];
+
+  Object.keys(dominant).forEach((category) => {
+    const tag = dominant[category];
+    if (!tag) return;
+    const drill = DRILL_BANK[category] && DRILL_BANK[category][tag];
+    if (!drill) return;
+
+    const existing = drills.find((d) => d.name === drill.name);
+    if (existing) {
+      existing.categoryLabels.push(CATEGORY_LABELS[category]);
+    } else {
+      drills.push({
+        categoryLabels: [CATEGORY_LABELS[category]],
+        tag,
+        ...drill,
+      });
+    }
+  });
+
+  return drills;
+}

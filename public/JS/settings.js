@@ -14,9 +14,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const diet = getShotDiet();
 
     if (profile) {
+      const units = profile.units || "imperial";
+      setSelectVal("settings-units", units);
       setVal("settings-age", profile.age);
-      setVal("settings-height", profile.heightInches);
-      setVal("settings-weight", profile.weightLbs);
+      setVal(
+        "settings-height",
+        units === "metric"
+          ? inchesToCm(profile.heightInches)
+          : profile.heightInches,
+      );
+      setVal(
+        "settings-weight",
+        units === "metric" ? lbsToKg(profile.weightLbs) : profile.weightLbs,
+      );
       setSelectVal("settings-skill", profile.skillLevel);
     }
 
@@ -29,13 +39,45 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  const unitsSelect = document.getElementById("settings-units");
+  if (unitsSelect) {
+    unitsSelect.addEventListener("change", function () {
+      const newUnits = this.value;
+      const heightInput = document.getElementById("settings-height");
+      const weightInput = document.getElementById("settings-weight");
+
+      const currentHeight = parseInt(heightInput.value);
+      const currentWeight = parseInt(weightInput.value);
+
+      if (!isNaN(currentHeight)) {
+        heightInput.value =
+          newUnits === "metric"
+            ? inchesToCm(currentHeight)
+            : cmToInches(currentHeight);
+      }
+      if (!isNaN(currentWeight)) {
+        weightInput.value =
+          newUnits === "metric"
+            ? lbsToKg(currentWeight)
+            : kgToLbs(currentWeight);
+      }
+    });
+  }
+
   const saveProfileBtn = document.getElementById("btn-save-profile-settings");
   if (saveProfileBtn) {
     saveProfileBtn.addEventListener("click", function () {
       const age = parseInt(document.getElementById("settings-age").value);
-      const height = parseInt(document.getElementById("settings-height").value);
-      const weight = parseInt(document.getElementById("settings-weight").value);
       const skill = document.getElementById("settings-skill").value;
+      const units = document.getElementById("settings-units").value;
+
+      let height = parseInt(document.getElementById("settings-height").value);
+      let weight = parseInt(document.getElementById("settings-weight").value);
+
+      if (units === "metric") {
+        height = cmToInches(height);
+        weight = kgToLbs(weight);
+      }
       const errorEl = document.getElementById("settings-profile-error");
 
       if (!age || !height || !weight || !skill) {
@@ -47,14 +89,11 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
       if (height < 48 || height > 108) {
-        showError(
-          errorEl,
-          "Please enter a valid height in inches (e.g. 74 for 6'2\").",
-        );
+        showError(errorEl, "Please enter a valid height.");
         return;
       }
       if (weight < 80 || weight > 400) {
-        showError(errorEl, "Enter a valid weight in lbs.");
+        showError(errorEl, "Enter a valid weight.");
         return;
       }
 
@@ -64,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
         heightInches: height,
         weightLbs: weight,
         skillLevel: skill,
+        units,
       });
       confirmSave(saveProfileBtn, "Save Profile");
     });
