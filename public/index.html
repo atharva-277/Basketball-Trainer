@@ -631,9 +631,6 @@
           <button class="nav-btn active" onclick="goTo('screen-trainer')">
             Trainer
           </button>
-          <button class="nav-btn" onclick="goTo('screen-gameiq')">
-            Game IQ
-          </button>
           <button
             class="nav-btn nav-settings"
             onclick="goTo('screen-settings')"
@@ -725,7 +722,7 @@
               <span id="diet-total-display">100 / 100</span>
             </div>
 
-            <p id="diet-error" style="display: none"></p>
+            <p id="diet-error"></p>
             <button class="btn-primary" id="btn-save-diet">
               Save & Start Training →
             </button>
@@ -740,7 +737,7 @@
           </div>
 
           <div class="goal-strip">
-            <div class="goal-label">Weekly Goal</div>
+            <div class="goal-label">Goal</div>
             <div class="goal-text" id="trainer-goal-text">—</div>
             <div class="goal-progress">
               <div class="progress-bar">
@@ -766,11 +763,7 @@
               </div>
               <div class="module-status" id="module-shooting-status"></div>
             </div>
-            <div
-              class="module-details"
-              id="module-shooting-details"
-              style="display: none"
-            ></div>
+            <div class="module-details" id="module-shooting-details"></div>
 
             <div class="module-card" id="module-handling">
               <div class="module-icon handling">⚡</div>
@@ -782,11 +775,7 @@
               </div>
               <div class="module-status" id="module-handling-status"></div>
             </div>
-            <div
-              class="module-details"
-              id="module-handling-details"
-              style="display: none"
-            ></div>
+            <div class="module-details" id="module-handling-details"></div>
             <div class="module-card" id="module-drilling">
               <div class="module-icon drilling">🛠️</div>
               <div class="module-info">
@@ -797,46 +786,10 @@
               </div>
               <div class="module-status" id="module-drilling-status"></div>
             </div>
-            <div
-              class="module-details"
-              id="module-drilling-details"
-              style="display: none"
-            ></div>
-
-            <!-- <div class="module-card" id="module-gameiq">
-              <div class="module-icon gameiq">🧠</div>
-              <div class="module-info">
-                <div class="module-name">Game IQ</div>
-                <div class="module-meta" id="module-gameiq-meta">
-                  Scenarios · Plays · Decision Making
-                </div>
-              </div>
-              <div class="module-status" id="module-gameiq-status"></div>
-            </div> -->
+            <div class="module-details" id="module-drilling-details"></div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="screen" id="screen-gameiq">
-      <nav class="app-nav">
-        <span class="nav-logo" onclick="goTo('screen-start')">HoopIQ</span>
-        <div class="nav-links">
-          <button class="nav-btn" onclick="goTo('screen-trainer')">
-            Trainer
-          </button>
-          <button class="nav-btn active" onclick="goTo('screen-gameiq')">
-            Game IQ
-          </button>
-          <button
-            class="nav-btn nav-settings"
-            onclick="goTo('screen-settings')"
-          >
-            Settings
-          </button>
-        </div>
-      </nav>
-      <div class="page-body">COMING SOON</div>
     </div>
 
     <div class="screen" id="screen-settings">
@@ -845,9 +798,6 @@
         <div class="nav-links">
           <button class="nav-btn" onclick="goTo('screen-trainer')">
             Trainer
-          </button>
-          <button class="nav-btn" onclick="goTo('screen-gameiq')">
-            Game IQ
           </button>
           <button
             class="nav-btn nav-settings active"
@@ -916,10 +866,10 @@
             </div>
           </div>
           <div class="settings-row">
-            <p id="settings-profile-error" style="display: none"></p>
             <button class="btn-primary" id="btn-save-profile-settings">
               Save Profile
             </button>
+            <p id="settings-profile-error"></p>
           </div>
         </div>
 
@@ -986,10 +936,10 @@
             <span id="settings-diet-total">—</span>
           </div>
           <div class="settings-row">
-            <p id="settings-diet-error" style="display: none"></p>
             <button class="btn-primary" id="btn-save-diet-settings">
               Save Shot Diet
             </button>
+            <p id="settings-diet-error"></p>
           </div>
         </div>
       </div>
@@ -1006,7 +956,7 @@
           </div>
         </div>
 
-        <p id="log-session-error" style="display: none"></p>
+        <p id="log-session-error"></p>
 
         <div id="log-session-items"></div>
 

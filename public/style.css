@@ -35,9 +35,14 @@ button {
   display: none;
   min-height: 100vh;
   flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 .screen.active {
   display: flex;
+}
+.screen.active.visible {
+  opacity: 1;
 }
 
 #screen-start {
@@ -189,9 +194,16 @@ button {
   font-size: 30px;
   text-transform: uppercase;
   cursor: pointer;
+  margin-top: 0;
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
 }
 .btn-primary:hover {
   background: #ee5b06;
+}
+.btn-primary.confirmed {
+  background: var(--green);
 }
 
 .app-nav {
@@ -339,6 +351,7 @@ button {
   background: var(--orange);
   border-color: var(--orange);
   border-radius: 15px;
+  transition: width 0.5s ease-out;
 }
 
 .module-grid {
@@ -363,12 +376,24 @@ button {
   background: var(--surface);
   border: 3px solid var(--border);
   border-top: none;
-  padding: 12px 16px;
+  padding: 0 16px;
   margin-top: -8px;
   margin-bottom: 8px;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.25s ease,
+    opacity 0.2s ease,
+    padding 0.25s ease;
+}
+.module-details.open {
+  max-height: 500px;
+  opacity: 1;
+  padding: 12px 16px;
 }
 
 .module-details:hover {
@@ -463,6 +488,19 @@ button {
   opacity: 0.7;
 }
 
+.onboard-progress,
+.spot-grid,
+.spot-total-row,
+.baseline-title,
+.baseline-instructions {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.spot-grid {
+  justify-items: center;
+}
+
 #screen-baseline {
   align-items: center;
   justify-content: center;
@@ -489,7 +527,6 @@ button {
   display: grid;
   gap: 10px;
   margin-bottom: 16px;
-  margin-left: 8%;
 }
 .spot-card {
   background: var(--surface);
@@ -501,7 +538,8 @@ button {
   gap: 8px;
   align-items: center;
   text-align: center;
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
 }
 
 .spot-card:hover {
@@ -534,9 +572,10 @@ button {
   font-size: 45px;
   color: var(--text);
   margin-bottom: 16px;
-  width: 500px;
-  height: 80px;
-  margin-left: 8%;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  min-height: 80px;
 }
 .spot-total-row span:last-child {
   color: var(--orange);
@@ -589,6 +628,13 @@ button {
   height: 50px;
   width: 50px;
   margin-left: 8%;
+  transition:
+    transform 0.15s ease,
+    color 0.15s ease;
+}
+.tally-stepper input.pulse {
+  transform: scale(1.3);
+  color: var(--orange);
 }
 
 .spot-card input:hover {
@@ -600,6 +646,9 @@ button {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 16px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .drill-card {
   background: var(--surface);
@@ -668,6 +717,18 @@ button {
   color: var(--orange);
   min-width: 40px;
 }
+.drill-card.timing .drill-clock {
+  animation: clockPulse 1s ease-in-out infinite;
+}
+@keyframes clockPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
 .btn-timer {
   flex: 1;
   background: var(--surface-2);
@@ -722,9 +783,6 @@ button {
   background: var(--surface-2);
   border-color: var(--orange);
   color: var(--text);
-}
-.btn-primary {
-  margin-top: 0;
 }
 
 #screen-results {
@@ -908,6 +966,13 @@ button {
   margin-top: 4px;
 }
 
+#diet-total-display,
+#settings-diet-total {
+  transition:
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
 #diet-error,
 #settings-profile-error,
 #settings-diet-error,
@@ -920,16 +985,26 @@ button {
   border: none;
   border-radius: var(--radius);
   margin-top: 4px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  max-height: 0;
+  overflow: hidden;
 }
 
-#diet-error:not(:empty),
-#settings-profile-error:not(:empty),
-#settings-diet-error:not(:empty),
-#bio-error:not(:empty),
-#log-session-error:not(:empty) {
+#diet-error.show,
+#settings-profile-error.show,
+#settings-diet-error.show,
+#bio-error.show,
+#log-session-error.show {
   padding: 10px 14px;
   background: rgba(239, 68, 68, 0.08);
   border: 3px solid rgba(239, 68, 68, 0.2);
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 200px;
 }
 
 .settings-card {
@@ -947,6 +1022,12 @@ button {
   gap: 16px;
   padding: 14px 18px;
   border: 3px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.settings-row #settings-profile-error,
+.settings-row #settings-diet-error {
+  flex-basis: 100%;
 }
 
 .settings-row:hover {
@@ -1052,6 +1133,33 @@ button {
   font-size: 18px;
   padding: 6px 12px;
   cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.miss-tag-counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: black;
+  border: 3px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  margin-top: 6px;
+  transition: border-color 0.15s ease;
+}
+.miss-tag-count {
+  font-size: 20px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-align: center;
+  display: inline-block;
+  transition: transform 0.12s ease;
+}
+.miss-tag-count.bump {
+  transform: scale(1.3);
 }
 
 .miss-tag-btn:hover {
@@ -1158,4 +1266,204 @@ button {
   font-family: var(--font-display);
   font-weight: 700;
   text-align: center;
+}
+
+@media (max-width: 600px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+  .start-logo {
+    font-size: 44px;
+  }
+  .start-headline,
+  #start-second-headline {
+    font-size: 40px;
+  }
+  .start-sub {
+    font-size: 16px;
+  }
+  .unit-toggle {
+    margin-bottom: 12px;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-logo {
+    font-size: 20px;
+    padding: 0 14px;
+  }
+  .nav-btn {
+    font-size: 14px;
+    padding: 0 14px;
+  }
+
+  .app-nav {
+    max-width: 100vw;
+  }
+
+  .page-body {
+    padding: 16px 14px 32px;
+  }
+  .page-title {
+    font-size: 24px;
+  }
+  .section-label {
+    font-size: 16px;
+  }
+
+  .goal-strip {
+    max-width: 100vw;
+    align-items: center;
+    justify-content: center;
+  }
+  .goal-label {
+    font-size: 20px;
+    margin-right: 3vw;
+    margin-bottom: 0;
+    margin-top: -2vw;
+  }
+  .goal-text {
+    font-size: 15px;
+    margin-top: -2vw;
+  }
+  .goal-progress {
+    height: 10px;
+  }
+  #trainer-goal-pct {
+    font-size: 15px;
+  }
+
+  .module-card {
+    height: auto;
+    max-width: 100vw;
+    padding: 12px;
+  }
+  .module-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 22px;
+  }
+  .module-name {
+    font-size: 20px;
+  }
+  .module-meta {
+    font-size: 13px;
+  }
+  .module-status {
+    font-size: 13px;
+  }
+  .module-details {
+    max-width: 100vw;
+  }
+  .module-detail-row {
+    font-size: 14px;
+  }
+
+  .baseline-title {
+    font-size: 22px;
+  }
+  .baseline-instructions {
+    font-size: 15px;
+  }
+  .spot-name {
+    font-size: 17px;
+  }
+  .spot-of {
+    font-size: 15px;
+  }
+  .spot-total-row {
+    font-size: 28px;
+    padding: 10px 14px;
+  }
+  .tally-stepper {
+    width: 170px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .tally-stepper input {
+    text-align: center;
+    margin-left: 0;
+  }
+  .spot-stepper {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .drill-name {
+    font-size: 19px;
+  }
+  .drill-desc {
+    font-size: 13px;
+  }
+  .baseline-nav-row {
+    flex-direction: column-reverse;
+  }
+  .btn-back,
+  .btn-primary {
+    font-size: 18px;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  .results-title {
+    font-size: 26px;
+  }
+  .results-section-label {
+    font-size: 20px;
+  }
+  .snapshot-value {
+    font-size: 22px;
+  }
+  .drill-result-name,
+  .drill-result-time {
+    font-size: 15px;
+  }
+
+  .trainer-intro {
+    font-size: 16px;
+  }
+  .diet-name {
+    font-size: 18px;
+  }
+  .diet-total-row {
+    font-size: 20px;
+  }
+
+  .settings-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .settings-input-wrap,
+  .settings-input-wrap select,
+  .settings-input-wrap input {
+    width: 100%;
+  }
+  .settings-card {
+    max-width: 100vw;
+  }
+  .settings-row-label {
+    font-size: 17px;
+  }
+  .diet-settings-total-row {
+    align-items: center;
+    font-size: 20px;
+  }
+
+  .log-item-name {
+    font-size: 18px;
+  }
+  .log-item-card {
+    max-width: 100vw;
+  }
+  .miss-tag-label,
+  .miss-tag-btn {
+    font-size: 13px;
+  }
+  .cue-card {
+    font-size: 15px;
+  }
 }

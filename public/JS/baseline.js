@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const el = document.getElementById("bio-error");
     if (el) {
       el.textContent = message;
-      el.style.display = "block";
+      el.classList.add("show");
     }
   }
 
@@ -127,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const current = parseInt(input.value);
       if (current < max) {
         input.value = current + 1;
+        pulseInput(input);
         updateStepTotal(stepper);
       }
     });
@@ -135,10 +136,18 @@ document.addEventListener("DOMContentLoaded", function () {
       const current = parseInt(input.value);
       if (current > 0) {
         input.value = current - 1;
+        pulseInput(input);
         updateStepTotal(stepper);
       }
     });
   });
+
+  function pulseInput(input) {
+    input.classList.remove("pulse");
+    void input.offsetWidth;
+    input.classList.add("pulse");
+    setTimeout(() => input.classList.remove("pulse"), 150);
+  }
 
   function updateStepTotal(stepper) {
     const stepDiv = stepper.closest(".baseline-step");
@@ -189,6 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
       `[data-drill-action="stop"][data-drill-id="${drillId}"]`,
     );
     const drillCard = document.getElementById("drill-" + drillId);
+    drillCard?.classList.add("timing");
     const statusEl = drillCard
       ? drillCard.querySelector(".drill-status")
       : null;
@@ -230,6 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
       `[data-drill-action="stop"][data-drill-id="${drillId}"]`,
     );
     const drillCard = document.getElementById("drill-" + drillId);
+    drillCard?.classList.remove("timing");
     const statusEl = drillCard
       ? drillCard.querySelector(".drill-status")
       : null;

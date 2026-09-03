@@ -96,8 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
         showError(errorEl, "Enter a valid weight.");
         return;
       }
-
-      errorEl.style.display = "none";
+      errorEl.classList.remove("show");
       saveProfile({
         age,
         heightInches: height,
@@ -144,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      errorEl.style.display = "none";
+      errorEl.classList.remove("show");
       saveShotDiet({
         threes: getInt("settings-diet-threes"),
         midRange: getInt("settings-diet-midrange"),
@@ -172,11 +171,14 @@ document.addEventListener("DOMContentLoaded", function () {
   function showError(el, msg) {
     if (!el) return;
     el.textContent = msg;
-    el.style.display = "block";
+    el.classList.add("show");
+    console.log(el.classList);
   }
   function confirmSave(btn, originalText) {
+    btn.classList.add("confirmed");
     btn.textContent = "Saved ✓";
     setTimeout(() => {
+      btn.classList.remove("confirmed");
       btn.textContent = originalText;
     }, 2000);
   }

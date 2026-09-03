@@ -60,11 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
       if (total !== 100) {
         errorEl.textContent =
           "Your percentages must add up to 100. Currently: " + total + "%";
-        errorEl.style.display = "block";
+        errorEl.classList.add("show");
         return;
       }
 
-      errorEl.style.display = "none";
+      errorEl.classList.remove("show");
 
       saveShotDiet({
         threes: parseInt(document.getElementById("diet-threes").value),
@@ -124,12 +124,12 @@ document.addEventListener("DOMContentLoaded", function () {
     card.dataset.toggleBound = "true";
 
     card.addEventListener("click", function () {
-      const isOpen = details.style.display === "flex";
+      const isOpen = details.classList.contains("open");
       if (isOpen) {
-        details.style.display = "none";
+        details.classList.remove("open");
       } else {
         renderFn(details);
-        details.style.display = "flex";
+        details.classList.add("open");
       }
     });
   }

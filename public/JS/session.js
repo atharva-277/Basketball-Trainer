@@ -16,8 +16,10 @@ function startLogSession(type) {
   const cuesEl = document.getElementById("log-session-cues");
   const itemsEl = document.getElementById("log-session-items");
   const submitBtn = document.getElementById("btn-submit-log");
+  const errorEl = document.getElementById("log-session-error");
   cuesEl.style.display = "none";
   cuesEl.innerHTML = "";
+  errorEl.classList.remove("show");
   itemsEl.style.display = "block";
   submitBtn.style.display = "block";
 
@@ -117,6 +119,7 @@ function renderLogItems() {
           <label>Makes</label>
           <input type="number" min="0" max="${item.target}" value="0" id="log-makes-${item.key}" />
         </div>
+        <p class="miss-tags-prompt">Count Misses Below:</p>
         <div class="miss-tags" id="miss-tags-${item.key}"></div>
       `;
     } else if (activeLogType === "drill") {
@@ -200,6 +203,16 @@ function renderMissTags(item) {
         logMissTags[key][tag] =
           dir === "inc" ? current + 1 : Math.max(0, current - 1);
         renderMissTags(item);
+
+        const countEl = document
+          .getElementById(`miss-tags-${item.key}`)
+          ?.querySelector(`[data-tag-name="${tag}"]`)
+          ?.closest(".miss-tag-counter")
+          ?.querySelector(".miss-tag-count");
+        if (countEl) {
+          countEl.classList.add("bump");
+          setTimeout(() => countEl.classList.remove("bump"), 150);
+        }
       });
     });
   } else {
@@ -281,12 +294,12 @@ function submitLogSession() {
 
   if (missingItems.length > 0) {
     errorEl.textContent = "Tag a miss reason for: " + missingItems.join(", ");
-    errorEl.style.display = "block";
+    errorEl.classList.add("show");
     window.scrollTo(0, 0);
     return;
   }
 
-  errorEl.style.display = "none";
+  errorEl.classList.remove("show");
 
   const sessionResults = {};
   const cues = [];
