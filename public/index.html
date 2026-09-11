@@ -56,7 +56,7 @@
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
   </head>
   <body>
-    <div class="screen active" id="screen-start">
+    <div class="screen active visible" id="screen-start">
       <div class="start-bg">
         <img src="bg.png" alt="Hoop IQ" width="100%" />
       </div>
@@ -631,6 +631,9 @@
           <button class="nav-btn active" onclick="goTo('screen-trainer')">
             Trainer
           </button>
+          <button class="nav-btn" onclick="goTo('screen-history')">
+            History
+          </button>
           <button
             class="nav-btn nav-settings"
             onclick="goTo('screen-settings')"
@@ -799,8 +802,11 @@
           <button class="nav-btn" onclick="goTo('screen-trainer')">
             Trainer
           </button>
+          <button class="nav-btn" onclick="goTo('screen-history')">
+            History
+          </button>
           <button
-            class="nav-btn nav-settings active"
+            class="nav-btn active nav-settings"
             onclick="goTo('screen-settings')"
           >
             Settings
@@ -977,6 +983,78 @@
       </div>
     </div>
 
+    <div class="screen" id="screen-history">
+      <nav class="app-nav">
+        <span class="nav-logo" onclick="goTo('screen-start')">HoopIQ</span>
+        <div class="nav-links">
+          <button class="nav-btn" onclick="goTo('screen-trainer')">
+            Trainer
+          </button>
+          <button class="nav-btn active" onclick="goTo('screen-history')">
+            History
+          </button>
+          <button
+            class="nav-btn nav-settings"
+            onclick="goTo('screen-settings')"
+          >
+            Settings
+          </button>
+        </div>
+      </nav>
+      <div class="page-body">
+        <div class="page-header">
+          <div>
+            <h2 class="page-title">History</h2>
+          </div>
+        </div>
+
+        <div class="streak-strip">
+          <div class="streak-block">
+            <div class="streak-value" id="streak-current">0</div>
+            <div class="streak-label">Current Streak</div>
+          </div>
+          <div class="streak-divider"></div>
+          <div class="streak-block">
+            <div class="streak-value" id="streak-longest">0</div>
+            <div class="streak-label">Longest Streak</div>
+          </div>
+        </div>
+
+        <div class="calendar-header">
+          <button class="btn-cal-nav" id="cal-prev-month" type="button">
+            ←
+          </button>
+          <div class="calendar-month-label" id="calendar-month-label">
+            Month Year
+          </div>
+          <button class="btn-cal-nav" id="cal-next-month" type="button">
+            →
+          </button>
+        </div>
+
+        <div class="calendar-weekdays">
+          <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span
+          ><span>F</span><span>S</span>
+        </div>
+
+        <div class="calendar-grid" id="calendar-grid"></div>
+
+        <div class="day-detail-panel" id="day-detail-panel">
+          <div class="day-detail-header">
+            <span class="day-detail-date" id="day-detail-date"></span>
+            <button
+              class="day-detail-close"
+              id="day-detail-close"
+              type="button"
+            >
+              ✕
+            </button>
+          </div>
+          <div class="day-detail-body" id="day-detail-body"></div>
+        </div>
+      </div>
+    </div>
+
     <script src="./JS/storage.js"></script>
     <script src="./JS/algorithm.js"></script>
     <script src="./JS/coaching.js"></script>
@@ -985,7 +1063,7 @@
     <script src="./JS/nav.js"></script>
     <script src="./JS/trainer.js"></script>
     <script src="./JS/settings.js"></script>
-    <script src="./JS/gameiq.js"></script>
+    <script src="./JS/history.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const loadEl = document.querySelector("#load");

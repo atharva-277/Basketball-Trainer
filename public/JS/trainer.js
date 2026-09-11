@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const trainingPlan = document.getElementById("training-plan");
 
   function initTrainerScreen() {
+    document.querySelectorAll(".module-details.open").forEach((el) => {
+      el.classList.remove("open");
+    });
+
     const savedDiet = getShotDiet();
     if (!savedDiet) {
       dietSetup.style.display = "block";

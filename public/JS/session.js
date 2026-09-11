@@ -261,7 +261,7 @@ function submitLogSession() {
   if (activeLogType === "drill") {
     const subsections = {};
     activeLogItems.forEach((item) => {
-      subsections[item.key] = logActual[item.key] || 0;
+      subsections[item.label] = logActual[item.key] || 0;
     });
     saveTrainingSession({
       date: new Date().toISOString(),
@@ -370,7 +370,11 @@ function renderCues(cues) {
   document.getElementById("log-session-error").style.display = "none";
 
   if (cues.length === 0) {
-    cuesEl.innerHTML = `<div class="cue-card"><strong>Nice work</strong>Clean session — no misses tagged.</div>`;
+    if (activeLogType == "drill") {
+      cuesEl.innerHTML = `<div class="cue-card"><strong>Nice work</strong>Good Drill Work</div>`;
+    } else {
+      cuesEl.innerHTML = `<div class="cue-card"><strong>Nice work</strong>Clean session - no misses tagged.</div>`;
+    }
   } else {
     const cueDisplayRows = cues
       .map(

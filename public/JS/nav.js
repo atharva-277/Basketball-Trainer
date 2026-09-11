@@ -11,7 +11,6 @@ function goTo(screenId) {
   }
 
   target.classList.add("active");
-  void target.offsetWidth;
   target.classList.add("visible");
   window.scrollTo(0, 0);
 }
