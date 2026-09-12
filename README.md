@@ -21,8 +21,10 @@ A project made to help people improve their basketball skills
     * Drills(Speed, Footwork, Precision)
 * Session Screen
   * Log info for given activity
-* Game IQ Screen
-  * Coming Soon!
+* History Screen
+  * Current and Longest Streak
+  * View Calendar to see days practices
+  * Click days to see specific work done that day
 * Settings
   * Update profile info
     * Age
@@ -37,6 +39,7 @@ A project made to help people improve their basketball skills
 * Percentage based algorithm to improve weak areas
 * Drills to improve weak areas
 * Repetitive activity to view progress
+* History Tab to view past workours
 
 # Credits
 * Claude for helping with local storage and parts of algorithm
