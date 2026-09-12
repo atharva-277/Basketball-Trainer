@@ -1457,6 +1457,24 @@ button {
   padding: 6px 0;
 }
 
+.day-detail-item {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.day-detail-item:last-child {
+  border-bottom: none;
+}
+.day-detail-miss {
+  font-size: 14px;
+  color: var(--orange);
+  margin-top: 2px;
+}
+.day-detail-miss.none {
+  color: var(--text);
+  opacity: 0.6;
+}
+
 @media (max-width: 600px) {
   ::-webkit-scrollbar {
     width: 0px;

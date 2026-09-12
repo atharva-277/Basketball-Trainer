@@ -123,6 +123,15 @@ document.addEventListener("DOMContentLoaded", function () {
     drill: "Drill Work",
   };
 
+  const SUBSECTION_TO_MISSKEY = {
+    threePct: "threes",
+    midPct: "midrange",
+    layupLeftPct: "layupLeft",
+    layupRightPct: "layupRight",
+    floaterPct: "floater",
+    reverseLayupPct: "reverseLayup",
+  };
+
   function showDayDetail(key) {
     const todayKey = dateKey(new Date());
     const [y, m, d] = key.split("-").map(Number);
@@ -157,6 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function renderSessionDetail(session) {
     let rows = "";
+    const missTags = session.missTags || {};
 
     if (session.type === "handling") {
       const times = session.subsections.drillTimes || {};
@@ -167,21 +177,78 @@ document.addEventListener("DOMContentLoaded", function () {
           const mm = Math.floor(secs / 60);
           const ss = secs % 60;
           const value = mm + ":" + (ss < 10 ? "0" + ss : ss);
-          return `<div class="module-detail-row"><span>${label}</span><span>${value}</span></div>`;
+          const tag = missTags[drillId];
+          const missLine = tag
+            ? `<div class="day-detail-miss">Missed: ${formatTagLabel(tag)}</div>`
+            : `<div class="day-detail-miss none">Nothing tagged</div>`;
+          return `
+          <div class="day-detail-item">
+            <div class="module-detail-row"><span>${label}</span><span>${value}</span></div>
+            ${missLine}
+          </div>`;
+        })
+        .join("");
+    } else if (session.type === "shooting") {
+      const FINISHING_KEYS = [
+        "layupLeft",
+        "layupRight",
+        "floater",
+        "reverseLayup",
+      ];
+
+      rows = Object.keys(session.subsections)
+        .map((key) => {
+          const label = SHOOTING_LABELS[key] || key;
+          const value = session.subsections[key] + "%";
+
+          let missLine;
+          if (key === "finishingPct") {
+            const combined = {};
+            FINISHING_KEYS.forEach((k) => {
+              const b = missTags[k];
+              if (b) {
+                Object.keys(b).forEach((tag) => {
+                  if (b[tag] > 0) combined[tag] = (combined[tag] || 0) + b[tag];
+                });
+              }
+            });
+
+            if (Object.keys(combined).length > 0) {
+              const tagText = Object.keys(combined)
+                .map((t) => `${formatTagLabel(t)} (${combined[t]})`)
+                .join(", ");
+              missLine = `<div class="day-detail-miss">Misses (combined): ${tagText}</div>`;
+            } else {
+              missLine = `<div class="day-detail-miss none">Nothing tagged</div>`;
+            }
+          } else {
+            const breakdown = missTags[SUBSECTION_TO_MISSKEY[key] || key];
+            const hasTags =
+              breakdown && Object.values(breakdown).some((c) => c > 0);
+
+            if (hasTags) {
+              const tagText = Object.keys(breakdown)
+                .filter((t) => breakdown[t] > 0)
+                .map((t) => `${formatTagLabel(t)} (${breakdown[t]})`)
+                .join(", ");
+              missLine = `<div class="day-detail-miss">Missed: ${tagText}</div>`;
+            } else {
+              missLine = `<div class="day-detail-miss none">Nothing tagged</div>`;
+            }
+          }
+
+          return `
+        <div class="day-detail-item">
+          <div class="module-detail-row"><span>${label}</span><span>${value}</span></div>
+          ${missLine}
+        </div>`;
         })
         .join("");
     } else {
       rows = Object.keys(session.subsections)
         .map((key) => {
-          let label, value;
-          if (session.type === "shooting") {
-            label = SHOOTING_LABELS[key] || key;
-            value = session.subsections[key] + "%";
-          } else {
-            label = key;
-            value = session.subsections[key] + " reps";
-          }
-          return `<div class="module-detail-row"><span>${label}</span><span>${value}</span></div>`;
+          const value = session.subsections[key] + " reps/seconds";
+          return `<div class="module-detail-row"><span>${key}</span><span>${value}</span></div>`;
         })
         .join("");
     }
@@ -199,8 +266,10 @@ document.addEventListener("DOMContentLoaded", function () {
     void detailPanel.offsetWidth;
     detailPanel.classList.add("open");
     setTimeout(() => {
-      detailPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }, 160);
+      const rect = detailPanel.getBoundingClientRect();
+      const targetY = window.scrollY + rect.top - 20;
+      window.scrollTo({ top: targetY, behavior: "smooth" });
+    }, 200);
   }
 
   const MONTH_NAMES = [
